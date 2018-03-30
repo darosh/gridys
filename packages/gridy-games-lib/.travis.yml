@@ -1,0 +1,17 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=d764a9665368b3e130493a322e82ded6a53de43ed4a8d98e62aa98cf4529e53c
+language: node_js
+node_js:
+  - "8"
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+  - git clone --depth=1 https://github.com/darosh/gridy.git
+  - cd gridy
+  - yarn link
+  - cd ..
+  - yarn link gridy
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
