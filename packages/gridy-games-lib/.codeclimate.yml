@@ -36,6 +36,7 @@ exclude_patterns:
   - "*.json"
   - "*.lock"
   - ".codeclimate.yml"
+  - ".travis.yml"
   - ".vscode/"
   - "tests/"
   - ".babelrc"
