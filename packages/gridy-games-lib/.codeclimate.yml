@@ -32,8 +32,11 @@ checks:
       threshold: 100
 exclude_patterns:
   - "doc/"
+  - "dist/"
   - "*.json"
   - "*.lock"
+  - ".codeclimate.yml"
+  - ".vscode/"
   - ".babelrc"
   - ".editorconfig"
   - ".gitignore"
