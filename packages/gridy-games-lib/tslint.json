@@ -10,7 +10,11 @@
       true,
       "array"
     ],
-    "align": [true, "parameters", "statements"],
+    "align": [
+      true,
+      "parameters",
+      "statements"
+    ],
     "no-relative-imports": false,
     "missing-jsdoc": false,
     "no-increment-decrement": false,
