@@ -213,8 +213,8 @@
     }
     function landscapeHex(grid) {
         gridy.rotate(grid, -1);
-        grid.toPoint = gridy.HexagonalGrid.cubeToTwoAxisYZ;
-        grid.toTile = gridy.HexagonalGrid.twoAxisToCubeYZ;
+        grid.toPoint = gridy.HexagonalGrid.CUBE_TO_TWO_AXIS_YZ;
+        grid.toTile = gridy.HexagonalGrid.TWO_AXIS_TO_CUBE_YZ;
         gridy.normalize(grid);
         return grid;
     }
@@ -3239,7 +3239,7 @@
             value: function markLine(fromTile, to, value, key) {
                 var _this = this;
 
-                gridy.Float3.line(fromTile, to).forEach(function (t) {
+                gridy.Float3.LINE(fromTile, to).forEach(function (t) {
                     _this.tileMap.get(t.toString())['' + key + value] = true;
                 });
             }
