@@ -1,0 +1,35 @@
+import { IGame } from './IGame';
+import { IGridGame, IGameTile } from './IGridGame';
+import { IGrid } from 'gridy';
+export declare class TimedProxy implements IGame, IGridGame {
+    game: IGame & IGridGame;
+    limit: number;
+    countdown: number;
+    countdownSignal: number;
+    signalDelay: number;
+    counter: number;
+    counterSignal: number;
+    expired: boolean;
+    pending: boolean;
+    private timer;
+    private timeoutWinner;
+    constructor(game: IGame & IGridGame, opt?: {});
+    dispose(): void;
+    readonly grid: IGrid<IGameTile>;
+    readonly scale: number | undefined;
+    readonly moves: any[];
+    possible(): any[];
+    undo(): void;
+    move(m: any): void;
+    evaluate(): number;
+    readonly player: number;
+    readonly winner: number;
+    readonly score: any;
+    readonly landscape: any;
+    readonly hull: any;
+    moveToString(move: any): string;
+    stringToMove(move: string): any;
+    private start();
+    private stop(pending?);
+    private bind(prop);
+}
