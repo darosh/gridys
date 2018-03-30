@@ -82,8 +82,8 @@ export function other(player: number) {
 
 export function landscapeHex(grid: HexagonalGrid) {
   rotate(grid, -1);
-  grid.toPoint = HexagonalGrid.cubeToTwoAxisYZ;
-  grid.toTile = HexagonalGrid.twoAxisToCubeYZ;
+  grid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_YZ;
+  grid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_YZ;
   normalize(grid);
 
   return grid;

@@ -115,7 +115,7 @@ export class HexGameBase {
         return 0;
     }
     markLine(fromTile, to, value, key) {
-        Float3.line(fromTile, to).forEach((t) => {
+        Float3.LINE(fromTile, to).forEach((t) => {
             this.tileMap.get(t.toString())[`${key}${value}`] = true;
         });
     }

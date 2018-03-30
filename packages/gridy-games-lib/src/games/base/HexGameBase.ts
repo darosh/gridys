@@ -151,7 +151,7 @@ export class HexGameBase implements IGame {
     return 0;
   }
   private markLine(fromTile: any, to: any, value: any, key: string) {
-    Float3.line(fromTile, to).forEach((t: any) => {
+    Float3.LINE(fromTile, to).forEach((t: any) => {
       (<any>this.tileMap.get(t.toString()))[`${key}${value}`] = true;
     });
   }
