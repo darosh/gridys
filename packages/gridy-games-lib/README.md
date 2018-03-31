@@ -6,4 +6,4 @@
 
 | Board games Typescript library
 
-Used in [gridy-games](https://github.com/darosh/gridy-games), depends on [gridy](https://github.com/darosh/gridy-games-lib)
+Used in [gridy-games](https://github.com/darosh/gridy-games), depends on [gridy](https://github.com/darosh/gridy)
