@@ -1,6 +1,4 @@
 import { Rectangular8Tile, RectangularGrid, Shape } from "gridy";
-import { IGame } from "../IGame";
-import { Move } from "../Move";
 import { CheckersGameBase } from "./base/CheckersGameBase";
 
 export class InternationalCheckersGame extends CheckersGameBase {

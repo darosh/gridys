@@ -1,7 +1,4 @@
-import {
-  AnyTile, IGrid, link, Position, Rectangular8Tile, RectangularGrid, RectangularTile, Shape, toMap
-} from 'gridy';
-
+import { Rectangular8Tile, RectangularGrid, Shape } from 'gridy';
 import { QirkatGameBase } from './base/QirkatGameBase';
 
 const SIZE = 3;

@@ -1,5 +1,4 @@
 // Based on https://github.com/OMerkel/UCThello
-
 import { IGame } from '../IGame';
 import { UctNode, UctPlayer } from './UctPlayer';
 

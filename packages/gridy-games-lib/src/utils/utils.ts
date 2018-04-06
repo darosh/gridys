@@ -1,4 +1,4 @@
-import { HexagonalGrid, normalize, Position, rotate } from 'gridy';
+import { HexagonalGrid, Position, normalize, rotate } from 'gridy';
 import { IGame, IPLayer, Move } from '../index';
 
 export const PASS = 'pass';

@@ -1,4 +1,4 @@
-import { HexagonalGrid, normalize, Shape } from 'gridy';
+import { HexagonalGrid, Shape } from 'gridy';
 import { MinimaxPlayer } from '../players/MinimaxPlayer';
 import { ConnectGameBase } from './base/ConnectGameBase';
 

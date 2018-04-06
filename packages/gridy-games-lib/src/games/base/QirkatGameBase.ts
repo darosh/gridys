@@ -1,12 +1,9 @@
-import {
-  AnyTile, IGrid, link, Position, Rectangular8Tile, RectangularGrid, RectangularTile, Shape, toMap
-} from 'gridy';
-
-import { IGame } from '../../IGame';
-import { getMovePlace, other } from '../../utils';
+import { AnyTile, IGrid } from 'gridy';
+import { other } from '../../utils';
 import { quirkatSetup } from '../utils/quirkat';
 import { jumpsToString, stringsToJump } from '../utils/serialization';
 import { QuirkatBoard } from './QuirkatBoard';
+
 
 export class QirkatGameBase extends QuirkatBoard {
   public moveToString = jumpsToString.bind(this);

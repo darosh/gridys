@@ -1,7 +1,4 @@
-import {
-  AnyTile, IGrid, link, Position, Rectangular8Tile, RectangularGrid, RectangularTile, Shape, toMap
-} from 'gridy';
-
+import { AnyTile, IGrid, Rectangular8Tile, RectangularGrid, RectangularTile, Shape, link, toMap } from 'gridy';
 import { IGame } from '../../IGame';
 import { Theme } from '../../Theme';
 import { other } from '../../utils';
@@ -26,7 +23,7 @@ export class MorrisGameBase implements IGame {
   public moves: any[] = [];
   public player: number = 1;
   public score?: { [player: number]: number };
-  public scale: number = 0.33;
+  // public scale: number = 0.33;
   public winner: number = 0;
 
   public hull: boolean = true;
@@ -74,7 +71,7 @@ export class MorrisGameBase implements IGame {
     });
   }
 
-  public links() {
+  public rulers() {
     const m = new Map();
 
     for (const t of this.grid.tiles) {
@@ -86,6 +83,10 @@ export class MorrisGameBase implements IGame {
     }
 
     return Array.from(m.values());
+  }
+
+  public dots() {
+    return this.grid.tiles;
   }
 
   public possible(): any[] {

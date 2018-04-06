@@ -1,4 +1,4 @@
-import { HexagonalGrid, HexagonalTile, normalize, Shape } from 'gridy';
+import { HexagonalGrid, Shape, normalize } from 'gridy';
 import { QirkatGameBase } from './base/QirkatGameBase';
 
 const SIZE = 5;

@@ -1,8 +1,7 @@
-import { AnyTile, Directions, IGrid, link, Position, toMap } from 'gridy';
-import { Move } from '../..';
+import { AnyTile, Directions, IGrid, link, toMap } from 'gridy';
 import { IGame } from '../../IGame';
 import { Theme } from '../../Theme';
-import { other, parsePositions, stringifyPositions } from '../../utils';
+import { other } from '../../utils';
 import { connections, winning } from '../utils/connect';
 import { movesToString, stringsToMove } from '../utils/serialization';
 

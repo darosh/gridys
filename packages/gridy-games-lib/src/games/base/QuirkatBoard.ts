@@ -1,9 +1,6 @@
-import {
-  AnyTile, IGrid, link, Position, Rectangular8Tile, RectangularGrid, RectangularTile, Shape, toMap
-} from 'gridy';
-
+import { AnyTile, IGrid, link, toMap } from 'gridy';
 import { Theme } from '../../Theme';
-import {isDiagonalCenter} from '../utils/quirkat';
+import { isDiagonalCenter } from '../utils/quirkat';
 
 export class QuirkatBoard {
   public static theme = Theme.Qirkat;
@@ -45,5 +42,9 @@ export class QuirkatBoard {
     }
 
     return Array.from(m.values());
+  }
+
+  public dots(): AnyTile[] {
+    return this.grid.tiles;
   }
 }

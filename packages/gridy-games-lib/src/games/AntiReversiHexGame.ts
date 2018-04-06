@@ -1,6 +1,4 @@
-import { HexagonalGrid, normalize, rotate, Shape } from 'gridy';
-import { IGame } from '../IGame';
-import { Move } from '../Move';
+import { HexagonalGrid, Shape } from 'gridy';
 import { landscapeHex } from '../utils';
 import { ReversiGameBase } from './base/ReversiGameBase';
 

@@ -1,7 +1,7 @@
-import {HexagonalGrid, RadialGrid, RectangularGrid, TriangularGrid} from 'gridy';
-import {IGame} from '../IGame';
-import {IGridGame, IGridGameConstructor} from '../IGridGame';
-import {initActions} from './actions';
+import { HexagonalGrid, RadialGrid, RectangularGrid, TriangularGrid } from 'gridy';
+import { IGame } from '../IGame';
+import { IGridGame, IGridGameConstructor } from '../IGridGame';
+import { initActions } from './actions';
 
 export const FIELDS = [
   'title',

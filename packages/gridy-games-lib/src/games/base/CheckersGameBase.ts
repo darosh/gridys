@@ -1,4 +1,4 @@
-import { AnyTile, IGrid, Position, toMap } from "gridy";
+import { AnyTile, IGrid, toMap } from "gridy";
 import { IGame } from "../../IGame";
 import { Theme } from "../../Theme";
 

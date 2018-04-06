@@ -1,4 +1,4 @@
-import { HexagonalGrid, normalize, Rectangular8Tile, rotate, Shape } from 'gridy';
+import { HexagonalGrid, Shape } from 'gridy';
 import { landscapeHex } from '../utils';
 import { ReversiGameBase } from './base/ReversiGameBase';
 

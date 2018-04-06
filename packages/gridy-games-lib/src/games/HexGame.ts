@@ -1,5 +1,4 @@
 import { HexagonalGrid, Shape } from 'gridy';
-import { IGame } from '../IGame';
 import { landscapeHex } from '../utils';
 import { HexGameBase } from './base/HexGameBase';
 

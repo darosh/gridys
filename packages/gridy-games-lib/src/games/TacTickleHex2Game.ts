@@ -1,4 +1,4 @@
-import { HexagonalGrid, HexagonalTile, normalize, Shape } from 'gridy';
+import { HexagonalGrid, HexagonalTile, Shape, normalize } from 'gridy';
 import { TacTickleGameBase } from './base/TacTickleGameBase';
 
 export class TacTickleHex2Game extends TacTickleGameBase {

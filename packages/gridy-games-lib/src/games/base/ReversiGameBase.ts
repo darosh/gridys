@@ -1,8 +1,8 @@
-import { AnyTile, IGrid, link, Position, toMap } from 'gridy';
+import { AnyTile, IGrid, link, toMap } from 'gridy';
 import { IGame } from '../../IGame';
 import { Move } from '../../Move';
 import { Theme } from '../../Theme';
-import { other, parsePosition, stringifyPosition } from '../../utils';
+import { other } from '../../utils';
 import { moveToString, stringToMove } from '../utils/serialization';
 
 export interface IState {

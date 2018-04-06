@@ -1,7 +1,7 @@
-import { IGame } from './IGame';
-import { IGridGame, IGameTile } from './IGridGame';
-import { other } from './utils';
 import { IGrid } from 'gridy';
+import { IGame } from './IGame';
+import { IGameTile, IGridGame } from './IGridGame';
+import { other } from './utils';
 
 export class TimedProxy implements IGame, IGridGame {
   public game: IGame & IGridGame;
@@ -27,6 +27,7 @@ export class TimedProxy implements IGame, IGridGame {
     this.bind('winning');
     this.bind('links');
     this.bind('rulers');
+    this.bind('dots');
   }
 
   public dispose() {

@@ -1,12 +1,9 @@
-import {
-  AnyGrid, AnyTile, IGrid, link, Position, Rectangular8Tile, RectangularGrid, RectangularTile, Shape, toMap
-} from 'gridy';
-
+import { AnyGrid } from 'gridy';
 import { IGame } from '../../IGame';
 import { Move } from '../../Move';
 import { other } from '../../utils';
 import { QuirkatBoard } from '../base/QuirkatBoard';
-import { expandJumps, jumpsPossible, leavesToMoves, leaveToMove, multiJumps } from '../utils/quirkat';
+import { expandJumps, jumpsPossible, leaveToMove, leavesToMoves, multiJumps } from '../utils/quirkat';
 import { jumpsToString, stringsToJump } from '../utils/serialization';
 
 export class CatchTheHareGameBase extends QuirkatBoard implements IGame {

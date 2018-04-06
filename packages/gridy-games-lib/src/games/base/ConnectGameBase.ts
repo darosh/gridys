@@ -1,12 +1,12 @@
-import { AnyTile, IGrid, ITile, link, Search, toArray, toMap } from 'gridy';
+import { AnyTile, IGrid, link, toArray, toMap } from 'gridy';
 import { IGame } from '../../IGame';
 import { IGameTile } from '../../IGridGame';
 import { Move } from '../../Move';
 import { Theme } from '../../Theme';
 import { other, parseRecord } from '../../utils';
 import { connections, evaluateLinked, winning } from '../utils/connect';
-import { moveToString, stringToMove} from '../utils/serialization';
-import {undo} from '../utils/undo';
+import { moveToString, stringToMove } from '../utils/serialization';
+import { undo } from '../utils/undo';
 
 export class ConnectGameBase implements IGame {
   public static theme = Theme.Gomoku;

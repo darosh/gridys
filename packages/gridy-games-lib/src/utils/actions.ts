@@ -1,4 +1,4 @@
-import {IAction, ICompoundStep, IGameTile, IGridGame, Move} from '../IGridGame';
+import { IAction, ICompoundStep, IGameTile, IGridGame, Move } from '../IGridGame';
 
 export function getMovePlace(move: Move, cursor: number = 0): IGameTile | undefined {
   if (Array.isArray(move)) {

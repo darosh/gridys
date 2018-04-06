@@ -1,10 +1,9 @@
-import { AnyTile, Float3, IGrid, link, Position, toArray, toMap } from 'gridy';
+import { AnyTile, Float3, IGrid, link, toArray, toMap } from 'gridy';
 import { IGame } from '../../IGame';
-import { Move } from '../../Move';
 import { Theme } from '../../Theme';
-import { other, parsePosition, stringifyPosition } from '../../utils';
-import { moveToString, stringToMove} from '../utils/serialization';
-import {undo} from '../utils/undo';
+import { other } from '../../utils';
+import { moveToString, stringToMove } from '../utils/serialization';
+import { undo } from '../utils/undo';
 
 export class HexGameBase implements IGame {
   public static theme = Theme.Hex;

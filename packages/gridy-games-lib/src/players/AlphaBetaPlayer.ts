@@ -1,5 +1,4 @@
 // based on https://medium.freecodecamp.org/simple-chess-ai-step-by-step-1d55a9266977
-
 import { IGame, IPLayer, Move } from '../';
 
 export class AlphaBetaPlayer implements IPLayer {

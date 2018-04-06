@@ -1,8 +1,5 @@
-import {
-  AnyTile, IGrid, link, Position, Rectangular8Tile, RectangularGrid, RectangularTile, Shape, toMap
-} from 'gridy';
-
-import {CatchTheHareGameBase} from './base/CatchTheHareGameBase';
+import { Rectangular8Tile, RectangularGrid, Shape } from 'gridy';
+import { CatchTheHareGameBase } from './base/CatchTheHareGameBase';
 
 export class CatchTheHare10Game extends CatchTheHareGameBase {
   public static title = 'Catch the Hare 10';

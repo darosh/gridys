@@ -1,4 +1,4 @@
-import { HexagonalGrid, normalize, Rectangular8Tile, RectangularGrid, Shape } from 'gridy';
+import { Rectangular8Tile, RectangularGrid, Shape } from 'gridy';
 import { MinimaxPlayer } from '../players/MinimaxPlayer';
 import { ConnectGameBase } from './base/ConnectGameBase';
 
