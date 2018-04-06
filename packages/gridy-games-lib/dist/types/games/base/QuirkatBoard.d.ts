@@ -14,4 +14,5 @@ export declare class QuirkatBoard {
     private tileMap;
     constructor(grid: IGrid<AnyTile>);
     rulers(): any[];
+    dots(): AnyTile[];
 }

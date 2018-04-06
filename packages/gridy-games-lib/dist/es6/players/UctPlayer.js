@@ -1,4 +1,3 @@
-// Based on https://github.com/OMerkel/UCThello
 import { other } from '../utils';
 export class UctNode {
     constructor(game, parentNode, action) {

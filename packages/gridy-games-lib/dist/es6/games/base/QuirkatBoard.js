@@ -30,6 +30,9 @@ export class QuirkatBoard {
         }
         return Array.from(m.values());
     }
+    dots() {
+        return this.grid.tiles;
+    }
 }
 QuirkatBoard.theme = Theme.Qirkat;
 QuirkatBoard.move = true;

@@ -1,6 +1,6 @@
-import { IGame } from './IGame';
-import { IGridGame, IGameTile } from './IGridGame';
 import { IGrid } from 'gridy';
+import { IGame } from './IGame';
+import { IGameTile, IGridGame } from './IGridGame';
 export declare class TimedProxy implements IGame, IGridGame {
     game: IGame & IGridGame;
     limit: number;

@@ -1,4 +1,3 @@
-// based on https://medium.freecodecamp.org/simple-chess-ai-step-by-step-1d55a9266977
 export class MinimaxPlayer {
     constructor(depth = 3) {
         this.count = 0;

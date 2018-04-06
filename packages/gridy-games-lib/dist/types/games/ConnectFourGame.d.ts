@@ -7,7 +7,7 @@ export declare class ConnectFourGame extends ConnectGameBase {
     static authors: string[];
     static created: number;
     static wiki: string;
-    static alias: string[];
+    static aliases: string[];
     static rules: string[];
     static sample: string;
     landscape: boolean;

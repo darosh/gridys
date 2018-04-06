@@ -17,6 +17,7 @@ export class TimedProxy {
         this.bind('winning');
         this.bind('links');
         this.bind('rulers');
+        this.bind('dots');
     }
     dispose() {
         this.stop();

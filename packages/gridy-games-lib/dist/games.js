@@ -534,6 +534,7 @@
             this.bind('winning');
             this.bind('links');
             this.bind('rulers');
+            this.bind('dots');
         }
 
         createClass(TimedProxy, [{
@@ -1377,7 +1378,7 @@
     }(TacTickleGameBase);
     TacTickle4Game.title = 'Tac-tickle 4x4';
     TacTickle4Game.group = 'Move to Connect';
-    TacTickle4Game.aliases = 'Tic-tackle';
+    TacTickle4Game.aliases = ['Tic Tackle'];
     TacTickle4Game.original = 'TacTickleGame';
     TacTickle4Game.sample = 'c4-c3, a1-a2, d1-d2, d4-c4, c3-b3, c1-c2, d2-d1, c4-c3, b3-a3, c2-d2';
 
@@ -1485,7 +1486,7 @@
     ConnectFourGame.authors = ['Howard Wexler', 'Ned Strongin'];
     ConnectFourGame.created = 1974;
     ConnectFourGame.wiki = 'https://en.wikipedia.org/wiki/Connect_Four';
-    ConnectFourGame.alias = ['Captain\'s Mistress', 'Four Up', 'Plot Four', 'Find Four', 'Four in a Row', 'Four in a Line', 'Gravitrips'];
+    ConnectFourGame.aliases = ['Captain\'s Mistress', 'Four Up', 'Gravitrips'];
     ConnectFourGame.rules = ['Connect four pieces'];
     ConnectFourGame.sample = 'c1, d1, c2, e1, b1, f1, g1, d2, d3, c3, e2, e3, e4';
 
@@ -1743,6 +1744,11 @@
                 }
 
                 return Array.from(m.values());
+            }
+        }, {
+            key: 'dots',
+            value: function dots() {
+                return this.grid.tiles;
             }
         }]);
         return QuirkatBoard;
@@ -2365,7 +2371,6 @@
     // tslint:disable-next-line:max-line-length
     CatchTheHare10Game.sample = 'b4-c4, c3-c4-c5, a5-b4, c5-b5-a5-b4-c3, a3-b4, c3-b3-a3-a4-a5, b2-c2, a5-b4-c3-c2-c1, a1-b2, c1-b1-a1-a2-a3, b2-b3, a3-b3-c3';
 
-    // based on https://medium.freecodecamp.org/simple-chess-ai-step-by-step-1d55a9266977
     var MinimaxPlayer = function () {
         function MinimaxPlayer() {
             var depth = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3;
@@ -3395,14 +3400,6 @@
     Hex13Game.sample = 'l1, j3, c1, k12, b1, e6, d8, a12, b7, j6, l3, a1, l6, m2, h1, h4, i1, d3, g8, f1, k8, g7, f6, e2, b6, f8, i7, e5, f9, j4, h2, e10, l9, k6, m5, e9, g2, h7, a3, a6, g4, i6, a10, g10, f11, k3, h11, a9, j5, b8, e13, c8, i5, h12, i11, g1, b4, h5, b12, e1, c6, d13, k2, m3, c10, a11, i12, j10, d11, f5, a7, j1, e11, g13, m9, i8, d5, c11, b11, a5, l7, d10, i13, c12, b2, c5, m10, i9, m1, c13, a4, d2, m4, g11, f13, e8, d7, h3, b10, k9, g5, h6, j13, g3, i2, f3, d4, i3, l5, k4, j2, j2';
 
     // export { Hex14Game } from "./Hex14Game";
-    // export { CzechCheckersGame } from "./CzechCheckersGame";
-    // export { InternationalCheckersGame } from "./InternationalCheckersGame";
-    // export { HexCheckCheckersGame } from "./HexCheckCheckersGame";
-    // export { NineMensMorrisGame } from './NineMensMorrisGame';
-    // export { ThreeMensMorrisGame } from './ThreeMensMorrisGame';
-    // export { SixMensMorrisGame } from './SixMensMorrisGame';
-    // export { TwelveMensMorrisGame } from './TwelveMensMorrisGame';
-    // export { NineHolesGame } from './NineHolesGame';
 
     var games = /*#__PURE__*/Object.freeze({
         TicTacToeGame: TicTacToeGame,
@@ -3448,7 +3445,6 @@
         Hex13Game: Hex13Game
     });
 
-    // based on https://medium.freecodecamp.org/simple-chess-ai-step-by-step-1d55a9266977
     var AlphaBetaPlayer = function () {
         function AlphaBetaPlayer() {
             var depth = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3;
@@ -3608,7 +3604,6 @@
         return RandomPlayer;
     }();
 
-    // Based on https://github.com/OMerkel/UCThello
     var UctNode = function () {
         function UctNode(game, parentNode, action) {
             classCallCheck(this, UctNode);
@@ -3761,7 +3756,6 @@
         return UctPlayer;
     }();
 
-    // Based on https://github.com/OMerkel/UCThello
     // tslint:disable-next-line:max-classes-per-file
     var UctCachedPlayer = function (_UctPlayer) {
         inherits(UctCachedPlayer, _UctPlayer);

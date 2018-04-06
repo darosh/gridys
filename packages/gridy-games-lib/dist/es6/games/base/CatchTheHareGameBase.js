@@ -1,6 +1,6 @@
 import { other } from '../../utils';
 import { QuirkatBoard } from '../base/QuirkatBoard';
-import { expandJumps, jumpsPossible, leavesToMoves, leaveToMove, multiJumps } from '../utils/quirkat';
+import { expandJumps, jumpsPossible, leaveToMove, leavesToMoves, multiJumps } from '../utils/quirkat';
 import { jumpsToString, stringsToJump } from '../utils/serialization';
 export class CatchTheHareGameBase extends QuirkatBoard {
     constructor(grid, maxMoves) {

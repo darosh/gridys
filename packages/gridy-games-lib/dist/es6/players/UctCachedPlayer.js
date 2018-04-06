@@ -1,4 +1,3 @@
-// Based on https://github.com/OMerkel/UCThello
 import { UctNode, UctPlayer } from './UctPlayer';
 // tslint:disable-next-line:max-classes-per-file
 export class UctCachedPlayer extends UctPlayer {

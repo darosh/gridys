@@ -46,6 +46,6 @@
     "doc": "del-cli doc && typedoc --hideGenerator --mode file --out doc src/ --name Games",
     "lint": "tslint -p tsconfig.json --fix",
     "test": "jest --coverage",
-    "watch": "npm run build && concurrently --raw --kill-others \"tsc --watch -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6\" \"rollup -m -c rollup.config.js dist/es6/index.js -w -o dist/games.js -f umd -n Games\""
+    "start": "npm run build && concurrently --raw --kill-others \"tsc --watch -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6\" \"rollup -m -c rollup.config.js dist/es6/index.js -w -o dist/games.js -f umd -n Games\""
   }
 }

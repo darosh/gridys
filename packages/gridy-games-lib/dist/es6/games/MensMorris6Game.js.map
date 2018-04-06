@@ -1,0 +1,1 @@
+{"version":3,"file":"MensMorris6Game.js","sourceRoot":"","sources":["../../../src/games/MensMorris6Game.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,cAAc,EAAE,MAAM,uBAAuB,CAAC;AAEvD,MAAM,sBAAuB,SAAQ,cAAc;IAKjD;QACE,KAAK,CAAC,CAAC,EAAE,KAAK,EAAE,KAAK,EAAE,CAAC,CAAC,CAAC;IAC5B,CAAC;;AANa,qBAAK,GAAG,mBAAmB,CAAC;AAC5B,qBAAK,GAAG,OAAO,CAAC;AAChB,wBAAQ,GAAG,iBAAiB,CAAC"}

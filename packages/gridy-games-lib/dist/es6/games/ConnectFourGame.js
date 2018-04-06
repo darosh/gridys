@@ -29,8 +29,7 @@ ConnectFourGame.group = 'Connect';
 ConnectFourGame.authors = ['Howard Wexler', 'Ned Strongin'];
 ConnectFourGame.created = 1974;
 ConnectFourGame.wiki = 'https://en.wikipedia.org/wiki/Connect_Four';
-ConnectFourGame.alias = ['Captain\'s Mistress',
-    'Four Up', 'Plot Four', 'Find Four', 'Four in a Row', 'Four in a Line', 'Gravitrips'];
+ConnectFourGame.aliases = ['Captain\'s Mistress', 'Four Up', 'Gravitrips'];
 ConnectFourGame.rules = ['Connect four pieces'];
 ConnectFourGame.sample = 'c1, d1, c2, e1, b1, f1, g1, d2, d3, c3, e2, e3, e4';
 //# sourceMappingURL=ConnectFourGame.js.map
