@@ -6,6 +6,7 @@ export declare class OthelloGame extends ReversiGameBase {
     static authors: string[];
     static wiki: string;
     static location: string;
+    static rules: string[];
     static sample: string;
     constructor();
 }

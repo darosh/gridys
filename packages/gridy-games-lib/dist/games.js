@@ -144,6 +144,7 @@
             initActions(game, moves, _action.cursor);
         }
     }
+    //# sourceMappingURL=actions.js.map
 
     var PASS = 'pass';
     function parseRecord(record) {
@@ -241,6 +242,7 @@
             game.undo();
         }
     }
+    //# sourceMappingURL=utils.js.map
 
     var FIELDS = ['title', 'type', 'items', 'linkText', 'authors', 'aliases', 'rules', 'created', 'location', 'tiles', 'original', 'grid'];
     var GRIDS = new Map([[gridy.RectangularGrid, 'Rectangular'], [gridy.HexagonalGrid, 'Hexagonal'], [gridy.RadialGrid, 'Radial'], [gridy.TriangularGrid, 'Triangular']]);
@@ -405,6 +407,9 @@
         m.wip = a.wip;
         return m;
     }
+    //# sourceMappingURL=table.js.map
+
+    //# sourceMappingURL=index.js.map
 
     var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
       return typeof obj;
@@ -750,6 +755,8 @@
         }
     }
 
+    //# sourceMappingURL=evaluateLines.js.map
+
     function evaluateLinked(tiles, min, player) {
         var c = 0;
         var _iteratorNormalCompletion = true;
@@ -890,6 +897,7 @@
         }
         return Math.pow(min, l.length + 1 + (l.length >= min ? 1 : 0)) - Math.pow(min, l.length) * (2 - f);
     }
+    //# sourceMappingURL=evaluateLinked.js.map
 
     function winning(move, player, min) {
         var done = {};
@@ -944,6 +952,9 @@
         }
         return v;
     }
+    //# sourceMappingURL=winning.js.map
+
+    //# sourceMappingURL=index.js.map
 
     function moveToString(move) {
         if (!move) {
@@ -1013,6 +1024,7 @@
             return _this.tileMap.get(t.key);
         });
     }
+    //# sourceMappingURL=index.js.map
 
     function undo() {
         var move = this.moves.pop();
@@ -1023,6 +1035,9 @@
         this.winner = 0;
         this.playerTiles[this.player].pop();
     }
+    //# sourceMappingURL=undo.js.map
+
+    //# sourceMappingURL=index.js.map
 
     var ConnectGameBase = function () {
         function ConnectGameBase(grid, min) {
@@ -2910,6 +2925,7 @@
     OthelloGame.authors = [' Goro Hasegawa'];
     OthelloGame.wiki = 'https://en.wikipedia.org/wiki/Reversi';
     OthelloGame.location = 'Japan';
+    OthelloGame.rules = ['Capture more pieces'];
     // public static original = 'ReversiGame';
     // tslint:disable-next-line:max-line-length
     OthelloGame.sample = 'f4, d3, c3, f5, e3, g3, e6, c2, d6, c7, f3, b3, f6, g6, d2, e1, f7, e8, h3, c4, c1, e2, h6, h5, h4, g2, c6, g7, h1, f2, b4, b5, c5, d1, f1, d7, a5, b6, a6, g5, g1, b7, a8, a7, d8, e7, b8, b2, g4, c8, b1, a3, a4, h2, f8, h8, h7, g8, a2, a1';
@@ -3400,6 +3416,7 @@
     Hex13Game.sample = 'l1, j3, c1, k12, b1, e6, d8, a12, b7, j6, l3, a1, l6, m2, h1, h4, i1, d3, g8, f1, k8, g7, f6, e2, b6, f8, i7, e5, f9, j4, h2, e10, l9, k6, m5, e9, g2, h7, a3, a6, g4, i6, a10, g10, f11, k3, h11, a9, j5, b8, e13, c8, i5, h12, i11, g1, b4, h5, b12, e1, c6, d13, k2, m3, c10, a11, i12, j10, d11, f5, a7, j1, e11, g13, m9, i8, d5, c11, b11, a5, l7, d10, i13, c12, b2, c5, m10, i9, m1, c13, a4, d2, m4, g11, f13, e8, d7, h3, b10, k9, g5, h6, j13, g3, i2, f3, d4, i3, l5, k4, j2, j2';
 
     // export { Hex14Game } from "./Hex14Game";
+    //# sourceMappingURL=index.js.map
 
     var games = /*#__PURE__*/Object.freeze({
         TicTacToeGame: TicTacToeGame,
@@ -3813,7 +3830,7 @@
         return UctCachedPlayer;
     }(UctPlayer);
 
-
+    //# sourceMappingURL=index.js.map
 
     var players = /*#__PURE__*/Object.freeze({
         AlphaBetaPlayer: AlphaBetaPlayer,
@@ -3868,6 +3885,7 @@
     var Games = games;
     // tslint:disable-next-line:variable-name
     var Players = players;
+    //# sourceMappingURL=index.js.map
 
     exports.Games = Games;
     exports.Players = Players;
