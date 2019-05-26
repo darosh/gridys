@@ -1,0 +1,18 @@
+import { HexagonalGrid, Position } from '@gridy/core';
+import { IGame, IPLayer, Move } from '../index';
+export declare const PASS = "pass";
+export declare function shuffle(a: any[]): any[];
+export declare function last(a: any[]): any;
+export declare function isEmpty(a: any[]): boolean;
+export declare function playout(game: IGame, players: IPLayer[]): void;
+export declare function parseRecord(record: string): Move[];
+export declare function parsePosition(r: string): any[] | null;
+export declare function parsePositions(r: string): (any[] | null)[] | null;
+export declare function stringifyPosition(position: Position): string;
+export declare function stringifyPositions(positions: Position[]): string;
+export declare function stringify(game?: IGame): any[];
+export declare function other(player: number): number;
+export declare function landscapeHex(grid: HexagonalGrid): HexagonalGrid;
+export declare function reset(game: IGame): void;
+export declare function update(game: IGame, record: string): void;
+export declare function undoFor(game: IGame, player: number): void;
