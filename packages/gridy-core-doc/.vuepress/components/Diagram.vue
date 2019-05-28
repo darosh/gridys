@@ -22,9 +22,7 @@
         </g>
         <g class="coordinates" v-if="showCoordinates">
           <text y="0.4em">
-            <tspan class="x" v-text="node.position.x"/>
-            ,
-            <tspan class="y" v-text="node.position.y"/>
+            <tspan class="x" v-text="node.position.x"/>,<tspan class="y" v-text="node.position.y"/>
           </text>
         </g>
         <g class="tiles" v-if="showTiles && (labels.length !== 0)">
@@ -34,7 +32,9 @@
             <tspan v-if="!!labels[2]" class="r" v-text="node.axes[2]" :x="labels[2].x" :y="labels[2].y"/>
           </text>
         </g>
-        <g class="values"></g>
+        <g class="values">
+          <text y="0.4em" v-text="values[node.key]" />
+        </g>
       </g>
       <g class="lines">
         <path class="path" :d="d" v-for="d in linesData"></path>
@@ -74,6 +74,10 @@ export default {
     lines: {
       type: Array,
       default: () => []
+    },
+    values: {
+      type: Object,
+      default: () => ({})
     },
     search: {
       type: Object,
@@ -284,7 +288,7 @@ text {
 .path {
   fill: none;
   stroke: hsl(60, 20%, 15%);
-  stroke-width: 12px;
+  stroke-width: 5px;
   stroke-opacity: 0.4;
   stroke-linecap: round;
   stroke-linejoin: round;

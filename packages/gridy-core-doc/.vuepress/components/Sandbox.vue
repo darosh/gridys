@@ -6,6 +6,8 @@
         :height="480"
         class="diagram mr-4"
         :grid="gridInstance"
+        :search="showSearch ? searchInstance : null"
+        :path="showPath ? pathInstance : []"
         :show-axes="showAxes"
         :show-tiles="showTiles"
         :show-polygons="showPolygons"
@@ -138,6 +140,18 @@ export default {
       const {size, orientation, shape, x, y} = this
 
       return new Gridy[this.grid](size, orientation, Gridy.Shape[shape], x, y)
+    },
+    searchInstance () {
+      return new Gridy.Search(
+        this.gridInstance.tiles[0],
+        Infinity,
+        100,
+        undefined,
+        this.gridInstance.tiles
+      )
+    },
+    pathInstance () {
+      return this.searchInstance.path(this.gridInstance.tiles[this.gridInstance.tiles.length - 1])
     }
   }
 }

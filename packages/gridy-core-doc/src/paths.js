@@ -40,7 +40,7 @@ export default {
 
         const path = spiral(new HexagonalTile(1, -2, 1), 2)
 
-        return { grid, showTiles: true, highlight: path, path }
+        return { grid, highlight: path, path }
       }
     },
     {
@@ -54,7 +54,7 @@ export default {
 
         const path = spiral(new RectangularTile(3, 3), 2)
 
-        return { grid, showTiles: true, highlight: path, path, showCoordinates: true }
+        return { grid, highlight: path, path, showCoordinates: true }
       }
     },
     {
@@ -107,8 +107,7 @@ export default {
           new Position(5, 5)
         )
 
-        return { grid, showTiles: true, highlight: path, path, showCoordinates: true }
-
+        return { grid, highlight: path, path, showCoordinates: true }
       }
     }
   ]

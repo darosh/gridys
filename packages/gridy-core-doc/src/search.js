@@ -78,7 +78,7 @@ export default {
 
         const path = search.path(grid.tile(4, 0))
 
-        return { grid, showTiles: true, path, showCoordinates: true, highlight: blocked }
+        return { grid, path, showCoordinates: true, highlight: blocked }
       }
     },
     {
@@ -112,46 +112,46 @@ export default {
 
         const path = search.path(grid.tile(-12, 0))
 
-        return { grid, highlight, showTiles: true, path, width: 456 * 2 }
+        return { grid, highlight, path, width: 456 * 2 }
       }
     },
-        {
-          title: [
-            ['Search maze', 'demo']
-          ],
-          script: function (Gridy) {
-            const { Shape, RectangularGrid, RectangularTile, Search } = Gridy
+    {
+      title: [
+        ['Search maze', 'demo']
+      ],
+      script: function (Gridy) {
+        const { Shape, RectangularGrid, RectangularTile, Search } = Gridy
 
-            const size = 24
+        const size = 24
 
-            const grid = new RectangularGrid(14, false, Shape.Rhombus, size, size)
+        const grid = new RectangularGrid(14, false, Shape.Rhombus, size, size)
 
-            const blocked = []
+        const blocked = []
 
-            for (let i = 0; i < size * size / 2; i++) {
-              blocked.push(new RectangularTile(
-                Math.floor(Math.random() * size + 1),
-                Math.floor(Math.random() * (size - 1))
-              ))
-            }
+        for (let i = 0; i < size * size / 2; i++) {
+          blocked.push(new RectangularTile(
+            Math.floor(Math.random() * size + 1),
+            Math.floor(Math.random() * (size - 1))
+          ))
+        }
 
-            const search = new Search(
-              new RectangularTile(),
-              Infinity,
-              100,
-              blocked,
-              grid.tiles
-            )
+        const search = new Search(
+          new RectangularTile(),
+          Infinity,
+          100,
+          blocked,
+          grid.tiles
+        )
 
-            const max = Math.max.apply(null, grid.tiles.map(t => search.cost[t.key] || -1))
+        const max = Math.max.apply(null, grid.tiles.map(t => search.cost[t.key] || -1))
 
-            const end = grid.tiles.find(t => search.cost[t.key] === max)
+        const end = grid.tiles.find(t => search.cost[t.key] === max)
 
-            const path = search.path(end)
+        const path = search.path(end)
 
-            return { grid, highlight: blocked, showTiles: true, search, path, highlightDark: true }
-          }
-        },
+        return { grid, highlight: blocked, search, path, highlightDark: true }
+      }
+    },
     {
       title: [
         ['Connect path', 'demo']
@@ -184,7 +184,7 @@ export default {
 
         const path = search.path(grid.tile(size - 1, size - 1))
 
-        return { grid, highlight, showTiles: true, search, path }
+        return { grid, highlight, search, path }
       }
     },
     {
@@ -218,7 +218,7 @@ export default {
 
         const path = search.path(ends)
 
-        return { grid, highlight, highlightDark: true, showTiles: true, search, values: search.cost, path }
+        return { grid, highlight, highlightDark: true, search, values: search.cost, path }
       }
     },
     {
@@ -236,7 +236,7 @@ export default {
 
         const lines = connections(highlight).filter((l) => l.length === 5)
 
-        return { grid, lines, highlight, showTiles: true }
+        return { grid, lines, highlight }
       }
     },
     {
@@ -254,7 +254,7 @@ export default {
 
         const lines = connections(highlight).filter((l) => l.length === 5)
 
-        return { grid, lines, highlight, showTiles: true }
+        return { grid, lines, highlight }
       }
     },
     {
@@ -272,7 +272,7 @@ export default {
 
         const lines = connections(highlight).filter((l) => l.length <= 7 && l.length >= 3)
 
-        return { grid, lines, highlight, showTiles: true }
+        return { grid, lines, highlight }
 
       }
     },
@@ -289,7 +289,7 @@ export default {
 
         const highlight = border(grid.tiles)
 
-        return { grid, highlight, showTiles: true }
+        return { grid, highlight }
       }
     },
     {
@@ -306,7 +306,7 @@ export default {
         const highlight = outline(grid.tiles)
         grid.tiles = grid.tiles.concat(highlight)
 
-        return { grid, highlight, showTiles: true }
+        return { grid, highlight }
       }
     },
     {
@@ -323,7 +323,7 @@ export default {
         const highlight = outline(grid.tiles)
         grid.tiles = grid.tiles.concat(highlight)
 
-        return { grid, highlight, showTiles: true }
+        return { grid, highlight }
       }
     }
   ]

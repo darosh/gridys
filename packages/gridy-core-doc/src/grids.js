@@ -11,7 +11,7 @@ export default {
 
         const grid = new HexagonalGrid(70, false, Shape.Hexagonal, 3)
 
-        return { grid, showCircles: true, showCoordinates: true, showTiles: true }
+        return { grid, showCoordinates: true, showTiles: true }
       }
     },
     {
@@ -212,7 +212,7 @@ export default {
 
         const grid = new BrickGrid(50, false, Shape.Hexagonal, 4)
 
-        return { grid, showCoordinates: true, showTiles: true }
+        return { grid, showCoordinates: true }
       }
     },
     {
@@ -224,7 +224,7 @@ export default {
 
         const grid = new RectangularGrid(60, false, Shape.Rhombus, 4, 4)
 
-        return { grid, showCircles: true, showTiles: true }
+        return { grid, showCircles: true, showCoordinates: true }
       }
     },
     {
@@ -237,7 +237,7 @@ export default {
 
         const grid = new RectangularGrid(60, true, Shape.Rhombus, 4, 3)
 
-        return { grid, showTiles: true }
+        return { grid, showCoordinates: true }
       }
     },
     {
@@ -249,7 +249,7 @@ export default {
 
         const grid = new TriangularGrid(60, false, Shape.Triangular, 5)
 
-        return { grid, showTiles: true, showCenters: true, showCoordinates: true }
+        return { grid, showCenters: true, showCoordinates: true }
       }
 
     },
@@ -264,7 +264,7 @@ export default {
 
         const highlight = axes(grid.tiles, 1)
 
-        return { grid, showTiles: true, showCenters: true, highlight }
+        return { grid, showCenters: true, highlight }
       }
     },
     {
@@ -276,7 +276,7 @@ export default {
 
         const grid = new TriangularGrid(60, false, Shape.Rhombus, 3, 5)
 
-        return { grid, showTiles: true, showCircle: true, showCoordinates: true }
+        return { grid, showCircle: true, showCoordinates: true }
       }
     },
     {
@@ -288,7 +288,7 @@ export default {
 
         const grid = new RadialGrid(40, false, Shape.Even, 12, 4)
 
-        return { grid, showTiles: true, showCircle: true }
+        return { grid, showCircle: true }
       }
     }
   ]
