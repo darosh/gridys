@@ -42,7 +42,7 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
               x: Integer = 1,
               y?: Integer) {
     this.scale = scale;
-    this.radius = SQRT_3_2 * scale / SQRT_3_2 / 2;
+    this.radius = SQRT_3_2 * scale / 2;
     this.orientation = orientation;
     const yy = y || x;
     this.x = x;
@@ -246,7 +246,6 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
   public vertices(orientation?: boolean, scale?: Float): Float2[] {
     const points: Float2[] = [];
     let s = (scale === undefined) ? this.scale : scale;
-    s /= SQRT_3_2;
     const o = (orientation === undefined) ? false : this.orientation;
 
     for (let i: Integer = 0; i < 6; i++) {
@@ -260,7 +259,7 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
 
   public center(tile: HexagonalTile): Float2 {
     let s: Float2;
-    const size: Float = this.scale / SQRT_3_2 / 2;
+    const size: Float = this.scale / 2;
 
     if (this.orientation) {
       s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, tile.z * this.scaleY * 1.5);

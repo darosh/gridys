@@ -1023,7 +1023,7 @@
             this.angle = -30;
             this.tileTypes = TileType.Simple;
             this.scale = scale;
-            this.radius = SQRT_3_2 * scale / SQRT_3_2 / 2;
+            this.radius = SQRT_3_2 * scale / 2;
             this.orientation = orientation;
             var yy = y || x;
             this.x = x;
@@ -1073,7 +1073,6 @@
             value: function vertices(orientation, scale) {
                 var points = [];
                 var s = scale === undefined ? this.scale : scale;
-                s /= SQRT_3_2;
                 var o = orientation === undefined ? false : this.orientation;
                 for (var i = 0; i < 6; i++) {
                     var angle = Math.PI * (i * 2 - (o ? 1 : 0)) * 2 / 12;
@@ -1085,7 +1084,7 @@
             key: 'center',
             value: function center(tile) {
                 var s = void 0;
-                var size = this.scale / SQRT_3_2 / 2;
+                var size = this.scale / 2;
                 if (this.orientation) {
                     s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, tile.z * this.scaleY * 1.5);
                 } else {
@@ -1466,7 +1465,7 @@
             this.angle = -60;
             this.tileTypes = TileType.Variable;
             this.scale = scale;
-            this.radius = SQRT_3_6 * scale / SQRT_3_2;
+            this.radius = SQRT_3_6 * scale;
             this.orientation = orientation;
             this.x = x;
             this.y = y;
@@ -1496,8 +1495,7 @@
         }, {
             key: 'center',
             value: function center(tile) {
-                var scale = this.scale / SQRT_3_2;
-                return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * scale / 2, scale * (tile.y * SQRT_3_2 + (tile.s ? 0 : -SQRT_3_6)) * this.scaleY);
+                return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * this.scale / 2, this.scale * (tile.y * SQRT_3_2 + (tile.s ? 0 : -SQRT_3_6)) * this.scaleY);
             }
         }, {
             key: 'vertices',
@@ -1505,7 +1503,6 @@
                 var tileType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
                 var s = scale === undefined ? this.scale : scale;
-                s /= SQRT_3_2;
                 if (this.scaleY > 0 ? tileType === 0 : tileType !== 0) {
                     return [new Float2(0, -s * SQRT_3_3), new Float2(-s / 2, s * SQRT_3_6), new Float2(s / 2, s * SQRT_3_6)];
                 } else {

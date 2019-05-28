@@ -46,7 +46,7 @@
   </svg>
 </template>
 <script>
-import { Shape, HexagonalGrid, Float2, circle, HexagonalTile, Search, RadialGrid } from '@gridy/core/dist/es6'
+import { Float2 } from '@gridy/core/dist/es6'
 import { interpolate } from 'd3-interpolate'
 
 export default {

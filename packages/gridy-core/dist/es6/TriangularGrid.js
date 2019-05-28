@@ -14,7 +14,7 @@ export class TriangularGrid {
         this.angle = -60;
         this.tileTypes = TileType.Variable;
         this.scale = scale;
-        this.radius = SQRT_3_6 * scale / SQRT_3_2;
+        this.radius = SQRT_3_6 * scale;
         this.orientation = orientation;
         this.x = x;
         this.y = y;
@@ -41,12 +41,10 @@ export class TriangularGrid {
         return bounds(this);
     }
     center(tile) {
-        const scale = this.scale / SQRT_3_2;
-        return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * scale / 2, scale * (tile.y * (SQRT_3_2) + (tile.s ? 0 : -(SQRT_3_6))) * this.scaleY);
+        return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * this.scale / 2, this.scale * (tile.y * (SQRT_3_2) + (tile.s ? 0 : -(SQRT_3_6))) * this.scaleY);
     }
     vertices(orientation, scale, tileType = 0) {
         let s = (scale === undefined) ? this.scale : scale;
-        s /= SQRT_3_2;
         if (this.scaleY > 0 ? tileType === 0 : tileType !== 0) {
             return [
                 new Float2(0, -s * SQRT_3_3),
