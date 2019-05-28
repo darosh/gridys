@@ -1,0 +1,23 @@
+[
+  "const { Shape, HexagonalGrid } = Gridy\n\nconst grid = new HexagonalGrid(70, false, Shape.Hexagonal, 3)\n\nreturn { grid, showCircles: true, showCoordinates: true, showTiles: true }",
+  "const { Shape, HexagonalGrid } = Gridy\n\nconst grid = new HexagonalGrid(70, true, Shape.Hexagonal, 3)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, HexagonalGrid } = Gridy\n\nconst grid = new HexagonalGrid(70, false, Shape.Triangular, 4)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, HexagonalGrid } = Gridy\n\nconst grid = new HexagonalGrid(70, true, Shape.Triangular, 4)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, HexagonalGrid } = Gridy\n\nconst grid = new HexagonalGrid(70, false, Shape.Even, 4, 4)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, HexagonalGrid } = Gridy\n\nconst grid = new HexagonalGrid(70, true, Shape.Even, 4, 4)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, HexagonalGrid } = Gridy\n\nconst grid = new HexagonalGrid(70, false, Shape.Odd, 4, 4)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, HexagonalGrid } = Gridy\n\nconst grid = new HexagonalGrid(70, true, Shape.Odd, 4, 4)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, HexagonalGrid } = Gridy\n\nconst grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, HexagonalGrid, rotate, normalize } = Gridy\n\nconst grid = new HexagonalGrid(60, true, Shape.Rhombus, 4, 4)\n\nrotate(grid)\nnormalize(grid)\n\nreturn { grid, showAxes: true, interactive: true }",
+  "const { Shape, HexagonalGrid, rotate, normalize } = Gridy\n\nconst grid = new HexagonalGrid(60, true, Shape.Rhombus, 4, 4)\n\nrotate(grid)\ngrid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_XY\ngrid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_XY\nnormalize(grid)\n\nreturn { grid, showAxes: true, interactive: true }",
+  "const { Shape, HexagonalGrid, rotate, normalize } = Gridy\n\nconst grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)\n\nrotate(grid, -1)\ngrid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_YZ\ngrid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_YZ\nnormalize(grid)\n\nreturn { grid, showAxes: true, interactive: true }",
+  "const { Shape, HexagonalGrid, rotate, normalize } = Gridy\n\nconst grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)\n\nrotate(grid, -1)\nnormalize(grid)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, HexagonalGrid } = Gridy\n\nconst grid = new HexagonalGrid(70, true, Shape.Rhombus, 3, 3)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, BrickGrid } = Gridy\n\nconst grid = new BrickGrid(50, false, Shape.Hexagonal, 4)\n\nreturn { grid, showCoordinates: true, showTiles: true }",
+  "const { Shape, RectangularGrid } = Gridy\n\nconst grid = new RectangularGrid(60, false, Shape.Rhombus, 4, 4)\n\nreturn { grid, showCircles: true, showTiles: true }",
+  "const { Shape, RectangularGrid } = Gridy\n\nconst grid = new RectangularGrid(60, true, Shape.Rhombus, 4, 3)\n\nreturn { grid, showTiles: true }",
+  "const { Shape, TriangularGrid } = Gridy\n\nconst grid = new TriangularGrid(60, false, Shape.Triangular, 5)\n\nreturn { grid, showTiles: true, showCenters: true, showCoordinates: true }",
+  "const { Shape, TriangularGrid, axes } = Gridy\n\nconst grid = new TriangularGrid(30, false, Shape.Hexagonal, 5)\n\nconst highlight = axes(grid.tiles, 1)\n\nreturn { grid, showTiles: true, showCenters: true, highlight }",
+  "const { Shape, TriangularGrid } = Gridy\n\nconst grid = new TriangularGrid(60, false, Shape.Rhombus, 3, 5)\n\nreturn { grid, showTiles: true, showCircle: true, showCoordinates: true }",
+  "const { Shape, RadialGrid } = Gridy\n\nconst grid = new RadialGrid(40, false, Shape.Even, 12, 4)\n\nreturn { grid, showTiles: true, showCircle: true }"
+]
