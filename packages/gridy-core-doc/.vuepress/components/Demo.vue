@@ -17,9 +17,7 @@
           <div style="text-align: right;">
             <a @click="codes[key] = !codes[key]">Code</a>
           </div>
-          <div v-show="codes[key]" style="white-space: pre-wrap">
-            {{feature.script.toString()}}
-          </div>
+          <div v-show="codes[key]" style="white-space: pre-wrap; font-family: Consolas, Menlo, Monaco, monospace;" v-text="code ? code[key] : feature.script.toString()" class="pa-3"/>
         </div>
       </div>
     </div>
@@ -33,6 +31,10 @@ export default {
     group: {
       type: Object,
       required: true
+    },
+    code: {
+      type: Array,
+      default: null
     }
   },
   data () {

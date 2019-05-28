@@ -120,98 +120,88 @@ export default {
         return { grid, showCoordinates: true, showTiles: true }
       }
     },
-    // {
-    //   title: [
-    //     ['Hexagonal', 'grid'],
-    //     ['Rhombus', 'shape']
-    //   ],
-    //   script: function (Gridy) {
-    //     const { Shape, HexagonalGrid, rotate, normalize } = Gridy
-    //
-    //     const grid = new HexagonalGrid(60, true, Shape.Rhombus, 4, 4)
-    //
-    //     rotate(grid)
-    //     normalize(grid)
-    //
-    //     new Diagram(svg, grid)
-    //       .axes()
-    //       .mousePoint()
-    //   }
-    // },
-    //     {
-    //       title: [
-    //         ['Hexagonal', 'grid'],
-    //         ['Rhombus', 'shape']
-    //       ],
-    //       script: function (Gridy) {
-    //         const { Shape, HexagonalGrid, rotate, normalize } = Gridy
-    //
-    //         const grid = new HexagonalGrid(60, true, Shape.Rhombus, 4, 4)
-    //
-    //         rotate(grid)
-    //         grid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_XY
-    //         grid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_XY
-    //         normalize(grid)
-    //
-    //         new Diagram(svg, grid)
-    //           .axes()
-    //           .mousePoint()
-    //       }
-    //     },
-    //     {
-    //       title: [
-    //         ['Hexagonal', 'grid'],
-    //         ['Rhombus', 'shape']
-    //       ],
-    //       script: function (Gridy) {
-    //         const { Shape, HexagonalGrid, rotate, normalize } = Gridy
-    //
-    //         const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
-    //
-    //         rotate(grid, -1)
-    //         grid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_YZ
-    //         grid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_YZ
-    //         normalize(grid)
-    //
-    //         new Diagram(svg, grid)
-    //           .axes()
-    //           .mousePoint()
-    //       }
-    //     },
-    //     {
-    //       title: [
-    //         ['Hexagonal', 'grid'],
-    //         ['Rhombus', 'shape']
-    //       ],
-    //       script: function (Gridy) {
-    //         const { Shape, HexagonalGrid, rotate, normalize } = Gridy
-    //
-    //         const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
-    //
-    //         rotate(grid, -1)
-    //         normalize(grid)
-    //
-    //         new Diagram(svg, grid)
-    //           .coordinates()
-    //           .tiles()
-    //       }
-    //     },
-    //     {
-    //       title: [
-    //         ['Hexagonal', 'grid'],
-    //         ['Rhombus', 'shape'],
-    //         ['Point', 'top']
-    //       ],
-    //       script: function (Gridy) {
-    //         const { Shape, HexagonalGrid } = Gridy
-    //
-    //         const grid = new HexagonalGrid(70, true, Shape.Rhombus, 3, 3)
-    //
-    //         new Diagram(svg, grid)
-    //           .coordinates()
-    //           .tiles()
-    //       }
-    //     },
+    {
+      title: [
+        ['Hexagonal', 'grid'],
+        ['Rhombus', 'shape']
+      ],
+      script: function (Gridy) {
+        const { Shape, HexagonalGrid, rotate, normalize } = Gridy
+
+        const grid = new HexagonalGrid(60, true, Shape.Rhombus, 4, 4)
+
+        rotate(grid)
+        normalize(grid)
+
+        return { grid, showAxes: true, interactive: true }
+      }
+    },
+    {
+      title: [
+        ['Hexagonal', 'grid'],
+        ['Rhombus', 'shape']
+      ],
+      script: function (Gridy) {
+        const { Shape, HexagonalGrid, rotate, normalize } = Gridy
+
+        const grid = new HexagonalGrid(60, true, Shape.Rhombus, 4, 4)
+
+        rotate(grid)
+        grid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_XY
+        grid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_XY
+        normalize(grid)
+
+        return { grid, showAxes: true, interactive: true }
+      }
+    },
+    {
+      title: [
+        ['Hexagonal', 'grid'],
+        ['Rhombus', 'shape']
+      ],
+      script: function (Gridy) {
+        const { Shape, HexagonalGrid, rotate, normalize } = Gridy
+
+        const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
+
+        rotate(grid, -1)
+        grid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_YZ
+        grid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_YZ
+        normalize(grid)
+
+        return { grid, showAxes: true, interactive: true }
+      }
+    },
+    {
+      title: [
+        ['Hexagonal', 'grid'],
+        ['Rhombus', 'shape']
+      ],
+      script: function (Gridy) {
+        const { Shape, HexagonalGrid, rotate, normalize } = Gridy
+
+        const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
+
+        rotate(grid, -1)
+        normalize(grid)
+
+        return { grid, showCoordinates: true, showTiles: true }
+      }
+    },
+    {
+      title: [
+        ['Hexagonal', 'grid'],
+        ['Rhombus', 'shape'],
+        ['Point', 'top']
+      ],
+      script: function (Gridy) {
+        const { Shape, HexagonalGrid } = Gridy
+
+        const grid = new HexagonalGrid(70, true, Shape.Rhombus, 3, 3)
+
+        return { grid, showCoordinates: true, showTiles: true }
+      }
+    },
     {
       title: [
         ['Brick', 'grid'],

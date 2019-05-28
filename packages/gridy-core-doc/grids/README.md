@@ -2,12 +2,13 @@
 pageClass: demo-page
 ---
 
-<Demo :group="group" />
+<Demo :group="group" :code="code" />
 
 <script>
 import group from '../src/grids'
+import code from '../src/grids.js.json'
 
 export default {
-    data: () => ({group})
+    data: () => ({group, code})
 }
 </script>

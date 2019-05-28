@@ -15,12 +15,12 @@
       <v-flex>
         <v-radio-group hide-details v-model="grid">
           <v-layout>
-            <v-radio class="my-0" hide-details v-for="g in grids" :label="g" :value="g"/>
+            <v-radio class="my-0" hide-details v-for="g in grids" :label="g" :value="g" :key="g"/>
           </v-layout>
         </v-radio-group>
         <v-radio-group hide-details v-model="shape" v-show="shapes.length !== 0">
           <v-layout>
-            <v-radio class="my-0" hide-details v-for="g in shapes" :label="g" :value="g"/>
+            <v-radio class="my-0" hide-details v-for="g in shapes" :label="g" :value="g" :key="g"/>
           </v-layout>
         </v-radio-group>
         <v-layout row wrap>
