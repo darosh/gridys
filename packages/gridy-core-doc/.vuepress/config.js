@@ -1,5 +1,5 @@
 module.exports = {
-  base: './',
+  base: '/gridys/core/',
   title: '@gridy/core',
   description: 'TypeScript grid library for server and browser',
   head: [
@@ -10,8 +10,7 @@ module.exports = {
   ],
   themeConfig: {
     search: false,
-    repo: 'vuejs/vuepress',
-    lastUpdated: 'Last Updated',
+    repo: 'darosh/gridys',
     nav:
       [
         { text: 'Home', link: '/' },
@@ -19,7 +18,8 @@ module.exports = {
         { text: 'Selection', link: '/selection/' },
         { text: 'Paths', link: '/paths/' },
         { text: 'Search', link: '/search/' },
-        { text: 'Interactive', link: '/interactive/' }
+        { text: 'Interactive', link: '/interactive/' },
+        { text: 'API', link: 'https://darosh.github.io/gridys/core-api/' }
       ]
   }
 }
