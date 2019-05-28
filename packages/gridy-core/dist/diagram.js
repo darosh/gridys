@@ -1,8 +1,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.Diagram = factory());
-}(this, (function () { 'use strict';
+  (global = global || self, global.Diagram = factory());
+}(this, function () { 'use strict';
 
   var classCallCheck = function (instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -70,7 +70,7 @@
           }
       }, {
           key: "value",
-          get: function get$$1() {
+          get: function get() {
               return [this.x, this.y];
           }
       }]);
@@ -104,7 +104,7 @@
           }
       }, {
           key: 'value',
-          get: function get$$1() {
+          get: function get() {
               return [this.x, this.y];
           }
       }], [{
@@ -603,5 +603,5 @@
 
   return Diagram;
 
-})));
+}));
 //# sourceMappingURL=diagram.js.map
