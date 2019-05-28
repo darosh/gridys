@@ -3,6 +3,75 @@ export default {
   features: [
     {
       title: [
+        ['Connect path', 'demo']
+      ],
+      script: function (Gridy) {
+        const { Shape, RectangularGrid, RectangularTile, Search, Position } = Gridy
+
+        const size = 7
+
+        const grid = new RectangularGrid(28, false, Shape.Rhombus, size, size)
+
+        const highlight = []
+
+        highlight.push(new Position(0, 0))
+        highlight.push(new Position(size - 1, size - 1))
+
+        grid.tiles.forEach((t, i) => {
+          if (!(t.x & t.y % 3)) {
+            highlight.push(t)
+          }
+        })
+
+        const search = new Search(
+          new RectangularTile(),
+          Infinity,
+          100,
+          undefined,
+          highlight
+        )
+
+        const path = search.path(grid.tile(size - 1, size - 1))
+
+        return { grid, highlight, search, path }
+      }
+    },
+    {
+      title: [
+        ['Maze', 'demo']
+      ],
+      class: 'wide',
+      width: 456 * 2 + 16 * 2,
+      script: function (Gridy) {
+        const { Shape, HexagonalGrid, HexagonalTile, Search, circle } = Gridy
+
+        const grid = new HexagonalGrid(32, true, Shape.Hexagonal, 14)
+
+        const center = new HexagonalTile()
+        let t = []
+        const highlight = []
+          .concat(((t = circle(center, 1)).splice(5, 1), t))
+          .concat(((t = circle(center, 3)).splice(2, 1), t))
+          .concat(((t = circle(center, 5)).splice(18, 1), t))
+          .concat(((t = circle(center, 7)).splice(33, 1), t))
+          .concat(((t = circle(center, 9)).splice(7, 1), t))
+          .concat(((t = circle(center, 11)).splice(22, 1), t))
+
+        const search = new Search(
+          center,
+          Infinity,
+          100,
+          highlight,
+          grid.tiles
+        )
+
+        const path = search.path(grid.tile(-12, 0))
+
+        return { grid, highlight, path, width: 456 * 2 }
+      }
+    },
+    {
+      title: [
         ['Search', 'path']
       ],
       script: function (Gridy) {
@@ -83,40 +152,6 @@ export default {
     },
     {
       title: [
-        ['Maze', 'demo']
-      ],
-      class: 'wide',
-      width: 456 * 2 + 16 * 2,
-      script: function (Gridy) {
-        const { Shape, HexagonalGrid, HexagonalTile, Search, circle } = Gridy
-
-        const grid = new HexagonalGrid(32, true, Shape.Hexagonal, 14)
-
-        const center = new HexagonalTile()
-        let t = []
-        const highlight = []
-          .concat(((t = circle(center, 1)).splice(5, 1), t))
-          .concat(((t = circle(center, 3)).splice(2, 1), t))
-          .concat(((t = circle(center, 5)).splice(18, 1), t))
-          .concat(((t = circle(center, 7)).splice(33, 1), t))
-          .concat(((t = circle(center, 9)).splice(7, 1), t))
-          .concat(((t = circle(center, 11)).splice(22, 1), t))
-
-        const search = new Search(
-          center,
-          Infinity,
-          100,
-          highlight,
-          grid.tiles
-        )
-
-        const path = search.path(grid.tile(-12, 0))
-
-        return { grid, highlight, path, width: 456 * 2 }
-      }
-    },
-    {
-      title: [
         ['Search maze', 'demo']
       ],
       script: function (Gridy) {
@@ -150,41 +185,6 @@ export default {
         const path = search.path(end)
 
         return { grid, highlight: blocked, search, path, highlightDark: true }
-      }
-    },
-    {
-      title: [
-        ['Connect path', 'demo']
-      ],
-      script: function (Gridy) {
-        const { Shape, RectangularGrid, RectangularTile, Search, Position } = Gridy
-
-        const size = 7
-
-        const grid = new RectangularGrid(28, false, Shape.Rhombus, size, size)
-
-        const highlight = []
-
-        highlight.push(new Position(0, 0))
-        highlight.push(new Position(size - 1, size - 1))
-
-        grid.tiles.forEach((t, i) => {
-          if (!(t.x & t.y % 3)) {
-            highlight.push(t)
-          }
-        })
-
-        const search = new Search(
-          new RectangularTile(),
-          Infinity,
-          100,
-          undefined,
-          highlight
-        )
-
-        const path = search.path(grid.tile(size - 1, size - 1))
-
-        return { grid, highlight, search, path }
       }
     },
     {

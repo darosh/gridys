@@ -1,12 +1,15 @@
 <template>
-  <svg :width="width" :height="height" class="block">
+  <svg :width="width" :height="height" class="block" @mousemove="onMousemove">
     <g :transform="`translate(${translate})`">
       <g class="tile"
          v-for="(node, key) in nodes"
          :key="key"
          :transform="node.translate"
          :title="node.key"
-         :class="{[highlightDark ? 'highlight-dark' : 'highlight']: highlightedKeys.includes(node.key)}">
+         :class="{
+           [highlightDark ? 'highlight-dark' : 'highlight']: highlightedKeys.includes(node.key),
+           active: tile === node.key
+         }">
         <polygon v-if="showPolygons" :points="node.points" :style="{fill: node.fill}" :transform="rotate"/>
         <g class="center" v-if="showCenters">
           <circle r="5"/>
@@ -16,13 +19,15 @@
         </g>
         <g class="axes" v-if="showAxes">
           <text y="0.4em">
-            <tspan class="q" v-text="node.a" />
-            <tspan class="s" v-text="node.b" />
+            <tspan class="q" v-text="node.a"/>
+            <tspan class="s" v-text="node.b"/>
           </text>
         </g>
         <g class="coordinates" v-if="showCoordinates">
           <text y="0.4em">
-            <tspan class="x" v-text="node.position.x"/>,<tspan class="y" v-text="node.position.y"/>
+            <tspan class="x" v-text="node.position.x"/>
+            ,
+            <tspan class="y" v-text="node.position.y"/>
           </text>
         </g>
         <g class="tiles" v-if="showTiles && (labels.length !== 0)">
@@ -33,7 +38,7 @@
           </text>
         </g>
         <g class="values">
-          <text y="0.4em" v-text="values[node.key]" />
+          <text y="0.4em" v-text="values[node.key]"/>
         </g>
       </g>
       <g class="lines">
@@ -43,6 +48,7 @@
         <path class="path" :d="pathData"/>
       </g>
     </g>
+    <circle class="marker" r="5" :cx="offsetX" :cy="offsetY"/>
   </svg>
 </template>
 <script>
@@ -120,6 +126,11 @@ export default {
       default: 12
     }
   },
+  data: () => ({
+    offsetX: -1e6,
+    offsetY: -1e6,
+    tile: null
+  }),
   computed: {
     bounds () {
       return this.grid.bounds()
@@ -262,6 +273,12 @@ export default {
       }
 
       return labels
+    },
+    onMousemove ({ offsetX, offsetY }) {
+      const { translate: { x, y } } = this
+      this.offsetX = offsetX
+      this.offsetY = offsetY
+      this.tile = this.grid.position(new Float2(offsetX - x, offsetY - y)).toString()
     }
   }
 }
@@ -306,6 +323,7 @@ text {
   fill: hsl(300, 80%, 50%);
 }
 
+.active polygon,
 .highlight polygon {
   fill: hsl(200, 50%, 80%);
 }

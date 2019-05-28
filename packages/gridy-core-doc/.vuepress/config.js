@@ -18,7 +18,6 @@ module.exports = {
         { text: 'Selection', link: '/selection/' },
         { text: 'Paths', link: '/paths/' },
         { text: 'Search', link: '/search/' },
-        { text: 'Interactive', link: '/interactive/' },
         { text: 'API', link: 'https://darosh.github.io/gridys/core-api/' }
       ]
   }

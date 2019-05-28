@@ -15,6 +15,6 @@
   "scripts": {
     "docs:build": "vuepress build",
     "docs:dev": "vuepress dev",
-    "extract": "node src/extract.js src/grids.js && node src/extract.js src/paths.js && node src/extract.js src/search.js && node src/extract.js src/selection.js && node src/extract.js src/interactive.js"
+    "extract": "node src/extract.js src/grids.js && node src/extract.js src/paths.js && node src/extract.js src/search.js && node src/extract.js src/selection.js"
   }
 }

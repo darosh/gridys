@@ -10,7 +10,6 @@ footer: MIT Licensed | Copyright © 2018-present Jan Forst
 <v-flex><a href="./selections/"><div class="title my-3">Selection</div><Diagram class="diagram" :width="240" :height="240" v-bind="selection.features[0].script(Gridy)" /></a></v-flex>
 <v-flex><a href="./paths/"><div class="title my-3">Paths</div><Diagram class="diagram" :width="240" :height="240" v-bind="paths.features[0].script(Gridy)" /></a></v-flex>
 <v-flex><a href="./search/"><div class="title my-3">Search</div><Diagram class="diagram" :width="240" :height="240" v-bind="search.features[0].script(Gridy)" /></a></v-flex>
-<v-flex><a href="./interactive/"><div class="title my-3">Interactive</div><Diagram class="diagram" :width="240" :height="240" v-bind="search.features[0].script(Gridy)" /></a></v-flex>
 </v-layout>
 
 <script>
@@ -20,7 +19,6 @@ import grids from './src/grids'
 import paths from './src/paths'
 import search from './src/search'
 import selection from './src/selection'
-import interactive from './src/interactive'
 
 export default {
   components: {
@@ -32,8 +30,7 @@ export default {
     grids, 
     selection,
     paths,
-    search,
-    interactive
+    search
   })
 }
 </script>
