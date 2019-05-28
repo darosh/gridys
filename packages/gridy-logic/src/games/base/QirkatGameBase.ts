@@ -3,11 +3,12 @@ import { other } from '../../utils';
 import { quirkatSetup } from '../utils/quirkat';
 import { jumpsToString, stringsToJump } from '../utils/serialization';
 import { QuirkatBoard } from './QuirkatBoard';
+import { IGridMappedGame } from '../../IGridGame'
 
 
 export class QirkatGameBase extends QuirkatBoard {
-  public moveToString = jumpsToString.bind(this);
-  public stringToMove = stringsToJump.bind(this);
+  public moveToString = jumpsToString.bind(<IGridMappedGame><unknown>this);
+  public stringToMove = stringsToJump.bind(<IGridMappedGame><unknown>this);
 
   public score: { [player: number]: number };
   public finished: boolean = false;

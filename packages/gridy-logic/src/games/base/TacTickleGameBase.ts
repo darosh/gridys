@@ -4,6 +4,7 @@ import { Theme } from '../../Theme';
 import { other } from '../../utils';
 import { connections, winning } from '../utils/connect';
 import { movesToString, stringsToMove } from '../utils/serialization';
+import { IGridMappedGame } from '../../IGridGame'
 
 export class TacTickleGameBase implements IGame {
   public static theme = Theme.TacTickle;
@@ -18,8 +19,8 @@ export class TacTickleGameBase implements IGame {
 
   public grid: IGrid<AnyTile>;
 
-  public moveToString = movesToString.bind(this);
-  public stringToMove = stringsToMove.bind(this);
+  public moveToString = movesToString.bind(<IGridMappedGame><unknown>this);
+  public stringToMove = stringsToMove.bind(<IGridMappedGame><unknown>this);
 
   private tileMap: Map<string, AnyTile>;
   private min: number;

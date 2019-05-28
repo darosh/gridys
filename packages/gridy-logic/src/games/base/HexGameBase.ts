@@ -4,6 +4,7 @@ import { Theme } from '../../Theme';
 import { other } from '../../utils';
 import { moveToString, stringToMove } from '../utils/serialization';
 import { undo } from '../utils/undo';
+import { IGridMappedGame } from '../../IGridGame'
 
 export class HexGameBase implements IGame {
   public static theme = Theme.Hex;
@@ -14,9 +15,9 @@ export class HexGameBase implements IGame {
   public winner: number = 0;
   public playerTiles: { [i: number]: AnyTile[] } = { 1: [], 2: [] };
 
-  public moveToString = moveToString.bind(this);
-  public stringToMove = stringToMove.bind(this);
-  public undo = undo.bind(this);
+  public moveToString = moveToString.bind(<IGridMappedGame><unknown>this);
+  public stringToMove = stringToMove.bind(<IGridMappedGame><unknown>this);
+  public undo = undo.bind(<IGridMappedGame & IGame><unknown>this);
 
   private grid: IGrid<AnyTile>;
   private tileMap: Map<string, AnyTile>;

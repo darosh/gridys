@@ -1,8 +1,8 @@
 import { AnyTile, IGrid } from '@gridy/core';
 import { QuirkatBoard } from './QuirkatBoard';
 export declare class QirkatGameBase extends QuirkatBoard {
-    moveToString: any;
-    stringToMove: any;
+    moveToString: (move: import("../../IGridGame").Move[]) => string;
+    stringToMove: (move: string) => import("../../IGridGame").IGameTile | import("../../IGridGame").ICompoundStep | (import("../../IGridGame").IGameTile | import("../../IGridGame").ICompoundStep)[] | null;
     score: {
         [player: number]: number;
     };
@@ -11,13 +11,13 @@ export declare class QirkatGameBase extends QuirkatBoard {
     constructor(grid: IGrid<AnyTile>, maxMoves: number);
     move(m: any): void;
     undo(): void;
-    getWinner(): 0 | 1 | -1 | 2;
+    getWinner(): 1 | 0 | -1 | 2;
     possible(): any;
-    private leavesToMoves(r);
-    private leaveToMove(nodeInput);
-    private topJumps(r);
-    private jumpsPossible();
-    private multiJumps(parent, o, leaves?, depth?, removed?);
-    private jumpPossible(t, p, o);
-    private simplePossible();
+    private leavesToMoves;
+    private leaveToMove;
+    private topJumps;
+    private jumpsPossible;
+    private multiJumps;
+    private jumpPossible;
+    private simplePossible;
 }

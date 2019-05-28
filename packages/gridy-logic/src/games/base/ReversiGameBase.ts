@@ -4,6 +4,7 @@ import { Move } from '../../Move';
 import { Theme } from '../../Theme';
 import { other } from '../../utils';
 import { moveToString, stringToMove } from '../utils/serialization';
+import { IGridMappedGame } from '../../IGridGame'
 
 export interface IState {
   [index: string]: number;
@@ -18,8 +19,8 @@ export class ReversiGameBase implements IGame {
   public score: { [index: number]: number } = { 1: 0, 2: 0 };
   public winner: number = 0;
 
-  public moveToString = moveToString.bind(this);
-  public stringToMove = stringToMove.bind(this);
+  public moveToString = moveToString.bind(<IGridMappedGame><unknown>this);
+  public stringToMove = stringToMove.bind(<IGridMappedGame><unknown>this);
 
   protected finished: boolean = false;
   protected tileMap: Map<string, AnyTile>;

@@ -29,7 +29,7 @@ export declare class TimedProxy implements IGame, IGridGame {
     readonly hull: any;
     moveToString(move: any): string;
     stringToMove(move: string): any;
-    private start();
-    private stop(pending?);
-    private bind(prop);
+    private start;
+    private stop;
+    private bind;
 }

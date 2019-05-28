@@ -4,6 +4,6 @@ export declare class MinimaxPlayer implements IPLayer {
     depth: number;
     constructor(depth?: number);
     select(game: IGame): Move;
-    private move(game, depth, isMaximisingPlayer?);
-    private minimax(depth, game, isMaximisingPlayer);
+    private move;
+    private minimax;
 }

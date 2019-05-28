@@ -7,12 +7,12 @@ export declare enum Theme {
     Plastic = 5,
     Qirkat = 6,
     Reversi = 7,
-    TacTickle = 8,
+    TacTickle = 8
 }
 export declare enum Stones {
     BlackWhite = 0,
     OrangeBlue = 1,
-    RedYellow = 2,
+    RedYellow = 2
 }
 export declare const ThemeStones: {
     [Theme.Checkers]: Stones;

@@ -1,6 +1,6 @@
 import { AnyTile, IGrid, link, toArray, toMap } from '@gridy/core';
 import { IGame } from '../../IGame';
-import { IGameTile } from '../../IGridGame';
+import { IGameTile, IGridMappedGame } from '../../IGridGame'
 import { Move } from '../../Move';
 import { Theme } from '../../Theme';
 import { other, parseRecord } from '../../utils';
@@ -22,9 +22,9 @@ export class ConnectGameBase implements IGame {
   public playerTiles: { [i: number]: AnyTile[] } = {};
   public freeTileMap: Map<string, AnyTile>;
 
-  public moveToString = moveToString.bind(this);
-  public stringToMove = stringToMove.bind(this);
-  public undo = undo.bind(this);
+  public moveToString = moveToString.bind(<IGridMappedGame><unknown>this);
+  public stringToMove = stringToMove.bind(<IGridMappedGame><unknown>this);
+  public undo = undo.bind(<IGridMappedGame & IGame><unknown>this);
 
   constructor(grid: IGrid<IGameTile>, min: number) {
     this.grid = grid;

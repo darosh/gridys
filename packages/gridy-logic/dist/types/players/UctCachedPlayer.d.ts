@@ -8,5 +8,5 @@ export declare class UctCachedPlayer extends UctPlayer {
         move: any;
         nodesVisited: number;
     };
-    private getRoot(game);
+    private getRoot;
 }

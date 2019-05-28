@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('gridy')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'gridy'], factory) :
-    (factory((global.Games = {}),global.Gridy));
-}(this, (function (exports,gridy) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@gridy/core')) :
+    typeof define === 'function' && define.amd ? define(['exports', '@gridy/core'], factory) :
+    (global = global || self, factory(global.Games = {}, global.Gridy));
+}(this, function (exports, core) { 'use strict';
 
     function getMovePlace(move) {
         var cursor = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
@@ -144,7 +144,6 @@
             initActions(game, moves, _action.cursor);
         }
     }
-    //# sourceMappingURL=actions.js.map
 
     var PASS = 'pass';
     function parseRecord(record) {
@@ -213,10 +212,10 @@
         return 3 - player;
     }
     function landscapeHex(grid) {
-        gridy.rotate(grid, -1);
-        grid.toPoint = gridy.HexagonalGrid.CUBE_TO_TWO_AXIS_YZ;
-        grid.toTile = gridy.HexagonalGrid.TWO_AXIS_TO_CUBE_YZ;
-        gridy.normalize(grid);
+        core.rotate(grid, -1);
+        grid.toPoint = core.HexagonalGrid.CUBE_TO_TWO_AXIS_YZ;
+        grid.toTile = core.HexagonalGrid.TWO_AXIS_TO_CUBE_YZ;
+        core.normalize(grid);
         return grid;
     }
     function reset(game) {
@@ -242,10 +241,9 @@
             game.undo();
         }
     }
-    //# sourceMappingURL=utils.js.map
 
     var FIELDS = ['title', 'type', 'items', 'linkText', 'authors', 'aliases', 'rules', 'created', 'location', 'tiles', 'original', 'grid'];
-    var GRIDS = new Map([[gridy.RectangularGrid, 'Rectangular'], [gridy.HexagonalGrid, 'Hexagonal'], [gridy.RadialGrid, 'Radial'], [gridy.TriangularGrid, 'Triangular']]);
+    var GRIDS = new Map([[core.RectangularGrid, 'Rectangular'], [core.HexagonalGrid, 'Hexagonal'], [core.RadialGrid, 'Radial'], [core.TriangularGrid, 'Triangular']]);
     function copy(name) {
         return Object.assign({}, name);
     }
@@ -407,14 +405,261 @@
         m.wip = a.wip;
         return m;
     }
-    //# sourceMappingURL=table.js.map
-
-    //# sourceMappingURL=index.js.map
 
     var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
       return typeof obj;
     } : function (obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+
+    var jsx = function () {
+      var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7;
+      return function createRawReactElement(type, props, key, children) {
+        var defaultProps = type && type.defaultProps;
+        var childrenLength = arguments.length - 3;
+
+        if (!props && childrenLength !== 0) {
+          props = {};
+        }
+
+        if (props && defaultProps) {
+          for (var propName in defaultProps) {
+            if (props[propName] === void 0) {
+              props[propName] = defaultProps[propName];
+            }
+          }
+        } else if (!props) {
+          props = defaultProps || {};
+        }
+
+        if (childrenLength === 1) {
+          props.children = children;
+        } else if (childrenLength > 1) {
+          var childArray = Array(childrenLength);
+
+          for (var i = 0; i < childrenLength; i++) {
+            childArray[i] = arguments[i + 3];
+          }
+
+          props.children = childArray;
+        }
+
+        return {
+          $$typeof: REACT_ELEMENT_TYPE,
+          type: type,
+          key: key === undefined ? null : '' + key,
+          ref: null,
+          props: props,
+          _owner: null
+        };
+      };
+    }();
+
+    var asyncIterator = function (iterable) {
+      if (typeof Symbol === "function") {
+        if (Symbol.asyncIterator) {
+          var method = iterable[Symbol.asyncIterator];
+          if (method != null) return method.call(iterable);
+        }
+
+        if (Symbol.iterator) {
+          return iterable[Symbol.iterator]();
+        }
+      }
+
+      throw new TypeError("Object is not async iterable");
+    };
+
+    var asyncGenerator = function () {
+      function AwaitValue(value) {
+        this.value = value;
+      }
+
+      function AsyncGenerator(gen) {
+        var front, back;
+
+        function send(key, arg) {
+          return new Promise(function (resolve, reject) {
+            var request = {
+              key: key,
+              arg: arg,
+              resolve: resolve,
+              reject: reject,
+              next: null
+            };
+
+            if (back) {
+              back = back.next = request;
+            } else {
+              front = back = request;
+              resume(key, arg);
+            }
+          });
+        }
+
+        function resume(key, arg) {
+          try {
+            var result = gen[key](arg);
+            var value = result.value;
+
+            if (value instanceof AwaitValue) {
+              Promise.resolve(value.value).then(function (arg) {
+                resume("next", arg);
+              }, function (arg) {
+                resume("throw", arg);
+              });
+            } else {
+              settle(result.done ? "return" : "normal", result.value);
+            }
+          } catch (err) {
+            settle("throw", err);
+          }
+        }
+
+        function settle(type, value) {
+          switch (type) {
+            case "return":
+              front.resolve({
+                value: value,
+                done: true
+              });
+              break;
+
+            case "throw":
+              front.reject(value);
+              break;
+
+            default:
+              front.resolve({
+                value: value,
+                done: false
+              });
+              break;
+          }
+
+          front = front.next;
+
+          if (front) {
+            resume(front.key, front.arg);
+          } else {
+            back = null;
+          }
+        }
+
+        this._invoke = send;
+
+        if (typeof gen.return !== "function") {
+          this.return = undefined;
+        }
+      }
+
+      if (typeof Symbol === "function" && Symbol.asyncIterator) {
+        AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
+          return this;
+        };
+      }
+
+      AsyncGenerator.prototype.next = function (arg) {
+        return this._invoke("next", arg);
+      };
+
+      AsyncGenerator.prototype.throw = function (arg) {
+        return this._invoke("throw", arg);
+      };
+
+      AsyncGenerator.prototype.return = function (arg) {
+        return this._invoke("return", arg);
+      };
+
+      return {
+        wrap: function (fn) {
+          return function () {
+            return new AsyncGenerator(fn.apply(this, arguments));
+          };
+        },
+        await: function (value) {
+          return new AwaitValue(value);
+        }
+      };
+    }();
+
+    var asyncGeneratorDelegate = function (inner, awaitWrap) {
+      var iter = {},
+          waiting = false;
+
+      function pump(key, value) {
+        waiting = true;
+        value = new Promise(function (resolve) {
+          resolve(inner[key](value));
+        });
+        return {
+          done: false,
+          value: awaitWrap(value)
+        };
+      }
+
+      if (typeof Symbol === "function" && Symbol.iterator) {
+        iter[Symbol.iterator] = function () {
+          return this;
+        };
+      }
+
+      iter.next = function (value) {
+        if (waiting) {
+          waiting = false;
+          return value;
+        }
+
+        return pump("next", value);
+      };
+
+      if (typeof inner.throw === "function") {
+        iter.throw = function (value) {
+          if (waiting) {
+            waiting = false;
+            throw value;
+          }
+
+          return pump("throw", value);
+        };
+      }
+
+      if (typeof inner.return === "function") {
+        iter.return = function (value) {
+          return pump("return", value);
+        };
+      }
+
+      return iter;
+    };
+
+    var asyncToGenerator = function (fn) {
+      return function () {
+        var gen = fn.apply(this, arguments);
+        return new Promise(function (resolve, reject) {
+          function step(key, arg) {
+            try {
+              var info = gen[key](arg);
+              var value = info.value;
+            } catch (error) {
+              reject(error);
+              return;
+            }
+
+            if (info.done) {
+              resolve(value);
+            } else {
+              return Promise.resolve(value).then(function (value) {
+                step("next", value);
+              }, function (err) {
+                step("throw", err);
+              });
+            }
+          }
+
+          return step("next");
+        });
+      };
     };
 
     var classCallCheck = function (instance, Constructor) {
@@ -441,6 +686,32 @@
       };
     }();
 
+    var defineEnumerableProperties = function (obj, descs) {
+      for (var key in descs) {
+        var desc = descs[key];
+        desc.configurable = desc.enumerable = true;
+        if ("value" in desc) desc.writable = true;
+        Object.defineProperty(obj, key, desc);
+      }
+
+      return obj;
+    };
+
+    var defaults = function (obj, defaults) {
+      var keys = Object.getOwnPropertyNames(defaults);
+
+      for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        var value = Object.getOwnPropertyDescriptor(defaults, key);
+
+        if (value && value.configurable && obj[key] === undefined) {
+          Object.defineProperty(obj, key, value);
+        }
+      }
+
+      return obj;
+    };
+
     var defineProperty = function (obj, key, value) {
       if (key in obj) {
         Object.defineProperty(obj, key, {
@@ -454,6 +725,45 @@
       }
 
       return obj;
+    };
+
+    var _extends = Object.assign || function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+
+      return target;
+    };
+
+    var get = function get(object, property, receiver) {
+      if (object === null) object = Function.prototype;
+      var desc = Object.getOwnPropertyDescriptor(object, property);
+
+      if (desc === undefined) {
+        var parent = Object.getPrototypeOf(object);
+
+        if (parent === null) {
+          return undefined;
+        } else {
+          return get(parent, property, receiver);
+        }
+      } else if ("value" in desc) {
+        return desc.value;
+      } else {
+        var getter = desc.get;
+
+        if (getter === undefined) {
+          return undefined;
+        }
+
+        return getter.call(receiver);
+      }
     };
 
     var inherits = function (subClass, superClass) {
@@ -472,12 +782,89 @@
       if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     };
 
+    var _instanceof = function (left, right) {
+      if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
+        return right[Symbol.hasInstance](left);
+      } else {
+        return left instanceof right;
+      }
+    };
+
+    var interopRequireDefault = function (obj) {
+      return obj && obj.__esModule ? obj : {
+        default: obj
+      };
+    };
+
+    var interopRequireWildcard = function (obj) {
+      if (obj && obj.__esModule) {
+        return obj;
+      } else {
+        var newObj = {};
+
+        if (obj != null) {
+          for (var key in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+          }
+        }
+
+        newObj.default = obj;
+        return newObj;
+      }
+    };
+
+    var newArrowCheck = function (innerThis, boundThis) {
+      if (innerThis !== boundThis) {
+        throw new TypeError("Cannot instantiate an arrow function");
+      }
+    };
+
+    var objectDestructuringEmpty = function (obj) {
+      if (obj == null) throw new TypeError("Cannot destructure undefined");
+    };
+
+    var objectWithoutProperties = function (obj, keys) {
+      var target = {};
+
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+
+      return target;
+    };
+
     var possibleConstructorReturn = function (self, call) {
       if (!self) {
         throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
       }
 
       return call && (typeof call === "object" || typeof call === "function") ? call : self;
+    };
+
+    var selfGlobal = typeof global === "undefined" ? self : global;
+
+    var set = function set(object, property, value, receiver) {
+      var desc = Object.getOwnPropertyDescriptor(object, property);
+
+      if (desc === undefined) {
+        var parent = Object.getPrototypeOf(object);
+
+        if (parent !== null) {
+          set(parent, property, value, receiver);
+        }
+      } else if ("value" in desc && desc.writable) {
+        desc.value = value;
+      } else {
+        var setter = desc.set;
+
+        if (setter !== undefined) {
+          setter.call(receiver, value);
+        }
+      }
+
+      return value;
     };
 
     var slicedToArray = function () {
@@ -517,6 +904,95 @@
         }
       };
     }();
+
+    var slicedToArrayLoose = function (arr, i) {
+      if (Array.isArray(arr)) {
+        return arr;
+      } else if (Symbol.iterator in Object(arr)) {
+        var _arr = [];
+
+        for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {
+          _arr.push(_step.value);
+
+          if (i && _arr.length === i) break;
+        }
+
+        return _arr;
+      } else {
+        throw new TypeError("Invalid attempt to destructure non-iterable instance");
+      }
+    };
+
+    var taggedTemplateLiteral = function (strings, raw) {
+      return Object.freeze(Object.defineProperties(strings, {
+        raw: {
+          value: Object.freeze(raw)
+        }
+      }));
+    };
+
+    var taggedTemplateLiteralLoose = function (strings, raw) {
+      strings.raw = raw;
+      return strings;
+    };
+
+    var temporalRef = function (val, name, undef) {
+      if (val === undef) {
+        throw new ReferenceError(name + " is not defined - temporal dead zone");
+      } else {
+        return val;
+      }
+    };
+
+    var temporalUndefined = {};
+
+    var toArray = function (arr) {
+      return Array.isArray(arr) ? arr : Array.from(arr);
+    };
+
+    var toConsumableArray = function (arr) {
+      if (Array.isArray(arr)) {
+        for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+        return arr2;
+      } else {
+        return Array.from(arr);
+      }
+    };
+
+    var babelHelpers = /*#__PURE__*/Object.freeze({
+        jsx: jsx,
+        asyncIterator: asyncIterator,
+        asyncGenerator: asyncGenerator,
+        asyncGeneratorDelegate: asyncGeneratorDelegate,
+        asyncToGenerator: asyncToGenerator,
+        classCallCheck: classCallCheck,
+        createClass: createClass,
+        defineEnumerableProperties: defineEnumerableProperties,
+        defaults: defaults,
+        defineProperty: defineProperty,
+        get: get,
+        inherits: inherits,
+        interopRequireDefault: interopRequireDefault,
+        interopRequireWildcard: interopRequireWildcard,
+        newArrowCheck: newArrowCheck,
+        objectDestructuringEmpty: objectDestructuringEmpty,
+        objectWithoutProperties: objectWithoutProperties,
+        possibleConstructorReturn: possibleConstructorReturn,
+        selfGlobal: selfGlobal,
+        set: set,
+        slicedToArray: slicedToArray,
+        slicedToArrayLoose: slicedToArrayLoose,
+        taggedTemplateLiteral: taggedTemplateLiteral,
+        taggedTemplateLiteralLoose: taggedTemplateLiteralLoose,
+        temporalRef: temporalRef,
+        temporalUndefined: temporalUndefined,
+        toArray: toArray,
+        toConsumableArray: toConsumableArray,
+        'typeof': _typeof,
+        'extends': _extends,
+        'instanceof': _instanceof
+    });
 
     var TimedProxy = function () {
         function TimedProxy(game) {
@@ -638,42 +1114,42 @@
             }
         }, {
             key: 'grid',
-            get: function get$$1() {
+            get: function get() {
                 return this.game.grid;
             }
         }, {
             key: 'scale',
-            get: function get$$1() {
+            get: function get() {
                 return this.game.scale;
             }
         }, {
             key: 'moves',
-            get: function get$$1() {
+            get: function get() {
                 return this.game.moves;
             }
         }, {
             key: 'player',
-            get: function get$$1() {
+            get: function get() {
                 return this.game.player;
             }
         }, {
             key: 'winner',
-            get: function get$$1() {
+            get: function get() {
                 return this.timeoutWinner || this.game.winner;
             }
         }, {
             key: 'score',
-            get: function get$$1() {
+            get: function get() {
                 return this.game.score;
             }
         }, {
             key: 'landscape',
-            get: function get$$1() {
+            get: function get() {
                 return this.game.landscape;
             }
         }, {
             key: 'hull',
-            get: function get$$1() {
+            get: function get() {
                 return this.game.hull;
             }
         }]);
@@ -754,8 +1230,6 @@
             }
         }
     }
-
-    //# sourceMappingURL=evaluateLines.js.map
 
     function evaluateLinked(tiles, min, player) {
         var c = 0;
@@ -839,7 +1313,7 @@
                     for (var _iterator4 = s[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
                         var k = _step4.value;
 
-                        c += evaluate$1(t, k, min, player);
+                        c += evaluate(t, k, min, player);
                     }
                 } catch (err) {
                     _didIteratorError4 = true;
@@ -873,7 +1347,7 @@
 
         return c;
     }
-    function evaluate$1(t, k, min, player) {
+    function evaluate(t, k, min, player) {
         var l = [];
         var i = t;
         while (i) {
@@ -897,7 +1371,6 @@
         }
         return Math.pow(min, l.length + 1 + (l.length >= min ? 1 : 0)) - Math.pow(min, l.length) * (2 - f);
     }
-    //# sourceMappingURL=evaluateLinked.js.map
 
     function winning(move, player, min) {
         var done = {};
@@ -952,9 +1425,6 @@
         }
         return v;
     }
-    //# sourceMappingURL=winning.js.map
-
-    //# sourceMappingURL=index.js.map
 
     function moveToString(move) {
         if (!move) {
@@ -1024,7 +1494,6 @@
             return _this.tileMap.get(t.key);
         });
     }
-    //# sourceMappingURL=index.js.map
 
     function undo() {
         var move = this.moves.pop();
@@ -1035,9 +1504,6 @@
         this.winner = 0;
         this.playerTiles[this.player].pop();
     }
-    //# sourceMappingURL=undo.js.map
-
-    //# sourceMappingURL=index.js.map
 
     var ConnectGameBase = function () {
         function ConnectGameBase(grid, min) {
@@ -1053,9 +1519,9 @@
             this.undo = undo.bind(this);
             this.grid = grid;
             this.min = min;
-            this.tileMap = gridy.toMap(this.grid.tiles);
-            this.freeTileMap = gridy.toMap(this.grid.tiles);
-            gridy.link(this.tileMap);
+            this.tileMap = core.toMap(this.grid.tiles);
+            this.freeTileMap = core.toMap(this.grid.tiles);
+            core.link(this.tileMap);
         }
 
         createClass(ConnectGameBase, [{
@@ -1102,7 +1568,7 @@
                 // }
                 // arr.sort((a: any, b: any) => (a.sort - b.sort));
                 // return arr;
-                return gridy.toArray(this.freeTileMap);
+                return core.toArray(this.freeTileMap);
             }
         }, {
             key: 'move',
@@ -1135,7 +1601,7 @@
             }
         }, {
             key: 'winning',
-            value: function winning$$1() {
+            value: function winning$1() {
                 var m = this.moves[this.moves.length - 1];
                 return winning(m, m.data, this.min);
             }
@@ -1149,7 +1615,7 @@
 
         function TicTacToeGame() {
             classCallCheck(this, TicTacToeGame);
-            return possibleConstructorReturn(this, (TicTacToeGame.__proto__ || Object.getPrototypeOf(TicTacToeGame)).call(this, new gridy.RectangularGrid(1, false, gridy.Shape.Even, 3, 3, gridy.Rectangular8Tile), 3));
+            return possibleConstructorReturn(this, (TicTacToeGame.__proto__ || Object.getPrototypeOf(TicTacToeGame)).call(this, new core.RectangularGrid(1, false, core.Shape.Even, 3, 3, core.Rectangular8Tile), 3));
         }
 
         return TicTacToeGame;
@@ -1170,7 +1636,7 @@
         function TicTacToeRoundGame() {
             classCallCheck(this, TicTacToeRoundGame);
 
-            var grid = new gridy.RadialGrid(1, true, gridy.Shape.Even, 3, 4, gridy.Radial8Tile, 1);
+            var grid = new core.RadialGrid(1, true, core.Shape.Even, 3, 4, core.Radial8Tile, 1);
             return possibleConstructorReturn(this, (TicTacToeRoundGame.__proto__ || Object.getPrototypeOf(TicTacToeRoundGame)).call(this, grid, 3));
         }
 
@@ -1188,7 +1654,7 @@
         function TicTacToeTriGame() {
             classCallCheck(this, TicTacToeTriGame);
 
-            var _this = possibleConstructorReturn(this, (TicTacToeTriGame.__proto__ || Object.getPrototypeOf(TicTacToeTriGame)).call(this, new gridy.TriangularGrid(1, false, gridy.Shape.Triangular, 3, 3), 3));
+            var _this = possibleConstructorReturn(this, (TicTacToeTriGame.__proto__ || Object.getPrototypeOf(TicTacToeTriGame)).call(this, new core.TriangularGrid(1, false, core.Shape.Triangular, 3, 3), 3));
 
             _this.landscape = true;
             return _this;
@@ -1217,8 +1683,8 @@
             this.stringToMove = stringsToMove.bind(this);
             this.finished = false;
             this.grid = grid;
-            this.tileMap = gridy.toMap(grid.tiles);
-            gridy.link(this.tileMap);
+            this.tileMap = core.toMap(grid.tiles);
+            core.link(this.tileMap);
             this.min = min;
             this.init(lines);
             this.directions = directions.map(function (_ref) {
@@ -1310,7 +1776,7 @@
             }
         }, {
             key: 'winning',
-            value: function winning$$1() {
+            value: function winning$1() {
                 var m = this.moves[this.moves.length - 1];
                 return winning(m[1], m[1].data, this.min);
             }
@@ -1368,7 +1834,7 @@
 
         function TacTickleGame() {
             classCallCheck(this, TacTickleGame);
-            return possibleConstructorReturn(this, (TacTickleGame.__proto__ || Object.getPrototypeOf(TacTickleGame)).call(this, new gridy.RectangularGrid(1, undefined, gridy.Shape.Even, 4, 5, gridy.Rectangular8Tile), 3, gridy.RectangularTile.directions));
+            return possibleConstructorReturn(this, (TacTickleGame.__proto__ || Object.getPrototypeOf(TacTickleGame)).call(this, new core.RectangularGrid(1, undefined, core.Shape.Even, 4, 5, core.Rectangular8Tile), 3, core.RectangularTile.directions));
         }
 
         return TacTickleGame;
@@ -1386,7 +1852,7 @@
 
         function TacTickle4Game() {
             classCallCheck(this, TacTickle4Game);
-            return possibleConstructorReturn(this, (TacTickle4Game.__proto__ || Object.getPrototypeOf(TacTickle4Game)).call(this, new gridy.RectangularGrid(1, undefined, gridy.Shape.Even, 4, 4, gridy.Rectangular8Tile), 3, gridy.RectangularTile.directions));
+            return possibleConstructorReturn(this, (TacTickle4Game.__proto__ || Object.getPrototypeOf(TacTickle4Game)).call(this, new core.RectangularGrid(1, undefined, core.Shape.Even, 4, 4, core.Rectangular8Tile), 3, core.RectangularTile.directions));
         }
 
         return TacTickle4Game;
@@ -1402,7 +1868,7 @@
 
         function TacTickleHexGame() {
             classCallCheck(this, TacTickleHexGame);
-            return possibleConstructorReturn(this, (TacTickleHexGame.__proto__ || Object.getPrototypeOf(TacTickleHexGame)).call(this, new gridy.HexagonalGrid(1, true, gridy.Shape.Even, 4, 5), 3, gridy.HexagonalTile.directions));
+            return possibleConstructorReturn(this, (TacTickleHexGame.__proto__ || Object.getPrototypeOf(TacTickleHexGame)).call(this, new core.HexagonalGrid(1, true, core.Shape.Even, 4, 5), 3, core.HexagonalTile.directions));
         }
 
         return TacTickleHexGame;
@@ -1418,9 +1884,9 @@
         function TacTickleHex2Game() {
             classCallCheck(this, TacTickleHex2Game);
 
-            var grid = new gridy.HexagonalGrid(1, true, gridy.Shape.Hexagonal, 4);
-            gridy.normalize(grid);
-            return possibleConstructorReturn(this, (TacTickleHex2Game.__proto__ || Object.getPrototypeOf(TacTickleHex2Game)).call(this, grid, 3, gridy.HexagonalTile.directions, [[3, 0, 0], [0, 6, 0]]));
+            var grid = new core.HexagonalGrid(1, true, core.Shape.Hexagonal, 4);
+            core.normalize(grid);
+            return possibleConstructorReturn(this, (TacTickleHex2Game.__proto__ || Object.getPrototypeOf(TacTickleHex2Game)).call(this, grid, 3, core.HexagonalTile.directions, [[3, 0, 0], [0, 6, 0]]));
         }
 
         return TacTickleHex2Game;
@@ -1436,7 +1902,7 @@
 
         function TacTickleRoundGame() {
             classCallCheck(this, TacTickleRoundGame);
-            return possibleConstructorReturn(this, (TacTickleRoundGame.__proto__ || Object.getPrototypeOf(TacTickleRoundGame)).call(this, new gridy.RadialGrid(1, false, gridy.Shape.Even, 4, 5, gridy.Radial8Tile, 1), 3, gridy.RadialTile.directions, [[0, 1, 1], [0, 4, 0]]));
+            return possibleConstructorReturn(this, (TacTickleRoundGame.__proto__ || Object.getPrototypeOf(TacTickleRoundGame)).call(this, new core.RadialGrid(1, false, core.Shape.Even, 4, 5, core.Radial8Tile, 1), 3, core.RadialTile.directions, [[0, 1, 1], [0, 4, 0]]));
         }
 
         return TacTickleRoundGame;
@@ -1451,7 +1917,7 @@
 
         function TacTickleTriGame() {
             classCallCheck(this, TacTickleTriGame);
-            return possibleConstructorReturn(this, (TacTickleTriGame.__proto__ || Object.getPrototypeOf(TacTickleTriGame)).call(this, new gridy.TriangularGrid(1, true, gridy.Shape.Rhombus, 4, 4), 3, gridy.TriangularTile.directions1, [[2, 0, 1], [2, 3, 1]]));
+            return possibleConstructorReturn(this, (TacTickleTriGame.__proto__ || Object.getPrototypeOf(TacTickleTriGame)).call(this, new core.TriangularGrid(1, true, core.Shape.Rhombus, 4, 4), 3, core.TriangularTile.directions1, [[2, 0, 1], [2, 3, 1]]));
         }
 
         return TacTickleTriGame;
@@ -1468,7 +1934,7 @@
         function ConnectFourGame() {
             classCallCheck(this, ConnectFourGame);
 
-            var _this = possibleConstructorReturn(this, (ConnectFourGame.__proto__ || Object.getPrototypeOf(ConnectFourGame)).call(this, new gridy.RectangularGrid(1, false, gridy.Shape.Even, 7, 6, gridy.Rectangular8Tile), 4));
+            var _this = possibleConstructorReturn(this, (ConnectFourGame.__proto__ || Object.getPrototypeOf(ConnectFourGame)).call(this, new core.RectangularGrid(1, false, core.Shape.Even, 7, 6, core.Rectangular8Tile), 4));
 
             _this.landscape = true;
             return _this;
@@ -1647,8 +2113,8 @@
             this.scale = 1;
             this.winner = 0;
             this.grid = grid;
-            this.tileMap = gridy.toMap(this.grid.tiles);
-            gridy.link(this.tileMap);
+            this.tileMap = core.toMap(this.grid.tiles);
+            core.link(this.tileMap);
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
@@ -1793,16 +2259,16 @@
             key: 'move',
             value: function move(m) {
                 var first = m[0];
-                var last$$1 = m[m.length - 1];
-                last$$1 = Array.isArray(last$$1) ? last$$1[0] : last$$1;
+                var last = m[m.length - 1];
+                last = Array.isArray(last) ? last[0] : last;
                 for (var i = 1; i < m.length; i++) {
                     if (Array.isArray(m[i])) {
                         this.score[m[i][1].data]--;
                         m[i][1].data = null;
                     }
                 }
-                last$$1.data = first.data;
-                if (last$$1 !== first) {
+                last.data = first.data;
+                if (last !== first) {
                     first.data = null;
                 }
                 this.player = other(this.player);
@@ -1817,9 +2283,9 @@
             value: function undo() {
                 var m = this.moves.pop();
                 var first = m[0];
-                var last$$1 = m[m.length - 1];
-                last$$1 = Array.isArray(last$$1) ? last$$1[0] : last$$1;
-                var o = other(last$$1.data);
+                var last = m[m.length - 1];
+                last = Array.isArray(last) ? last[0] : last;
+                var o = other(last.data);
                 for (var i = m.length - 1; i > 0; i--) {
                     var n = m[i];
                     if (Array.isArray(n)) {
@@ -1827,9 +2293,9 @@
                         n[1].data = o;
                     }
                 }
-                first.data = last$$1.data;
-                if (last$$1 !== first) {
-                    last$$1.data = null;
+                first.data = last.data;
+                if (last !== first) {
+                    last.data = null;
                 }
                 this.winner = 0;
                 this.finished = false;
@@ -1864,12 +2330,12 @@
             }
         }, {
             key: 'leavesToMoves',
-            value: function leavesToMoves$$1(r) {
+            value: function leavesToMoves(r) {
                 return r.map(this.leaveToMove);
             }
         }, {
             key: 'leaveToMove',
-            value: function leaveToMove$$1(nodeInput) {
+            value: function leaveToMove(nodeInput) {
                 var result = [];
                 var node = nodeInput;
                 while (node) {
@@ -1898,7 +2364,7 @@
             }
         }, {
             key: 'jumpsPossible',
-            value: function jumpsPossible$$1() {
+            value: function jumpsPossible() {
                 var _this2 = this;
 
                 var o = other(this.player);
@@ -1912,7 +2378,7 @@
             }
         }, {
             key: 'multiJumps',
-            value: function multiJumps$$1(parent, o) {
+            value: function multiJumps(parent, o) {
                 var leaves = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
                 var depth = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
                 var removed = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : [];
@@ -2056,7 +2522,7 @@
 
         function QirkatGame() {
             classCallCheck(this, QirkatGame);
-            return possibleConstructorReturn(this, (QirkatGame.__proto__ || Object.getPrototypeOf(QirkatGame)).call(this, new gridy.RectangularGrid(1, false, gridy.Shape.Even, SIZE, SIZE, gridy.Rectangular8Tile), SIZE * SIZE * 3));
+            return possibleConstructorReturn(this, (QirkatGame.__proto__ || Object.getPrototypeOf(QirkatGame)).call(this, new core.RectangularGrid(1, false, core.Shape.Even, SIZE, SIZE, core.Rectangular8Tile), SIZE * SIZE * 3));
         }
 
         return QirkatGame;
@@ -2077,7 +2543,7 @@
 
         function Qirkat3Game() {
             classCallCheck(this, Qirkat3Game);
-            return possibleConstructorReturn(this, (Qirkat3Game.__proto__ || Object.getPrototypeOf(Qirkat3Game)).call(this, new gridy.RectangularGrid(1, false, gridy.Shape.Even, SIZE$1, SIZE$1, gridy.Rectangular8Tile), SIZE$1 * SIZE$1 * 3));
+            return possibleConstructorReturn(this, (Qirkat3Game.__proto__ || Object.getPrototypeOf(Qirkat3Game)).call(this, new core.RectangularGrid(1, false, core.Shape.Even, SIZE$1, SIZE$1, core.Rectangular8Tile), SIZE$1 * SIZE$1 * 3));
         }
 
         return Qirkat3Game;
@@ -2094,7 +2560,7 @@
 
         function Qirkat7Game() {
             classCallCheck(this, Qirkat7Game);
-            return possibleConstructorReturn(this, (Qirkat7Game.__proto__ || Object.getPrototypeOf(Qirkat7Game)).call(this, new gridy.RectangularGrid(1, false, gridy.Shape.Even, SIZE$2, SIZE$2, gridy.Rectangular8Tile), SIZE$2 * SIZE$2 * 3));
+            return possibleConstructorReturn(this, (Qirkat7Game.__proto__ || Object.getPrototypeOf(Qirkat7Game)).call(this, new core.RectangularGrid(1, false, core.Shape.Even, SIZE$2, SIZE$2, core.Rectangular8Tile), SIZE$2 * SIZE$2 * 3));
         }
 
         return Qirkat7Game;
@@ -2112,8 +2578,8 @@
         function QirkatHexGame() {
             classCallCheck(this, QirkatHexGame);
 
-            var grid = new gridy.HexagonalGrid(1, true, gridy.Shape.Rhombus, SIZE$3, SIZE$3);
-            gridy.normalize(grid);
+            var grid = new core.HexagonalGrid(1, true, core.Shape.Rhombus, SIZE$3, SIZE$3);
+            core.normalize(grid);
 
             var _this = possibleConstructorReturn(this, (QirkatHexGame.__proto__ || Object.getPrototypeOf(QirkatHexGame)).call(this, grid, SIZE$3 * SIZE$3 * SIZE$3 * 3));
 
@@ -2136,8 +2602,8 @@
         function QirkatHex7Game() {
             classCallCheck(this, QirkatHex7Game);
 
-            var grid = new gridy.HexagonalGrid(1, true, gridy.Shape.Rhombus, SIZE$4, SIZE$4);
-            gridy.normalize(grid);
+            var grid = new core.HexagonalGrid(1, true, core.Shape.Rhombus, SIZE$4, SIZE$4);
+            core.normalize(grid);
 
             var _this = possibleConstructorReturn(this, (QirkatHex7Game.__proto__ || Object.getPrototypeOf(QirkatHex7Game)).call(this, grid, SIZE$4 * SIZE$4 * 3));
 
@@ -2160,8 +2626,8 @@
         function QirkatHex2Game() {
             classCallCheck(this, QirkatHex2Game);
 
-            var grid = new gridy.HexagonalGrid(1, true, gridy.Shape.Hexagonal, SIZE$5, SIZE$5);
-            gridy.normalize(grid);
+            var grid = new core.HexagonalGrid(1, true, core.Shape.Hexagonal, SIZE$5, SIZE$5);
+            core.normalize(grid);
 
             var _this = possibleConstructorReturn(this, (QirkatHex2Game.__proto__ || Object.getPrototypeOf(QirkatHex2Game)).call(this, grid, SIZE$5 * SIZE$5 * SIZE$5 * 3));
 
@@ -2202,16 +2668,16 @@
             key: 'move',
             value: function move(m) {
                 var first = m[0];
-                var last$$1 = m[m.length - 1];
-                last$$1 = Array.isArray(last$$1) ? last$$1[0] : last$$1;
+                var last = m[m.length - 1];
+                last = Array.isArray(last) ? last[0] : last;
                 for (var i = 1; i < m.length; i++) {
                     if (Array.isArray(m[i])) {
                         this.score[m[i][1].data]--;
                         m[i][1].data = null;
                     }
                 }
-                last$$1.data = first.data;
-                if (last$$1 !== first) {
+                last.data = first.data;
+                if (last !== first) {
                     first.data = null;
                 }
                 this.player = other(this.player);
@@ -2238,9 +2704,9 @@
             value: function undo() {
                 var m = this.moves.pop();
                 var first = m[0];
-                var last$$1 = m[m.length - 1];
-                last$$1 = Array.isArray(last$$1) ? last$$1[0] : last$$1;
-                var o = other(last$$1.data);
+                var last = m[m.length - 1];
+                last = Array.isArray(last) ? last[0] : last;
+                var o = other(last.data);
                 for (var i = m.length - 1; i > 0; i--) {
                     var n = m[i];
                     if (Array.isArray(n)) {
@@ -2248,9 +2714,9 @@
                         n[1].data = o;
                     }
                 }
-                first.data = last$$1.data;
-                if (last$$1 !== first) {
-                    last$$1.data = null;
+                first.data = last.data;
+                if (last !== first) {
+                    last.data = null;
                 }
                 this.winner = 0;
                 this.finished = false;
@@ -2339,7 +2805,7 @@
         function CatchTheHareGame() {
             classCallCheck(this, CatchTheHareGame);
 
-            var _this = possibleConstructorReturn(this, (CatchTheHareGame.__proto__ || Object.getPrototypeOf(CatchTheHareGame)).call(this, new gridy.RectangularGrid(1, false, gridy.Shape.Even, 5, 5, gridy.Rectangular8Tile), 5 * 5 * 3));
+            var _this = possibleConstructorReturn(this, (CatchTheHareGame.__proto__ || Object.getPrototypeOf(CatchTheHareGame)).call(this, new core.RectangularGrid(1, false, core.Shape.Even, 5, 5, core.Rectangular8Tile), 5 * 5 * 3));
 
             for (var i = 0; i < 10; i++) {
                 _this.grid.tiles[i].data = 1;
@@ -2368,7 +2834,7 @@
         function CatchTheHare10Game() {
             classCallCheck(this, CatchTheHare10Game);
 
-            var _this = possibleConstructorReturn(this, (CatchTheHare10Game.__proto__ || Object.getPrototypeOf(CatchTheHare10Game)).call(this, new gridy.RectangularGrid(1, false, gridy.Shape.Even, 5, 5, gridy.Rectangular8Tile), 5 * 5 * 3));
+            var _this = possibleConstructorReturn(this, (CatchTheHare10Game.__proto__ || Object.getPrototypeOf(CatchTheHare10Game)).call(this, new core.RectangularGrid(1, false, core.Shape.Even, 5, 5, core.Rectangular8Tile), 5 * 5 * 3));
 
             for (var i = 0; i < 10; i++) {
                 _this.grid.tiles[i].data = 1;
@@ -2522,7 +2988,7 @@
 
         function FourInARow11Game() {
             classCallCheck(this, FourInARow11Game);
-            return possibleConstructorReturn(this, (FourInARow11Game.__proto__ || Object.getPrototypeOf(FourInARow11Game)).call(this, new gridy.RectangularGrid(1, undefined, gridy.Shape.Even, 11, 11, gridy.Rectangular8Tile), 4));
+            return possibleConstructorReturn(this, (FourInARow11Game.__proto__ || Object.getPrototypeOf(FourInARow11Game)).call(this, new core.RectangularGrid(1, undefined, core.Shape.Even, 11, 11, core.Rectangular8Tile), 4));
         }
 
         return FourInARow11Game;
@@ -2542,7 +3008,7 @@
         function FourInARowRoundGame() {
             classCallCheck(this, FourInARowRoundGame);
 
-            var grid = new gridy.RadialGrid(1, false, gridy.Shape.Even, 12, 8, gridy.Radial8Tile, 2);
+            var grid = new core.RadialGrid(1, false, core.Shape.Even, 12, 8, core.Radial8Tile, 2);
             return possibleConstructorReturn(this, (FourInARowRoundGame.__proto__ || Object.getPrototypeOf(FourInARowRoundGame)).call(this, grid, 4));
         }
 
@@ -2559,7 +3025,7 @@
 
         function GomokuGame() {
             classCallCheck(this, GomokuGame);
-            return possibleConstructorReturn(this, (GomokuGame.__proto__ || Object.getPrototypeOf(GomokuGame)).call(this, new gridy.RectangularGrid(1, false, gridy.Shape.Even, 15, 15, gridy.Rectangular8Tile), 5));
+            return possibleConstructorReturn(this, (GomokuGame.__proto__ || Object.getPrototypeOf(GomokuGame)).call(this, new core.RectangularGrid(1, false, core.Shape.Even, 15, 15, core.Rectangular8Tile), 5));
         }
 
         return GomokuGame;
@@ -2581,7 +3047,7 @@
 
         function Gomoku9Game() {
             classCallCheck(this, Gomoku9Game);
-            return possibleConstructorReturn(this, (Gomoku9Game.__proto__ || Object.getPrototypeOf(Gomoku9Game)).call(this, new gridy.RectangularGrid(1, false, gridy.Shape.Even, 9, 9, gridy.Rectangular8Tile), 5));
+            return possibleConstructorReturn(this, (Gomoku9Game.__proto__ || Object.getPrototypeOf(Gomoku9Game)).call(this, new core.RectangularGrid(1, false, core.Shape.Even, 9, 9, core.Rectangular8Tile), 5));
         }
 
         return Gomoku9Game;
@@ -2600,7 +3066,7 @@
 
         function Gomoku11Game() {
             classCallCheck(this, Gomoku11Game);
-            return possibleConstructorReturn(this, (Gomoku11Game.__proto__ || Object.getPrototypeOf(Gomoku11Game)).call(this, new gridy.RectangularGrid(1, false, gridy.Shape.Even, 11, 11, gridy.Rectangular8Tile), 5));
+            return possibleConstructorReturn(this, (Gomoku11Game.__proto__ || Object.getPrototypeOf(Gomoku11Game)).call(this, new core.RectangularGrid(1, false, core.Shape.Even, 11, 11, core.Rectangular8Tile), 5));
         }
 
         return Gomoku11Game;
@@ -2619,7 +3085,7 @@
 
         function GomokuHexGame() {
             classCallCheck(this, GomokuHexGame);
-            return possibleConstructorReturn(this, (GomokuHexGame.__proto__ || Object.getPrototypeOf(GomokuHexGame)).call(this, new gridy.HexagonalGrid(1, true, gridy.Shape.Even, 15), 5));
+            return possibleConstructorReturn(this, (GomokuHexGame.__proto__ || Object.getPrototypeOf(GomokuHexGame)).call(this, new core.HexagonalGrid(1, true, core.Shape.Even, 15), 5));
         }
 
         return GomokuHexGame;
@@ -2650,14 +3116,14 @@
             this.history = [];
             this.anti = anti;
             this.grid = grid;
-            this.tileMap = gridy.toMap(grid.tiles);
+            this.tileMap = core.toMap(grid.tiles);
             var x1 = Math.floor(grid.x / 2 - 0.5);
             var x2 = Math.ceil(grid.x / 2 - 0.5);
             var y1 = Math.floor(grid.y / 2 - 0.5);
             var y2 = Math.ceil(grid.y / 2 - 0.5);
             this.center = [this.tileMap.get(grid.tile(x1, y1).key), this.tileMap.get(grid.tile(x1, y2).key), this.tileMap.get(grid.tile(x2, y2).key), this.tileMap.get(grid.tile(x2, y1).key)];
-            this.empty = gridy.toMap(this.grid.tiles);
-            gridy.link(this.tileMap);
+            this.empty = core.toMap(this.grid.tiles);
+            core.link(this.tileMap);
             if (center) {
                 this.center.forEach(function (t) {
                     _this.move(t, true);
@@ -2914,7 +3380,7 @@
 
         function OthelloGame() {
             classCallCheck(this, OthelloGame);
-            return possibleConstructorReturn(this, (OthelloGame.__proto__ || Object.getPrototypeOf(OthelloGame)).call(this, new gridy.RectangularGrid(1, undefined, gridy.Shape.Even, 8, 8, gridy.Rectangular8Tile), true));
+            return possibleConstructorReturn(this, (OthelloGame.__proto__ || Object.getPrototypeOf(OthelloGame)).call(this, new core.RectangularGrid(1, undefined, core.Shape.Even, 8, 8, core.Rectangular8Tile), true));
         }
 
         return OthelloGame;
@@ -2935,7 +3401,7 @@
 
         function Othello4Game() {
             classCallCheck(this, Othello4Game);
-            return possibleConstructorReturn(this, (Othello4Game.__proto__ || Object.getPrototypeOf(Othello4Game)).call(this, new gridy.RectangularGrid(1, undefined, gridy.Shape.Even, 4, 4, gridy.Rectangular8Tile), true));
+            return possibleConstructorReturn(this, (Othello4Game.__proto__ || Object.getPrototypeOf(Othello4Game)).call(this, new core.RectangularGrid(1, undefined, core.Shape.Even, 4, 4, core.Rectangular8Tile), true));
         }
 
         return Othello4Game;
@@ -2950,7 +3416,7 @@
 
         function ReversiGame() {
             classCallCheck(this, ReversiGame);
-            return possibleConstructorReturn(this, (ReversiGame.__proto__ || Object.getPrototypeOf(ReversiGame)).call(this, new gridy.RectangularGrid(1, undefined, gridy.Shape.Even, 8, 8, gridy.Rectangular8Tile)));
+            return possibleConstructorReturn(this, (ReversiGame.__proto__ || Object.getPrototypeOf(ReversiGame)).call(this, new core.RectangularGrid(1, undefined, core.Shape.Even, 8, 8, core.Rectangular8Tile)));
         }
 
         return ReversiGame;
@@ -2970,7 +3436,7 @@
 
         function Reversi4Game() {
             classCallCheck(this, Reversi4Game);
-            return possibleConstructorReturn(this, (Reversi4Game.__proto__ || Object.getPrototypeOf(Reversi4Game)).call(this, new gridy.RectangularGrid(1, undefined, gridy.Shape.Even, 4, 4, gridy.Rectangular8Tile)));
+            return possibleConstructorReturn(this, (Reversi4Game.__proto__ || Object.getPrototypeOf(Reversi4Game)).call(this, new core.RectangularGrid(1, undefined, core.Shape.Even, 4, 4, core.Rectangular8Tile)));
         }
 
         return Reversi4Game;
@@ -2985,7 +3451,7 @@
 
         function Reversi6Game() {
             classCallCheck(this, Reversi6Game);
-            return possibleConstructorReturn(this, (Reversi6Game.__proto__ || Object.getPrototypeOf(Reversi6Game)).call(this, new gridy.RectangularGrid(1, undefined, gridy.Shape.Even, 6, 6, gridy.Rectangular8Tile)));
+            return possibleConstructorReturn(this, (Reversi6Game.__proto__ || Object.getPrototypeOf(Reversi6Game)).call(this, new core.RectangularGrid(1, undefined, core.Shape.Even, 6, 6, core.Rectangular8Tile)));
         }
 
         return Reversi6Game;
@@ -3001,7 +3467,7 @@
 
         function Reversi10Game() {
             classCallCheck(this, Reversi10Game);
-            return possibleConstructorReturn(this, (Reversi10Game.__proto__ || Object.getPrototypeOf(Reversi10Game)).call(this, new gridy.RectangularGrid(1, undefined, gridy.Shape.Even, 10, 10, gridy.Rectangular8Tile)));
+            return possibleConstructorReturn(this, (Reversi10Game.__proto__ || Object.getPrototypeOf(Reversi10Game)).call(this, new core.RectangularGrid(1, undefined, core.Shape.Even, 10, 10, core.Rectangular8Tile)));
         }
 
         return Reversi10Game;
@@ -3017,7 +3483,7 @@
 
         function ReversiHexGame() {
             classCallCheck(this, ReversiHexGame);
-            return possibleConstructorReturn(this, (ReversiHexGame.__proto__ || Object.getPrototypeOf(ReversiHexGame)).call(this, landscapeHex(new gridy.HexagonalGrid(1, false, gridy.Shape.Rhombus, 8))));
+            return possibleConstructorReturn(this, (ReversiHexGame.__proto__ || Object.getPrototypeOf(ReversiHexGame)).call(this, landscapeHex(new core.HexagonalGrid(1, false, core.Shape.Rhombus, 8))));
         }
 
         return ReversiHexGame;
@@ -3033,7 +3499,7 @@
 
         function ReversiHex4Game() {
             classCallCheck(this, ReversiHex4Game);
-            return possibleConstructorReturn(this, (ReversiHex4Game.__proto__ || Object.getPrototypeOf(ReversiHex4Game)).call(this, landscapeHex(new gridy.HexagonalGrid(1, undefined, gridy.Shape.Rhombus, 4))));
+            return possibleConstructorReturn(this, (ReversiHex4Game.__proto__ || Object.getPrototypeOf(ReversiHex4Game)).call(this, landscapeHex(new core.HexagonalGrid(1, undefined, core.Shape.Rhombus, 4))));
         }
 
         return ReversiHex4Game;
@@ -3048,7 +3514,7 @@
 
         function ReversiHex6Game() {
             classCallCheck(this, ReversiHex6Game);
-            return possibleConstructorReturn(this, (ReversiHex6Game.__proto__ || Object.getPrototypeOf(ReversiHex6Game)).call(this, landscapeHex(new gridy.HexagonalGrid(1, undefined, gridy.Shape.Rhombus, 6))));
+            return possibleConstructorReturn(this, (ReversiHex6Game.__proto__ || Object.getPrototypeOf(ReversiHex6Game)).call(this, landscapeHex(new core.HexagonalGrid(1, undefined, core.Shape.Rhombus, 6))));
         }
 
         return ReversiHex6Game;
@@ -3064,7 +3530,7 @@
 
         function ReversiHex10Game() {
             classCallCheck(this, ReversiHex10Game);
-            return possibleConstructorReturn(this, (ReversiHex10Game.__proto__ || Object.getPrototypeOf(ReversiHex10Game)).call(this, landscapeHex(new gridy.HexagonalGrid(1, undefined, gridy.Shape.Rhombus, 10))));
+            return possibleConstructorReturn(this, (ReversiHex10Game.__proto__ || Object.getPrototypeOf(ReversiHex10Game)).call(this, landscapeHex(new core.HexagonalGrid(1, undefined, core.Shape.Rhombus, 10))));
         }
 
         return ReversiHex10Game;
@@ -3080,7 +3546,7 @@
 
         function AntiReversiGame() {
             classCallCheck(this, AntiReversiGame);
-            return possibleConstructorReturn(this, (AntiReversiGame.__proto__ || Object.getPrototypeOf(AntiReversiGame)).call(this, new gridy.RectangularGrid(1, undefined, gridy.Shape.Even, 8, 8, gridy.Rectangular8Tile), false, true));
+            return possibleConstructorReturn(this, (AntiReversiGame.__proto__ || Object.getPrototypeOf(AntiReversiGame)).call(this, new core.RectangularGrid(1, undefined, core.Shape.Even, 8, 8, core.Rectangular8Tile), false, true));
         }
 
         return AntiReversiGame;
@@ -3097,7 +3563,7 @@
 
         function AntiReversiHexGame() {
             classCallCheck(this, AntiReversiHexGame);
-            return possibleConstructorReturn(this, (AntiReversiHexGame.__proto__ || Object.getPrototypeOf(AntiReversiHexGame)).call(this, landscapeHex(new gridy.HexagonalGrid(1, false, gridy.Shape.Rhombus, 8)), false, true));
+            return possibleConstructorReturn(this, (AntiReversiHexGame.__proto__ || Object.getPrototypeOf(AntiReversiHexGame)).call(this, landscapeHex(new core.HexagonalGrid(1, false, core.Shape.Rhombus, 8)), false, true));
         }
 
         return AntiReversiHexGame;
@@ -3122,9 +3588,9 @@
             this.undo = undo.bind(this);
             this.finished = false;
             this.grid = grid;
-            this.tileMap = gridy.toMap(grid.tiles);
-            this.freeTileMap = gridy.toMap(grid.tiles);
-            gridy.link(this.tileMap);
+            this.tileMap = core.toMap(grid.tiles);
+            this.freeTileMap = core.toMap(grid.tiles);
+            core.link(this.tileMap);
             this.markLine(this.grid.tile(0, 0), this.grid.tile(0, this.grid.y - 1), 1, 'begin');
             this.markLine(this.grid.tile(this.grid.x - 1, 0), this.grid.tile(this.grid.x - 1, this.grid.y - 1), 1, 'end');
             this.markLine(this.grid.tile(0, 0), this.grid.tile(this.grid.x - 1, 0), 2, 'begin');
@@ -3138,7 +3604,7 @@
                 if (this.finished) {
                     return [];
                 }
-                return gridy.toArray(this.freeTileMap);
+                return core.toArray(this.freeTileMap);
             }
         }, {
             key: 'links',
@@ -3245,10 +3711,10 @@
                 if (!this.moves.length) {
                     return 0;
                 }
-                var last$$1 = this.moves[this.moves.length - 1];
-                var w = this.flood(last$$1);
+                var last = this.moves[this.moves.length - 1];
+                var w = this.flood(last);
                 if (w) {
-                    return last$$1.data;
+                    return last.data;
                 }
                 if (this.moves.length === this.grid.tiles.length) {
                     return -1;
@@ -3260,7 +3726,7 @@
             value: function markLine(fromTile, to, value, key) {
                 var _this = this;
 
-                gridy.Float3.LINE(fromTile, to).forEach(function (t) {
+                core.Float3.LINE(fromTile, to).forEach(function (t) {
                     _this.tileMap.get(t.toString())['' + key + value] = true;
                 });
             }
@@ -3337,7 +3803,7 @@
 
         function HexGame() {
             classCallCheck(this, HexGame);
-            return possibleConstructorReturn(this, (HexGame.__proto__ || Object.getPrototypeOf(HexGame)).call(this, landscapeHex(new gridy.HexagonalGrid(1, undefined, gridy.Shape.Rhombus, 11))));
+            return possibleConstructorReturn(this, (HexGame.__proto__ || Object.getPrototypeOf(HexGame)).call(this, landscapeHex(new core.HexagonalGrid(1, undefined, core.Shape.Rhombus, 11))));
         }
 
         return HexGame;
@@ -3358,7 +3824,7 @@
 
         function Hex5Game() {
             classCallCheck(this, Hex5Game);
-            return possibleConstructorReturn(this, (Hex5Game.__proto__ || Object.getPrototypeOf(Hex5Game)).call(this, landscapeHex(new gridy.HexagonalGrid(1, undefined, gridy.Shape.Rhombus, 5))));
+            return possibleConstructorReturn(this, (Hex5Game.__proto__ || Object.getPrototypeOf(Hex5Game)).call(this, landscapeHex(new core.HexagonalGrid(1, undefined, core.Shape.Rhombus, 5))));
         }
 
         return Hex5Game;
@@ -3373,7 +3839,7 @@
 
         function Hex7Game() {
             classCallCheck(this, Hex7Game);
-            return possibleConstructorReturn(this, (Hex7Game.__proto__ || Object.getPrototypeOf(Hex7Game)).call(this, landscapeHex(new gridy.HexagonalGrid(1, undefined, gridy.Shape.Rhombus, 7))));
+            return possibleConstructorReturn(this, (Hex7Game.__proto__ || Object.getPrototypeOf(Hex7Game)).call(this, landscapeHex(new core.HexagonalGrid(1, undefined, core.Shape.Rhombus, 7))));
         }
 
         return Hex7Game;
@@ -3388,7 +3854,7 @@
 
         function Hex9Game() {
             classCallCheck(this, Hex9Game);
-            return possibleConstructorReturn(this, (Hex9Game.__proto__ || Object.getPrototypeOf(Hex9Game)).call(this, landscapeHex(new gridy.HexagonalGrid(1, undefined, gridy.Shape.Rhombus, 9))));
+            return possibleConstructorReturn(this, (Hex9Game.__proto__ || Object.getPrototypeOf(Hex9Game)).call(this, landscapeHex(new core.HexagonalGrid(1, undefined, core.Shape.Rhombus, 9))));
         }
 
         return Hex9Game;
@@ -3404,7 +3870,7 @@
 
         function Hex13Game() {
             classCallCheck(this, Hex13Game);
-            return possibleConstructorReturn(this, (Hex13Game.__proto__ || Object.getPrototypeOf(Hex13Game)).call(this, landscapeHex(new gridy.HexagonalGrid(1, undefined, gridy.Shape.Rhombus, 13))));
+            return possibleConstructorReturn(this, (Hex13Game.__proto__ || Object.getPrototypeOf(Hex13Game)).call(this, landscapeHex(new core.HexagonalGrid(1, undefined, core.Shape.Rhombus, 13))));
         }
 
         return Hex13Game;
@@ -3416,7 +3882,6 @@
     Hex13Game.sample = 'l1, j3, c1, k12, b1, e6, d8, a12, b7, j6, l3, a1, l6, m2, h1, h4, i1, d3, g8, f1, k8, g7, f6, e2, b6, f8, i7, e5, f9, j4, h2, e10, l9, k6, m5, e9, g2, h7, a3, a6, g4, i6, a10, g10, f11, k3, h11, a9, j5, b8, e13, c8, i5, h12, i11, g1, b4, h5, b12, e1, c6, d13, k2, m3, c10, a11, i12, j10, d11, f5, a7, j1, e11, g13, m9, i8, d5, c11, b11, a5, l7, d10, i13, c12, b2, c5, m10, i9, m1, c13, a4, d2, m4, g11, f13, e8, d7, h3, b10, k9, g5, h6, j13, g3, i2, f3, d4, i3, l5, k4, j2, j2';
 
     // export { Hex14Game } from "./Hex14Game";
-    //# sourceMappingURL=index.js.map
 
     var games = /*#__PURE__*/Object.freeze({
         TicTacToeGame: TicTacToeGame,
@@ -3681,7 +4146,7 @@
             }
         }, {
             key: 'update',
-            value: function update$$1(result) {
+            value: function update(result) {
                 this.visits++;
                 this.wins += this.activePlayer === result ? 1 : result === -1 ? 0 : -1;
             }
@@ -3830,7 +4295,7 @@
         return UctCachedPlayer;
     }(UctPlayer);
 
-    //# sourceMappingURL=index.js.map
+
 
     var players = /*#__PURE__*/Object.freeze({
         AlphaBetaPlayer: AlphaBetaPlayer,
@@ -3862,7 +4327,7 @@
             }
         }, {
             key: 'wip',
-            set: function set$$1(value) {
+            set: function set(value) {
                 if (value !== this.wipValue) {
                     this.wipValue = value;
                     Info.gamesValue = undefined;
@@ -3870,7 +4335,7 @@
             }
         }, {
             key: 'games',
-            get: function get$$1() {
+            get: function get() {
                 if (!Info.gamesValue) {
                     Info.gamesValue = Object.freeze(table(games, this.wipValue));
                 }
@@ -3885,74 +4350,73 @@
     var Games = games;
     // tslint:disable-next-line:variable-name
     var Players = players;
-    //# sourceMappingURL=index.js.map
 
-    exports.Games = Games;
-    exports.Players = Players;
-    exports.TimedProxy = TimedProxy;
-    exports.FIELDS = FIELDS;
-    exports.other = other;
-    exports.reset = reset;
-    exports.stringify = stringify;
-    exports.table = table;
-    exports.undoFor = undoFor;
-    exports.update = update;
-    exports.Info = Info;
-    exports.ThemeStones = ThemeStones;
-    exports.StoneNames = StoneNames;
-    exports.TicTacToeGame = TicTacToeGame;
-    exports.TicTacToeRoundGame = TicTacToeRoundGame;
-    exports.TicTacToeTriGame = TicTacToeTriGame;
-    exports.TacTickleGame = TacTickleGame;
-    exports.TacTickle4Game = TacTickle4Game;
-    exports.TacTickleHexGame = TacTickleHexGame;
-    exports.TacTickleHex2Game = TacTickleHex2Game;
-    exports.TacTickleRoundGame = TacTickleRoundGame;
-    exports.TacTickleTriGame = TacTickleTriGame;
-    exports.ConnectFourGame = ConnectFourGame;
-    exports.QirkatGame = QirkatGame;
-    exports.Qirkat3Game = Qirkat3Game;
-    exports.Qirkat7Game = Qirkat7Game;
-    exports.QirkatHexGame = QirkatHexGame;
-    exports.QirkatHex7Game = QirkatHex7Game;
-    exports.QirkatHex2Game = QirkatHex2Game;
-    exports.CatchTheHareGame = CatchTheHareGame;
-    exports.CatchTheHare10Game = CatchTheHare10Game;
-    exports.FourInARow11Game = FourInARow11Game;
-    exports.FourInARowRoundGame = FourInARowRoundGame;
-    exports.GomokuGame = GomokuGame;
-    exports.Gomoku9Game = Gomoku9Game;
-    exports.Gomoku11Game = Gomoku11Game;
-    exports.GomokuHexGame = GomokuHexGame;
-    exports.OthelloGame = OthelloGame;
-    exports.Othello4Game = Othello4Game;
-    exports.ReversiGame = ReversiGame;
-    exports.Reversi4Game = Reversi4Game;
-    exports.Reversi6Game = Reversi6Game;
-    exports.Reversi10Game = Reversi10Game;
-    exports.ReversiHexGame = ReversiHexGame;
-    exports.ReversiHex4Game = ReversiHex4Game;
-    exports.ReversiHex6Game = ReversiHex6Game;
-    exports.ReversiHex10Game = ReversiHex10Game;
+    exports.AlphaBetaPlayer = AlphaBetaPlayer;
     exports.AntiReversiGame = AntiReversiGame;
     exports.AntiReversiHexGame = AntiReversiHexGame;
-    exports.HexGame = HexGame;
+    exports.CatchTheHare10Game = CatchTheHare10Game;
+    exports.CatchTheHareGame = CatchTheHareGame;
+    exports.ConnectFourGame = ConnectFourGame;
+    exports.FIELDS = FIELDS;
+    exports.FourInARow11Game = FourInARow11Game;
+    exports.FourInARowRoundGame = FourInARowRoundGame;
+    exports.Games = Games;
+    exports.Gomoku11Game = Gomoku11Game;
+    exports.Gomoku9Game = Gomoku9Game;
+    exports.GomokuGame = GomokuGame;
+    exports.GomokuHexGame = GomokuHexGame;
+    exports.Hex13Game = Hex13Game;
     exports.Hex5Game = Hex5Game;
     exports.Hex7Game = Hex7Game;
     exports.Hex9Game = Hex9Game;
-    exports.Hex13Game = Hex13Game;
-    exports.AlphaBetaPlayer = AlphaBetaPlayer;
-    exports.RandomPlayer = RandomPlayer;
-    exports.UctPlayer = UctPlayer;
-    exports.UctCachedPlayer = UctCachedPlayer;
+    exports.HexGame = HexGame;
+    exports.Info = Info;
     exports.MinimaxPlayer = MinimaxPlayer;
+    exports.Othello4Game = Othello4Game;
+    exports.OthelloGame = OthelloGame;
+    exports.Players = Players;
+    exports.Qirkat3Game = Qirkat3Game;
+    exports.Qirkat7Game = Qirkat7Game;
+    exports.QirkatGame = QirkatGame;
+    exports.QirkatHex2Game = QirkatHex2Game;
+    exports.QirkatHex7Game = QirkatHex7Game;
+    exports.QirkatHexGame = QirkatHexGame;
+    exports.RandomPlayer = RandomPlayer;
+    exports.Reversi10Game = Reversi10Game;
+    exports.Reversi4Game = Reversi4Game;
+    exports.Reversi6Game = Reversi6Game;
+    exports.ReversiGame = ReversiGame;
+    exports.ReversiHex10Game = ReversiHex10Game;
+    exports.ReversiHex4Game = ReversiHex4Game;
+    exports.ReversiHex6Game = ReversiHex6Game;
+    exports.ReversiHexGame = ReversiHexGame;
+    exports.StoneNames = StoneNames;
+    exports.TacTickle4Game = TacTickle4Game;
+    exports.TacTickleGame = TacTickleGame;
+    exports.TacTickleHex2Game = TacTickleHex2Game;
+    exports.TacTickleHexGame = TacTickleHexGame;
+    exports.TacTickleRoundGame = TacTickleRoundGame;
+    exports.TacTickleTriGame = TacTickleTriGame;
+    exports.ThemeStones = ThemeStones;
+    exports.TicTacToeGame = TicTacToeGame;
+    exports.TicTacToeRoundGame = TicTacToeRoundGame;
+    exports.TicTacToeTriGame = TicTacToeTriGame;
+    exports.TimedProxy = TimedProxy;
+    exports.UctCachedPlayer = UctCachedPlayer;
+    exports.UctPlayer = UctPlayer;
     exports.getMovePlace = getMovePlace;
-    exports.initHighlight = initHighlight;
     exports.initActions = initActions;
+    exports.initHighlight = initHighlight;
+    exports.other = other;
+    exports.reset = reset;
     exports.selectAction = selectAction;
+    exports.stringify = stringify;
+    exports.table = table;
     exports.undoAction = undoAction;
+    exports.undoFor = undoFor;
+    exports.update = update;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=games.js.map

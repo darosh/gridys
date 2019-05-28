@@ -17,7 +17,7 @@ export interface IGameTile extends AnyTile {
 export declare enum Phase {
     PLACE = 0,
     REMOVED = 1,
-    MODIFIED = 2,
+    MODIFIED = 2
 }
 export declare type Step = (IGameTile | ICompoundStep);
 export declare type Move = Step | Step[];

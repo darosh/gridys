@@ -5,14 +5,13 @@ import commonjs from 'rollup-plugin-commonjs'
 export default {
   output: {
     globals: {
-      gridy: 'Gridy'
+      '@gridy/core': 'Gridy'
     }
   },
-  external: ['gridy'],
+  external: ['@gridy/core'],
   plugins: [
     resolve({
-      module: true,
-      main: false,
+      mainFields: ['module'],
       modulesOnly: true
     }),
     commonjs(),

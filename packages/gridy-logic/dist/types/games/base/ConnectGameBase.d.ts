@@ -16,9 +16,9 @@ export declare class ConnectGameBase implements IGame {
         [i: number]: AnyTile[];
     };
     freeTileMap: Map<string, AnyTile>;
-    moveToString: any;
-    stringToMove: any;
-    undo: any;
+    moveToString: (move: import("../../IGridGame").Move) => string;
+    stringToMove: (move: string) => IGameTile | import("../../IGridGame").ICompoundStep | (IGameTile | import("../../IGridGame").ICompoundStep)[] | null;
+    undo: () => void;
     constructor(grid: IGrid<IGameTile>, min: number);
     init(record: string): void;
     possible(): any[];

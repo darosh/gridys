@@ -12,9 +12,9 @@ export declare class HexGameBase implements IGame {
     playerTiles: {
         [i: number]: AnyTile[];
     };
-    moveToString: any;
-    stringToMove: any;
-    undo: any;
+    moveToString: (move: import("../../IGridGame").Move) => string;
+    stringToMove: (move: string) => import("../../IGridGame").IGameTile | import("../../IGridGame").ICompoundStep | (import("../../IGridGame").IGameTile | import("../../IGridGame").ICompoundStep)[] | null;
+    undo: () => void;
     private grid;
     private tileMap;
     private freeTileMap;
@@ -25,7 +25,7 @@ export declare class HexGameBase implements IGame {
     move(m: any): void;
     evaluate(): number;
     winning(): AnyTile[] | undefined;
-    private getWinner();
-    private markLine(fromTile, to, value, key);
-    private flood(tile);
+    private getWinner;
+    private markLine;
+    private flood;
 }

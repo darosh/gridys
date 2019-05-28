@@ -20,7 +20,7 @@ export function stringToMove(this: IGridMappedGame, move: string): Move | null {
 
   const t = this.grid.tile.apply(this.grid, p);
 
-  return <Move>this.tileMap.get(t.key);
+  return <Move>this.tileMap.get(t!.key);
 }
 
 export function movesToString(this: IGridMappedGame, move: Move[]): string {
@@ -72,7 +72,7 @@ export function stringsToJump(this: IGridMappedGame, move: string): Move | null 
 }
 
 function getTile(this: IGridMappedGame, t: any): any {
-  return this.tileMap.get(this.grid.tile.apply(this.grid, t).key);
+  return this.tileMap.get(this.grid.tile.apply(this.grid, t)!.key);
 }
 
 export function stringsToMove(this: IGridMappedGame, move: string): Move | null {
@@ -85,6 +85,6 @@ export function stringsToMove(this: IGridMappedGame, move: string): Move | null 
   return (<any>p).map((pp: any) => {
     const t = this.grid.tile.apply(this.grid, pp);
 
-    return this.tileMap.get(t.key);
+    return this.tileMap.get(t!.key);
   });
 }

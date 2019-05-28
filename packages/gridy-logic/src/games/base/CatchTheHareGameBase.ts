@@ -5,6 +5,7 @@ import { other } from '../../utils';
 import { QuirkatBoard } from '../base/QuirkatBoard';
 import { expandJumps, jumpsPossible, leaveToMove, leavesToMoves, multiJumps } from '../utils/quirkat';
 import { jumpsToString, stringsToJump } from '../utils/serialization';
+import { IGridMappedGame } from '../../IGridGame'
 
 export class CatchTheHareGameBase extends QuirkatBoard implements IGame {
   public static title = 'Catch the Hare';
@@ -13,13 +14,13 @@ export class CatchTheHareGameBase extends QuirkatBoard implements IGame {
   public static location = 'Europe';
   public static created = 1283;
 
-  public moveToString = jumpsToString.bind(this);
-  public stringToMove = stringsToJump.bind(this);
-  public jumpsPossible = jumpsPossible.bind(this);
-  public multiJumps = multiJumps.bind(this);
-  public leavesToMoves = leavesToMoves.bind(this);
-  public leaveToMove = leaveToMove.bind(this);
-  public expandJumps = expandJumps.bind(this);
+  public moveToString = jumpsToString.bind(<IGridMappedGame><unknown>this);
+  public stringToMove = stringsToJump.bind(<IGridMappedGame><unknown>this);
+  public jumpsPossible = jumpsPossible.bind(<IGridMappedGame & IGame><unknown>this);
+  public multiJumps = multiJumps.bind(<IGridMappedGame & IGame><unknown>this);
+  public leavesToMoves = leavesToMoves.bind(<IGridMappedGame><unknown>this);
+  public leaveToMove = leaveToMove.bind(<IGridMappedGame><unknown>this);
+  public expandJumps = expandJumps.bind(<IGridMappedGame><unknown>this);
 
   public score: { [player: number]: number } = {};
   private finished = false;

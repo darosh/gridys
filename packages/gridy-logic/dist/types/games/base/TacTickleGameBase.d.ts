@@ -14,8 +14,8 @@ export declare class TacTickleGameBase implements IGame {
         [i: number]: AnyTile[];
     };
     grid: IGrid<AnyTile>;
-    moveToString: any;
-    stringToMove: any;
+    moveToString: (move: import("../../IGridGame").Move[]) => string;
+    stringToMove: (move: string) => import("../../IGridGame").IGameTile | import("../../IGridGame").ICompoundStep | (import("../../IGridGame").IGameTile | import("../../IGridGame").ICompoundStep)[] | null;
     private tileMap;
     private min;
     private directions;
@@ -26,5 +26,5 @@ export declare class TacTickleGameBase implements IGame {
     undo(): void;
     evaluate(): number;
     winning(): AnyTile[] | undefined;
-    private init(lines?);
+    private init;
 }

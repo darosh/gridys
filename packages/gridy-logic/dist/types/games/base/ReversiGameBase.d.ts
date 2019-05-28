@@ -14,8 +14,8 @@ export declare class ReversiGameBase implements IGame {
         [index: number]: number;
     };
     winner: number;
-    moveToString: any;
-    stringToMove: any;
+    moveToString: (move: import("../../IGridGame").Move) => string;
+    stringToMove: (move: string) => import("../../IGridGame").IGameTile | import("../../IGridGame").ICompoundStep | (import("../../IGridGame").IGameTile | import("../../IGridGame").ICompoundStep)[] | null;
     protected finished: boolean;
     protected tileMap: Map<string, AnyTile>;
     protected empty: Map<string, AnyTile>;
@@ -31,6 +31,6 @@ export declare class ReversiGameBase implements IGame {
     move(m: any, fake?: boolean): void;
     evaluate(): number;
     getWinner(): number;
-    private movePass(m);
-    private getState(m);
+    private movePass;
+    private getState;
 }

@@ -38,7 +38,7 @@ export function parseRecord(record: string): Move[] {
   return tokens;
 }
 
-export function parsePosition(r: string) {
+export function parsePosition(r: string): [number, number] | null {
   if (r === PASS) {
     return null;
   } else {
@@ -46,7 +46,7 @@ export function parsePosition(r: string) {
     t[0] = parseInt(t[0], 36) - 10;
     t[1] = parseInt(t[1], 10) - 1;
 
-    return t;
+    return <[number, number]>t;
   }
 }
 
