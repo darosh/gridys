@@ -1,14 +1,15 @@
 {
   "name": "@gridy/games-heroes",
-  "version": "1.0.1",
   "description": "Heroes bundle",
-  "main": "index.json",
-  "scripts": {
-    "build": "node src/index.js > index.json"
-  },
+  "version": "1.0.1",
   "author": "Jan Forst <ensonador@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
     "superheroes": "^3.0.0"
+  },
+  "license": "MIT",
+  "main": "index.json",
+  "private": true,
+  "scripts": {
+    "build": "node src/index.js > index.json"
   }
 }

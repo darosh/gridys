@@ -31,17 +31,34 @@ checks:
     config:
       threshold: 100
 exclude_patterns:
-  - "doc/"
-  - "dist/"
-  - "*.json"
-  - "*.lock"
-  - ".codeclimate.yml"
-  - ".travis.yml"
-  - ".vscode/"
-  - "tests/"
-  - ".babelrc"
-  - ".editorconfig"
-  - ".gitignore"
-  - "rollup.config.js"
-  - "LICENSE"
-  - "README.md"
+  - "build/vuetify/"
+  - "static/"
+  - "src/style/"
+  - .babelrc
+  - .codeclimate.yml
+  - .editorconfig
+  - .eslintignore
+  - .eslintrc.js
+  - .gitignore
+  - .postcssrc.js
+  - .travis.yml
+  - .vscode/
+  - LICENSE
+  - README.md
+  - TODO.md
+  - build/
+  - icon.config.json
+  - package.json
+  - rollup.config.js
+  - yarn.lock
+  - webpack.config.js
+  - tsconfig.json
+
+plugins:
+  eslint:
+    enabled: true
+    channel: "eslint-4"
+    config:
+      extensions:
+        - .js
+        - .vue
