@@ -1,7 +1,7 @@
 import { log } from './log'
 import { messages, states, state } from './states'
 
-import { random as randomAvatar } from 'gridy-avatars'
+import { random as randomAvatar } from '@gridy/avatars'
 import { randomName } from './name'
 
 // import Idle from 'idle-js'
@@ -11,7 +11,7 @@ require('firebase/auth')
 require('firebase/database')
 require('firebase/functions')
 
-const config = process.env.APP_FIREBASE
+const config = process.env.VUE_APP_FIREBASE
 // const MINUTE = 60000
 // const IDLE_TIMEOUT = MINUTE * 5
 
@@ -213,7 +213,7 @@ function handleUserInit (snap) {
   const online = firebase.database.ServerValue.TIMESTAMP
   const authed = true
   const guest = user.isAnonymous
-  const version = process.env.APP_VERSION
+  const version = process.env.VUE_APP_VERSION
 
   setState(null, messages.UPDATING_USER)
 

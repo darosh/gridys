@@ -32,10 +32,10 @@
             class="absolute d-block divider-large" />
           <v-icon
             v-else-if="verdictIcon === 1"
-            class="absolute player-status icon-large">mood</v-icon>
+            class="absolute player-status icon-large">$vuetify.icons.mood</v-icon>
           <v-icon
             v-else-if="verdictIcon === 0"
-            class="absolute player-status icon-large">mood_bad</v-icon>
+            class="absolute player-status icon-large">$vuetify.icons.mood_bad</v-icon>
         </div>
       </div>
       <v-card-actions>

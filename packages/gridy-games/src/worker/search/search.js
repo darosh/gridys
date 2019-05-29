@@ -1,4 +1,4 @@
-import { FIELDS, Info } from '../../../plugins/lib'
+import { FIELDS, Info } from '../../plugins/lib'
 
 import lunr from 'lunr'
 

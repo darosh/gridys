@@ -56,8 +56,8 @@
           dark
           fab
           hover>
-          <v-icon class="white--text">gamepad</v-icon>
-          <v-icon class="white--text">close</v-icon>
+          <v-icon class="white--text">$vuetify.icons.gamepad</v-icon>
+          <v-icon class="white--text">$vuetify.icons.close</v-icon>
         </v-btn>
       </v-fab-transition>
       <v-btn
@@ -67,7 +67,7 @@
         small
         color="grey darken-3"
         @click.stop="undo()">
-        <v-icon class="white--text">undo</v-icon>
+        <v-icon class="white--text">$vuetify.icons.undo</v-icon>
       </v-btn>
       <v-btn
         v-if="game.moves.length"
@@ -76,7 +76,7 @@
         small
         color="grey darken-3"
         @click.stop="reset()">
-        <v-icon class="white--text">refresh</v-icon>
+        <v-icon class="white--text">$vuetify.icons.refresh</v-icon>
       </v-btn>
     </v-speed-dial>
 
@@ -110,7 +110,7 @@ import {
   selectAction,
   undoAction,
   undoFor
-} from '../../plugins/lib'
+} from '../plugins/lib'
 import { isHuman } from '../services/players'
 import { Bus } from '../services/bus'
 import { PlayerWorker } from '../worker/ai'

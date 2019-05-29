@@ -42,19 +42,19 @@
             <v-icon
               v-else-if="game.player === value && game.counter === 0"
               :key="game.counter"
-              class="player-status">timer_off</v-icon>
+              class="player-status">$vuetify.icons.timer_off</v-icon>
             <div
               v-else-if="sessionWaiting"
               key="b"
               style="transform: none">
               <div>
-                <v-icon class="player-status rotate-animation">hourglass_empty</v-icon>
+                <v-icon class="player-status rotate-animation">$vuetify.icons.hourglass_empty</v-icon>
               </div>
             </div>
             <v-icon
               v-else-if="game.winner > 0 && game.winner === value"
               key="d"
-              class="player-status">mood</v-icon>
+              class="player-status">$vuetify.icons.mood</v-icon>
             <div
               v-else-if="game.winner === -1"
               key="e"
@@ -62,7 +62,7 @@
             <v-icon
               v-else
               key="c"
-              class="player-status">play_arrow</v-icon>
+              class="player-status">$vuetify.icons.play_arrow</v-icon>
           </transition>
         </div>
       </div>
@@ -88,8 +88,8 @@
         <div class="absolute info-position">
           <v-icon
             v-if="sessionCanSwitch"
-            class="player-status">swap_horiz</v-icon>
-          <v-icon v-else-if="game.expired">timer_off</v-icon>
+            class="player-status">$vuetify.icons.swap_horiz</v-icon>
+          <v-icon v-else-if="game.expired">$vuetify.icons.timer_off</v-icon>
         </div>
       </div>
     </div>

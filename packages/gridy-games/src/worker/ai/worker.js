@@ -1,7 +1,7 @@
 /* globals self */
 
-import '../../../plugins/helpers'
-import { Games, update, reset } from '../../../plugins/lib'
+// import '../../plugins/helpers'
+import { Games, update, reset } from '../../plugins/lib'
 import { players } from '../../services/players'
 
 let player

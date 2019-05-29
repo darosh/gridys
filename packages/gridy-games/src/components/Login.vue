@@ -8,7 +8,7 @@
         dark
         color="grey darken-3 btn-large"
         @click="reconnect()">
-        <v-icon class="icon-large white--text">lan_pending</v-icon>
+        <v-icon class="icon-large white--text">$vuetify.icons.lan_pending</v-icon>
         Reconnect
       </v-btn>
     </div>
@@ -22,7 +22,7 @@
         light
         color="white btn-large"
         @click="signInGoogle()">
-        <v-icon class="icon-large">google</v-icon>
+        <v-icon class="icon-large">$vuetify.icons.google</v-icon>
         Log in with Google
       </v-btn>
       <v-btn
@@ -31,17 +31,17 @@
         @click="signInTwitter()">
         <v-icon
           class="icon-large"
-          style="fill: #1da1f2">twitter_circle</v-icon> Log in with Twitter</v-btn>
+          style="fill: #1da1f2">$vuetify.icons.twitter_circle</v-icon> Log in with Twitter</v-btn>
       <v-btn
         light
         color="white btn-large"
         @click="signInGitHub()">
         <v-icon
           class="icon-large small"
-          color="black">github_circle</v-icon>
+          color="black">$vuetify.icons.github_circle</v-icon>
         <v-icon
           class="icon-large large"
-          color="black">github_circle_large</v-icon>
+          color="black">$vuetify.icons.github_circle_large</v-icon>
         Log in with GitHub</v-btn>
       <v-btn
         dark
@@ -49,7 +49,7 @@
         @click="signInAnonym()">
         <v-icon
           class="icon-large"
-          color="white">person_outline</v-icon>Guest login</v-btn>
+          color="white">$vuetify.icons.person_outline</v-icon>Guest login</v-btn>
       <div>
         <v-expansion-panel
           class="rounded"
@@ -88,7 +88,7 @@
                 class="body-1 ml-3 pl-3 pr-3 mt-3 square-list">
                 <li class="mb-0">Only random name and avatar will be visible to other players</li>
                 <li class="mb-0">Guest account is marked with outline person icon
-                  <v-icon class="size-16 white--text">person_outline</v-icon>
+                  <v-icon class="size-16 white--text">$vuetify.icons.person_outline</v-icon>
                 </li>
                 <li class="mb-0">Guest account is deleted after logout</li>
                 <li>Guest account may be deleted due to inactivity automatically</li>

@@ -1,4 +1,4 @@
-import { Info } from '../../plugins/lib'
+import { Info } from '../plugins/lib'
 
 export const Shared = {
   game: null,

@@ -1,4 +1,4 @@
-import { random as randomHero } from '../../../plugins/superheroes'
+import { random as randomHero } from '../../plugins/superheroes'
 
 function randomDigit () {
   return Math.floor(Math.random() * 9) + 1

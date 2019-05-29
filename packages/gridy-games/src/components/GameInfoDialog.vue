@@ -47,7 +47,7 @@
 import { dialogLazy } from '../mixins/dialog-lazy'
 import {
   update
-} from '../../plugins/lib'
+} from '../plugins/lib'
 
 export default {
   components: {

@@ -7,7 +7,7 @@
       <v-card-title class="title red white--text">
         <span class="pl-2">Error</span>
         <v-spacer/>
-        <v-icon class="white--text mr-2">warning</v-icon>
+        <v-icon class="white--text mr-2">$vuetify.icons.warning</v-icon>
       </v-card-title>
       <v-card-text class="body-2 pb-0 px-4">
         {{ state.error.code }}

@@ -8,7 +8,7 @@ const {
 class Latency {
   get latency () {
     if (isNaN(this._latency)) {
-      import('../../../plugins/tone')
+      import('../../plugins/tone')
         .then(({ Tone }) => {
           this._latency = (Tone.supported && !isNaN(Tone.context.baseLatency))
             ? Tone.context.baseLatency * MILLISECONDS * LATENCY_RATIO

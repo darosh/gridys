@@ -9,7 +9,7 @@
       <v-btn
         icon
         @click="switchOponents()">
-        <v-icon>swap_vert</v-icon>
+        <v-icon>$vuetify.icons.swap_vert</v-icon>
       </v-btn>
     </v-toolbar>
     <div class="mx-3 mb-3 ">
@@ -182,7 +182,7 @@
 <script>
 import { players, isHuman } from '../services/players'
 import { Shared } from '../services/shared'
-import { Info, reset, stringify, update } from '../../plugins/lib'
+import { Info, reset, stringify, update } from '../plugins/lib'
 import { Bus } from '../services/bus'
 import { kick1Sound } from '../services/sound/kick1'
 import { kickVibration } from '../services/vibration/index'

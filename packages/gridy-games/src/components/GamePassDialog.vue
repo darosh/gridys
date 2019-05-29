@@ -23,7 +23,7 @@
               cy="60"
               r="60" />
           </svg>
-          <v-icon class="absolute player-status icon-large">close</v-icon>
+          <v-icon class="absolute player-status icon-large">$vuetify.icons.close</v-icon>
         </div>
       </div>
       <v-card-actions>

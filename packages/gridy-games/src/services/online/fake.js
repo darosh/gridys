@@ -1,4 +1,4 @@
-import { random as randomAvatar } from 'gridy-avatars'
+import { random as randomAvatar } from '@gridy/avatars'
 import { randomName } from './name'
 
 export function onlineUsersFnc () {

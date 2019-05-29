@@ -144,7 +144,7 @@
 </template>
 
 <script>
-import {Info} from '../../plugins/lib'
+import { Info } from '../plugins/lib'
 
 export default {
   props: {

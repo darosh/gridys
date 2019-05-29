@@ -1,4 +1,4 @@
-import {latency} from './latency'
+import { latency } from './latency'
 import { Constants } from './constants'
 
 const {
@@ -15,7 +15,7 @@ export function tickStop (value) {
 }
 
 export function tickSound () {
-  import('../../../plugins/tone').then(({
+  import('../../plugins/tone').then(({
     AmplitudeEnvelope,
     Oscillator,
     Tone

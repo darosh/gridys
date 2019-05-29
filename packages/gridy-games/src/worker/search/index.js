@@ -1,4 +1,4 @@
-import { Info } from '../../../plugins/lib'
+import { Info } from '../../plugins/lib'
 
 const Work = require('worker-loader!./worker.js') // eslint-disable-line
 

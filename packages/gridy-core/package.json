@@ -43,7 +43,7 @@
     ]
   },
   "license": "MIT",
-  "main": "dist/gridy.js",
+  "main": "dist/es6/index.js",
   "module ": "dist/es6/index.js",
   "repository": ".",
   "scripts": {

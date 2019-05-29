@@ -10,7 +10,7 @@
       :href="homeLink"
       aria-label="Home"
       icon>
-      <v-icon>home</v-icon>
+      <v-icon>$vuetify.icons.home</v-icon>
     </v-btn>
     <v-toolbar-title class="hidden-xs-only">
       Gridy Games Online
@@ -22,7 +22,7 @@
       icon
       class="light-blue--text"
       @click.native="state.logout = true">
-      <v-icon>logout</v-icon>
+      <v-icon>$vuetify.icons.logout</v-icon>
     </v-btn>
     <v-btn
       v-if="canReconnect()"
@@ -30,13 +30,13 @@
       icon
       class="light-blue--text"
       @click.native="reconnect()">
-      <v-icon>lan_pending</v-icon>
+      <v-icon>$vuetify.icons.lan_pending</v-icon>
     </v-btn>
     <v-btn
       aria-label="Settings"
       icon
       @click.stop="Shared.drawer = !Shared.drawer">
-      <v-icon>settings</v-icon>
+      <v-icon>$vuetify.icons.settings</v-icon>
     </v-btn>
   </v-toolbar>
 </template>

@@ -9,7 +9,7 @@ const {
 let env
 
 export function failSound () {
-  import('../../../plugins/tone').then(({
+  import('../../plugins/tone').then(({
     AmplitudeEnvelope,
     Oscillator,
     Tone

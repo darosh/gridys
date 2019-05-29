@@ -12,7 +12,7 @@ const {
 let env
 
 export function kick2Sound () {
-  import('../../../plugins/tone').then(({
+  import('../../plugins/tone').then(({
     AmplitudeEnvelope,
     Oscillator,
     Panner,

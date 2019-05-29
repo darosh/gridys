@@ -10,14 +10,14 @@
       aria-label="Home"
       icon
       @click.native="back">
-      <v-icon>home</v-icon>
+      <v-icon>$vuetify.icons.home</v-icon>
     </v-btn>
     <v-btn
       v-if="useFirebase && isReady()"
       :to="{path: '/online'}"
       color="light-blue--text"
       icon>
-      <v-icon>earth</v-icon>
+      <v-icon>$vuetify.icons.earth</v-icon>
     </v-btn>
     <v-spacer/>
     <g-players />
@@ -27,14 +27,14 @@
       aria-label="Settings"
       icon
       @click.stop="Shared.drawer = !Shared.drawer">
-      <v-icon>settings</v-icon>
+      <v-icon>$vuetify.icons.settings</v-icon>
     </v-btn>
   </v-toolbar>
 </template>
 
 <script>
 import { Shared } from '../services/shared'
-import { Games } from '../../plugins/lib'
+import { Games } from '../plugins/lib'
 import { full } from '../services/full'
 import { isReady } from '../services/online/states'
 
@@ -62,7 +62,7 @@ export default {
     return {
       Shared,
       homeLink: this.$router.resolve('/').href,
-      useFirebase: !!process.env.APP_FIREBASE
+      useFirebase: !!process.env.VUE_APP_FIREBASE
     }
   },
   computed: {

@@ -7,7 +7,7 @@
       flat>
       <v-icon
         style="position: absolute;"
-        class="bg-icon">gridy</v-icon>
+        class="bg-icon">$vuetify.icons.gridy</v-icon>
       <div class="pa-5 pa-3-sm">
         <div class="display-1 text-xs-left mb-4">Offline games</div>
         <ul
@@ -33,7 +33,7 @@
       </div>
       <v-icon
         style="position: absolute;"
-        class="bg-icon">earth</v-icon>
+        class="bg-icon">$vuetify.icons.earth</v-icon>
       <div class="pa-5  pa-3-sm">
         <div class="display-1 text-xs-left mb-3">Online
           <small style="opacity: 0.5">coming soon</small>
@@ -151,7 +151,7 @@ export default {
       rendered: {},
       show: false,
       showHero: location.search !== '?utm_source=homescreen'
-      // useFirebase: !!process.env.APP_FIREBASE
+      // useFirebase: !!process.env.VUE_APP_FIREBASE
     }
   },
   watch: {

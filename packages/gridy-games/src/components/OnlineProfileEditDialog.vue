@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { random, base } from 'gridy-avatars'
+import { random, base } from '@gridy/avatars'
 import { randomName } from '../services/online/name'
 import { dialogLazy } from '../mixins/dialog-lazy'
 

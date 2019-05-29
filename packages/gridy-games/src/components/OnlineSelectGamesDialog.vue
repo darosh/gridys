@@ -17,7 +17,7 @@
             :type="g.grid"
             class="preview preview-md d-block mx-1"
             style="position: absolute; left: 2px" />
-          <v-icon style="position: absolute; right: 8px">check</v-icon>
+          <v-icon style="position: absolute; right: 8px">$vuetify.icons.check</v-icon>
           <div style="line-height: 24px; padding: 0 32px 0 40px">{{ g.title }}</div>
         </v-card>
       </div>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { Info } from '../../plugins/lib'
+import { Info } from '../plugins/lib'
 import { dialogLazy } from '../mixins/dialog-lazy'
 
 const games = Info.games

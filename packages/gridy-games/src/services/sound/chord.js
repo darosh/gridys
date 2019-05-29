@@ -20,7 +20,7 @@ const types = {
 }
 
 export function chordSound (type = PLAYER_1) {
-  import('../../../plugins/tone').then(({
+  import('../../plugins/tone').then(({
     PolySynth,
     Tone
   }) => {

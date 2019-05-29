@@ -14,7 +14,7 @@
       aria-label="Menu"
       icon
       @click.stop="Shared.menu=!Shared.menu">
-      <v-icon>menu</v-icon>
+      <v-icon>$vuetify.icons.menu</v-icon>
     </v-btn>
     <v-toolbar-title
       v-if="!Shared.searching"
@@ -41,7 +41,7 @@
       aria-label="Search"
       icon
       @click.stop="Shared.searching = !Shared.searching">
-      <v-icon>search</v-icon>
+      <v-icon>$vuetify.icons.search</v-icon>
     </v-btn>
     <v-spacer
       v-if="Shared.searching"
@@ -51,12 +51,12 @@
       style="margin-right: 0 !important">
       <v-btn
         :to="{path: $route.name === 'table' ? '/' : '/table'}"
-        icon><v-icon>{{ $route.name === 'table' ? 'view_cards' : 'view_table' }}</v-icon></v-btn>
+        icon><v-icon>$vuetify.icons.{{ $route.name === 'table' ? 'view_cards' : 'view_table' }}</v-icon></v-btn>
       <v-btn
         v-if="useFirebase"
         :color="isReady() ? 'light-blue--text' : ''"
         :to="{path: '/online'}"
-        icon><v-icon>earth</v-icon></v-btn>
+        icon><v-icon>$vuetify.icons.earth</v-icon></v-btn>
     </div>
   </v-toolbar>
 </template>
@@ -75,7 +75,7 @@ export default {
     return {
       Shared,
       input: null,
-      useFirebase: !!process.env.APP_FIREBASE
+      useFirebase: !!process.env.VUE_APP_FIREBASE
     }
   },
   watch: {

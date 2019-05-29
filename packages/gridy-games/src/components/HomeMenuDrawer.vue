@@ -150,7 +150,7 @@
 </template>
 
 <script>
-import { Info } from '../../plugins/lib'
+import { Info } from '../plugins/lib'
 import { full } from '../services/full'
 
 export default {
@@ -164,6 +164,8 @@ export default {
       import('vuetify/es5/components/VExpansionPanel/VExpansionPanelContent')
   },
   data () {
+    const deps = JSON.parse(process.env.VUE_APP_DEPENDENCIES)
+
     return {
       contacts: [
         {
@@ -173,10 +175,10 @@ export default {
         }
       ],
       meta: [
-        { title: 'Version', value: process.env.APP_VERSION },
+        { title: 'Version', value: process.env.VUE_APP_VERSION },
         {
           title: 'Build',
-          value: new Date(process.env.APP_BUILD).toLocaleString('en')
+          value: new Date(process.env.VUE_APP_BUILD).toLocaleString('en')
         },
         { title: 'Games', value: Info.games.length },
         {
@@ -185,9 +187,9 @@ export default {
           link: 'https://github.com/darosh/gridy-games'
         }
       ],
-      dependencies: Object.keys(process.env.APP_DEPENDENCIES)
+      dependencies: Object.keys(deps)
         .map(k => {
-          const v = process.env.APP_DEPENDENCIES[k]
+          const v = deps[k]
 
           return {
             link: v.startsWith('github')

@@ -1,5 +1,5 @@
 import { isHuman } from '../services/players'
-import { ThemeStones, StoneNames } from '../../plugins/lib'
+import { ThemeStones, StoneNames } from '../plugins/lib'
 
 export default {
   computed: {

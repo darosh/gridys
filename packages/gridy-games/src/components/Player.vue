@@ -19,7 +19,7 @@
             </div>
           </v-card-title>
           <v-card-media height="144px">
-            <v-icon>person</v-icon>
+            <v-icon>$vuetify.icons.person</v-icon>
           </v-card-media>
         </v-card>
       </v-flex>

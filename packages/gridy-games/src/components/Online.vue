@@ -16,7 +16,7 @@
             icon
             flat
             @click="share()">
-            <v-icon>share</v-icon>
+            <v-icon>$vuetify.icons.share</v-icon>
           </v-btn>
         </v-layout>
         <div class="text-xs-center pb-5">
@@ -29,11 +29,11 @@
           <v-icon
             v-if="!user.guest"
             :style="{opacity: 0.5}"
-            class="pl-3">{{ user.online ? 'person' : 'lan_disconnect' }}</v-icon>
+            class="pl-3">$vuetify.icons.{{ user.online ? 'person' : 'lan_disconnect' }}</v-icon>
           <v-icon
             v-else
             :style="{opacity: 0.5}"
-            class="pl-3">{{ user.online ? 'person_outline' : 'lan_disconnect' }}</v-icon>
+            class="pl-3">$vuetify.icons.{{ user.online ? 'person_outline' : 'lan_disconnect' }}</v-icon>
           <span
             class="pl-2 grey--text"
             style="position: relative; bottom: -2px">{{ user.last ? format(new Date(user.last)) : '' }}</span>
@@ -43,13 +43,13 @@
             icon
             flat
             @click="showEdit = !showEdit">
-            <v-icon>mode_edit</v-icon>
+            <v-icon>$vuetify.icons.mode_edit</v-icon>
           </v-btn>
           <v-btn
             icon
             flat
             @click="showSelect = !showSelect">
-            <v-icon>gridy</v-icon>
+            <v-icon>$vuetify.icons.gridy</v-icon>
           </v-btn>
         </div>
       </v-card>
@@ -73,11 +73,11 @@
           <v-icon
             v-if="!u.guest"
             :style="{opacity: 0.5}"
-            class="pl-3">{{ u.online ? 'person' : 'lan_disconnect' }}</v-icon>
+            class="pl-3">$vuetify.icons.{{ u.online ? 'person' : 'lan_disconnect' }}</v-icon>
           <v-icon
             v-else
             :style="{opacity: 0.5}"
-            class="pl-3">{{ u.online ? 'person_outline' : 'lan_disconnect' }}</v-icon>
+            class="pl-3">$vuetify.icons.{{ u.online ? 'person_outline' : 'lan_disconnect' }}</v-icon>
           <span
             class="pl-2 grey--text"
             style="position: relative; bottom: -2px">{{ u.last ? format(new Date(u.last)) : '' }}</span>
@@ -127,7 +127,7 @@ import {
   state,
   states
 } from '../services/online/states'
-import { Info } from '../../plugins/lib'
+import { Info } from '../plugins/lib'
 import { format } from 'pretty-date'
 
 export default {
