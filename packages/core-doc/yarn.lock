@@ -5030,11 +5030,6 @@ markdown-it@^8.4.1:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-match-all@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/match-all/-/match-all-1.2.5.tgz#f709af311a7cb9ae464d9107a4f0fe08d3326eff"
-  integrity sha512-KW4trRDMYbVkAKZ1J655vh0931mk3XM1lIJ480TXUL3KBrOsZ6WpryYJELonvtXC1O4erLYB069uHidLkswbjQ==
-
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"

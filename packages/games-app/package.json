@@ -5,7 +5,7 @@
     "@gridy/avatars": "^1.1.4",
     "@gridy/games-heroes": "^1.0.1",
     "@gridy/games-icons": "^1.0.1",
-    "@gridy/logic": "^0.1.1",
+    "@gridy/games": "^0.1.1",
     "@gridy/vuetify-svg-icon": "^0.1.1",
     "@tweenjs/tween.js": "^17.3.0",
     "clipboard": "^2.0.4",

@@ -7046,10 +7046,6 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-"material-icons-bundle@github:darosh/material-icons-bundle":
-  version "1.0.1"
-  resolved "https://codeload.github.com/darosh/material-icons-bundle/tar.gz/e65e595173f70363d364cf8cca8462f2a34a408e"
-
 math-random@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/math-random/-/math-random-1.0.4.tgz#5dd6943c938548267016d4e34f057583080c514c"
