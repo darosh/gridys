@@ -1,6 +1,6 @@
 {
   "name": "@gridy/games-icons",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Icon bundle",
   "main": "dist/index.cjs.js",
   "scripts": {
