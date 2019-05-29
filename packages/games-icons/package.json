@@ -1,7 +1,7 @@
 {
   "name": "@gridy/games-icons",
   "description": "Icon bundle",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Jan Forst <ensonador@gmail.com>",
   "devDependencies": {
     "material-icons-bundle": "github:darosh/material-icons-bundle",

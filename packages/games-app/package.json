@@ -1,12 +1,12 @@
 {
   "name": "@gridy/games-app",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
-    "@gridy/avatars": "^1.1.4",
-    "@gridy/games-heroes": "^1.0.1",
-    "@gridy/games-icons": "^1.0.1",
-    "@gridy/games": "^0.1.1",
-    "@gridy/vuetify-svg-icon": "^0.1.1",
+    "@gridy/avatars": "^1.1.5",
+    "@gridy/games": "^0.1.2",
+    "@gridy/games-heroes": "^1.0.2",
+    "@gridy/games-icons": "^1.0.2",
+    "@gridy/vuetify-svg-icon": "^0.1.2",
     "@tweenjs/tween.js": "^17.3.0",
     "clipboard": "^2.0.4",
     "core-js": "^2.6.5",

@@ -1,10 +1,10 @@
 {
   "name": "@gridy/games",
   "description": "Board games library",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Jan Forst <ensonador@gmail.com>",
   "dependencies": {
-    "@gridy/core": "^0.4.5"
+    "@gridy/core": "^0.4.6"
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",

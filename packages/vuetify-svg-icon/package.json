@@ -1,6 +1,6 @@
 {
   "name": "@gridy/vuetify-svg-icon",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
