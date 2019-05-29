@@ -1,0 +1,16 @@
+{
+  "name": "@gridy/games-icons",
+  "version": "1.0.0",
+  "description": "Icon bundle",
+  "main": "dist/index.cjs.js",
+  "scripts": {
+    "build": "rollup -c rollup.config.js -f cjs -o dist/index.cjs.js src/index.js"
+  },
+  "author": "Jan Forst <ensonador@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "material-icons-bundle": "github:darosh/material-icons-bundle",
+    "rollup": "^1.12.4",
+    "rollup-plugin-node-resolve": "^5.0.0"
+  }
+}
