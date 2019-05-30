@@ -44,7 +44,7 @@
     "generate:colors": "node -r esm generate/print-colors.js > src/colors.json",
     "generate:shapes": "node -r esm generate/print-shapes.js > src/shapes.json",
     "prebuild": "del-cli dist",
-    "prepublish": "npm run test && npm run build",
+    "prepublish": "npm run build && npm run test",
     "test": "node -e \"const {outer} = require('./dist/gridy-avatars.umd.js'); const write = require('fs').writeFileSync; write('./assets/sample-1.svg', outer('351610', 96)); write('./assets/sample-2.svg', outer('626272', 96)); write('./assets/sample-3.svg', outer('733677', 96)); write('./assets/sample-4.svg', outer('412101', 96)); write('./assets/sample-5.svg', outer('574644', 96)); \""
   }
 }

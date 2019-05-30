@@ -35,8 +35,9 @@
   },
   "module": "dist/gridy-games.es.js",
   "scripts": {
-    "build": "tsc --module commonjs && rollup -c node_modules/@gridy/build-lib/rollup.config.js && typedoc --out docs --target es6 --theme minimal --mode file src",
+    "build": "node node_modules/@gridy/build-lib/node_modules/typescript/bin/tsc --module commonjs && node node_modules/@gridy/build-lib/node_modules/rollup/bin/rollup -c node_modules/@gridy/build-lib/rollup.config.js && node node_modules/@gridy/build-lib/node_modules/typedoc/bin/typedoc --out docs --target es6 --theme minimal --mode file src",
     "prebuild": "del-cli docs dist",
+    "prepublish": "npm run build",
     "test": "jest --coverage"
   },
   "typings": "dist/types/index.d.ts"

@@ -54,6 +54,7 @@
   "scripts": {
     "build": "tsc --module commonjs && rollup -c node_modules/@gridy/build-lib/rollup.config.js && typedoc --out docs --target es6 --theme minimal --mode file src",
     "prebuild": "del-cli docs dist",
+    "prepublish": "npm run build",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch"
