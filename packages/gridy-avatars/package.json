@@ -1,7 +1,10 @@
 {
   "name": "@gridy/avatars",
+  "meta": {
+    "namespace": "GridyAvatars"
+  },
   "description": "SVG avatar generator",
-  "version": "1.1.5",
+  "version": "2.0.0",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 1%",
@@ -10,25 +13,18 @@
   ],
   "bugs": "https://github.com/darosh/gridy-avatars/issues",
   "dependencies": {
-    "d3-color": "^1.2.3"
   },
+  "files": [
+    "dist",
+    "demo"
+  ],
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.6",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-2": "^6.24.1",
-    "cross-env": "^5.2.0",
+    "@gridy/build-lib": "1.0.0",
     "del-cli": "^2.0.0",
-    "css-loader": "^2.1.1",
-    "file-loader": "^3.0.1",
-    "raw-loader": "^2.0.0",
-    "vue": "^2.6.10",
-    "vue-loader": "^15.7.0",
-    "vue-template-compiler": "^2.6.10",
+    "esm": "^3.2.25",
+    "d3-color": "^1.2.3",
     "vuetify": "^1.5.14",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1"
+    "jsdom": "^15.1.1"
   },
   "homepage": "https://darosh.github.io/gridy-avatars/dist",
   "keywords": [
@@ -39,14 +35,17 @@
     "vector"
   ],
   "license": "MIT",
-  "main": "./dist/avatars.js",
-  "module": "./src/avatars.js",
+  "main": "dist/gridy-avatars.umd.js",
+  "module": "dist/gridy-avatars.es.js",
   "repository": "https://github.com/darosh/gridy-avatars",
   "runkitExample": "const {outer, random} = require('gridy-avatars')\nouter(random(), 96)",
   "scripts": {
     "prebuild": "del-cli dist",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules -p",
+    "build": "node node_modules/@gridy/build-lib/node_modules/typescript/bin/tsc --module commonjs && node node_modules/@gridy/build-lib/node_modules/rollup/bin/rollup -c node_modules/@gridy/build-lib/rollup.config.js && node node_modules/@gridy/build-lib/node_modules/typedoc/bin/typedoc --out docs --target es6 --theme minimal --mode file src",
+    "prepublish": "npm run test && npm run build",
+    "generate:colors": "node -r esm generate/print-colors.js > src/colors.json",
+    "generate:shapes": "node -r esm generate/print-shapes.js > src/shapes.json",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --inline",
-    "test": "node -e \"const {outer} = require('./dist/avatars.js'); const write = require('fs').writeFileSync; write('./dist/sample-1.svg', outer('351610', 96)); write('./dist/sample-2.svg', outer('626272', 96)); write('./dist/sample-3.svg', outer('733677', 96)); write('./dist/sample-4.svg', outer('412101', 96)); write('./dist/sample-5.svg', outer('574644', 96)); \""
+    "test": "node -e \"const {outer} = require('./dist/gridy-avatars.umd.js'); const write = require('fs').writeFileSync; write('./assets/sample-1.svg', outer('351610', 96)); write('./assets/sample-2.svg', outer('626272', 96)); write('./assets/sample-3.svg', outer('733677', 96)); write('./assets/sample-4.svg', outer('412101', 96)); write('./assets/sample-5.svg', outer('574644', 96)); \""
   }
 }

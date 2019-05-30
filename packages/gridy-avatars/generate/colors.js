@@ -2,10 +2,6 @@ import material from "vuetify/es5/util/colors";
 import { WHITE, BLACK, GRAY, LIGHT, DARK } from "./color";
 import { rgb } from "d3-color";
 
-const el = document.createElement('div')
-el.style.display = 'none'
-document.body.appendChild(el)
-
 const COLORS = 8
 
 const white = {

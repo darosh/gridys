@@ -1,9 +1,0 @@
-/index.html
-/src/*.vue
-/src/*.svg
-/src/main.js
-/src/color.js
-/src/colors.js
-/src/svg.js
-/webpack.config.js
-/dist/*.svg
