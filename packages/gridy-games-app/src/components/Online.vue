@@ -54,8 +54,7 @@
         </div>
       </v-card>
       <v-card
-        v-for="u in users"
-        v-if="user['.key'] !== u['.key']"
+        v-for="u in usersFiltered"
         :key="u['.key']">
         <v-card-title>
           <div
@@ -160,6 +159,11 @@ export default {
     },
     profileRoute () {
       return { name: 'player', params: { id: this.user['.key'] } }
+    },
+    usersFiltered () {
+      const { user } = this
+
+      return this.users.filter(u => user['.key'] !== u['.key'])
     }
   },
   watch: {
