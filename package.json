@@ -5,6 +5,7 @@
     "lerna": "^3.14.1"
   },
   "scripts": {
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "clean": "lerna run prebuild"
   }
 }

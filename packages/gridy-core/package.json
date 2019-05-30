@@ -50,7 +50,6 @@
   "module": "dist/gridy-core.es.js",
   "repository": ".",
   "scripts": {
-    "prebuild": "del-cli dist docs",
     "build": "npm run build:ts && npm run build:js && npm run build:diagram",
     "build:diagram": "rollup -m -c rollup.config.js dist/es6/Diagram.js -o dist/diagram.js -f umd -n Diagram",
     "build:js": "rollup -m -c rollup.config.js dist/es6/index.js -o dist/gridy.js -f umd -n Gridy ",
@@ -61,6 +60,7 @@
     "examples": "node examples/node.js",
     "lint:es": "eslint --fix examples/*.js",
     "lint:ts": "tslint -p tsconfig.json --fix -t stylish",
+    "prebuild": "del-cli dist docs",
     "start": "concurrently \"npm run watch:ts\" \"npm run watch:gridy\" \"npm run watch:diagram\"",
     "test": "jest --coverage",
     "watch:diagram": "rollup dist/es6/Diagram.js -c rollup.config.js -m -w --o dist/diagram.js --f umd --name Diagram",

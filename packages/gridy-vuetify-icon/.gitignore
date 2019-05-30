@@ -3,6 +3,7 @@ node_modules
 dist/*.gz
 dist/*.map
 coverage
+dist
 docs/.vuepress/dist
 
 # local env files

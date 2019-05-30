@@ -10,6 +10,6 @@
   "main": "index.json",
   "private": true,
   "scripts": {
-    "build": "node src/index.js > index.json"
+    "build": "node generate/index.js > index.json"
   }
 }
