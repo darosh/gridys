@@ -1,0 +1,47 @@
+{
+  "name": "@gridy/vuetify-icon",
+  "version": "0.1.2",
+  "author": "Jan Forst <ensonador@gmai.com>",
+  "dependencies": {
+    "vuetify": "^1.5.5"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-plugin-unit-jest": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "core-js": "^2.6.5",
+    "del-cli": "^2.0.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue": "^2.6.10",
+    "vue-cli-plugin-p11n": "^0.3.0",
+    "vue-cli-plugin-vuetify": "^0.5.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "files": [
+    "dist/vuetify-icon.common.js",
+    "dist/vuetify-icon.umd.min.js",
+    "dist/vuetify-icon.umd.js",
+    "dist/vuetify-icon.esm.js",
+    "src"
+  ],
+  "jsdelivr": "dist/vuetify-icon.umd.min.js",
+  "license": "MIT",
+  "main": "dist/vuetify-icon.common.js",
+  "module": "dist/vuetify-icon.esm.js",
+  "scripts": {
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "prebuild": "del-cli dist",
+    "serve": "vue-cli-service serve",
+    "test": "vue-cli-service test:unit"
+  },
+  "sideeffects": false,
+  "unpkg": "dist/vuetify-icon.umd.min.js"
+}

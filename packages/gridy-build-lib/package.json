@@ -1,0 +1,20 @@
+{
+  "name": "@gridy/build-lib",
+  "description": "Build library",
+  "version": "1.0.0",
+  "author": "Jan Forst <ensonador@gmail.com>",
+  "devDependencies": {
+    "rollup": "^1.12.3",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.0.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-typescript2": "^0.21.1",
+    "rollup-plugin-uglify": "^6.0.2",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-internal-external": "^2.0.2",
+    "typescript": "^3.4.5"
+  },
+  "license": "MIT"
+}
