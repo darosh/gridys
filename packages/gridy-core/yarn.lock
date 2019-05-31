@@ -1486,13 +1486,6 @@ escodegen@^1.11.0, escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-standard-with-typescript@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard-with-typescript/-/eslint-config-standard-with-typescript-7.0.0.tgz#ac9d7fc7946bb179e63a40b91521bda97c5a4007"
-  integrity sha512-9l4tqfbIazHKoWsJo4F6KXlfWiXyf/gloM2qwnBS4MpR8iOswO7g7uD7ELJ10iIVi0BEzaee6aG2qU0z63Youg==
-  dependencies:
-    eslint-config-standard "^12.0.0"
-
 eslint-config-standard@^12.0.0:
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-12.0.0.tgz#638b4c65db0bd5a41319f96bba1f15ddad2107d9"
