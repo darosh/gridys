@@ -8,8 +8,6 @@ const cwd = process.cwd()
 const { main, module, meta: { namespace, external } } = require(`${cwd}/package.json`)
 const globals = (external || []).reduce((acc, p) => ({ ...acc, [p]: require(`${cwd}/node_modules/${p}/package.json`).meta.namespace }), {})
 
-console.log('rollup', namespace, cwd, main, module)
-
 export default {
   input: `src/index.ts`,
 
