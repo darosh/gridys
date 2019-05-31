@@ -1,11 +1,12 @@
 {
   "name": "root",
-  "private": true,
   "devDependencies": {
-    "lerna": "^3.14.1"
+    "lerna": "^3.14.1",
+    "shelljs": "^0.8.3"
   },
+  "private": true,
   "scripts": {
-    "postinstall": "lerna bootstrap",
-    "clean": "lerna run prebuild"
+    "clean": "lerna run prebuild",
+    "postinstall": "lerna bootstrap"
   }
 }

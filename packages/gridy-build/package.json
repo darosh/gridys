@@ -3,6 +3,9 @@
   "description": "Build library",
   "version": "1.0.0",
   "author": "Jan Forst <ensonador@gmail.com>",
+  "bin": {
+    "rollup": "bin/rollup"
+  },
   "devDependencies": {
     "rollup": "^1.12.3",
     "rollup-plugin-babel": "^3.0.7",

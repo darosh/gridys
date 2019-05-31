@@ -1,6 +1,6 @@
 {
   "name": "@gridy/players",
-  "description": "Board games library",
+  "description": "Board games engines library",
   "version": "0.1.2",
   "author": "Jan Forst <ensonador@gmail.com>",
   "dependencies": {
@@ -38,7 +38,7 @@
   },
   "module": "dist/gridy-players.es5.js",
   "scripts": {
-    "build": "tsc --module commonjs && node node_modules/@gridy/build-lib/node_modules/rollup/bin/rollup -c node_modules/@gridy/build-lib/rollup.config.js && node node_modules/@gridy/build-lib/node_modules/typedoc/bin/typedoc --out docs --target es6 --theme minimal --mode file src",
+    "build": "tsc --module commonjs && node node_modules/@gridy/build/node_modules/rollup/bin/rollup -c node_modules/@gridy/build/rollup.config.js && node node_modules/@gridy/build/node_modules/typedoc/bin/typedoc --out docs --target es6 --theme minimal --mode file src",
     "prebuild": "del-cli docs dist",
     "prepublish": "npm run build",
     "start": "rollup -c rollup.config.ts -w",

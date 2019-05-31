@@ -1,5 +1,5 @@
 {
-  "name": "@gridy/avatars",
+  "name": "@gridy/app-avatars",
   "description": "SVG avatar generator",
   "version": "2.0.0",
   "author": "Jan Forst <ensonador@gmail.com>",
@@ -8,7 +8,7 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "bugs": "https://github.com/darosh/gridy-avatars/issues",
+  "bugs": "https://github.com/darosh/gridys/issues",
   "dependencies": {},
   "devDependencies": {
     "@gridy/build": "1.0.0",
@@ -36,10 +36,10 @@
     "namespace": "GridyAvatars"
   },
   "module": "dist/gridy-avatars.es.js",
-  "repository": "https://github.com/darosh/gridy-avatars",
-  "runkitExample": "const {outer, random} = require('gridy-avatars')\nouter(random(), 96)",
+  "repository": "https://github.com/darosh/gridys/packages/gridy-app-avatars",
+  "runkitExample": "const {outer, random} = require('@gridy/app-avatars')\nouter(random(), 96)",
   "scripts": {
-    "build": "node node_modules/@gridy/build-lib/node_modules/typescript/bin/tsc --module commonjs && node node_modules/@gridy/build-lib/node_modules/rollup/bin/rollup -c node_modules/@gridy/build-lib/rollup.config.js && node node_modules/@gridy/build-lib/node_modules/typedoc/bin/typedoc --out docs --target es6 --theme minimal --mode file src",
+    "build": "node node_modules/@gridy/build/node_modules/typescript/bin/tsc --module commonjs && rollup -c node_modules/@gridy/build/rollup.config.js && node node_modules/@gridy/build/node_modules/typedoc/bin/typedoc --out docs --target es6 --theme minimal --mode file src",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --inline",
     "generate:colors": "node -r esm generate/print-colors.js > src/colors.json",
     "generate:shapes": "node -r esm generate/print-shapes.js > src/shapes.json",
