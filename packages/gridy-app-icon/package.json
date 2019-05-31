@@ -1,0 +1,14 @@
+{
+  "name": "gridy-app-icon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate": "real-favicon generate icon.config.json icon.data.json generated"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cli-real-favicon": "^0.0.7"
+  }
+}

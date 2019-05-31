@@ -1,5 +1,5 @@
 {
-	"masterPicture": "static/img/vector/icon-flat.svg",
+	"masterPicture": "img/icon-flat.svg",
 	"iconsPath": "/",
 	"design": {
 		"ios": {
@@ -15,7 +15,7 @@
 		},
 		"desktopBrowser": {},
 		"windows": {
-			"masterPicture": "static/img/vector/icon-flat.svg",
+			"masterPicture": "img/icon-flat.svg",
 			"pictureAspect": "whiteSilhouette",
 			"backgroundColor": "#03a9f4",
 			"onConflict": "override",
@@ -30,7 +30,7 @@
 			}
 		},
 		"androidChrome": {
-			"masterPicture": "static/img/vector/icon-web.svg",
+			"masterPicture": "img/icon-web.svg",
 			"pictureAspect": "noChange",
 			"themeColor": "#ffffff",
 			"manifest": {
@@ -45,7 +45,7 @@
 			}
 		},
 		"safariPinnedTab": {
-			"masterPicture": "static/img/vector/icon-flat.svg",
+			"masterPicture": "img/icon-flat.svg",
 			"pictureAspect": "silhouette",
 			"themeColor": "#03a9f4"
 		}
