@@ -1,36 +1,37 @@
-import { IGrid } from './IGrid';
-import { Integer } from './Integer';
-import { Position } from './Position';
+import { IGrid } from './IGrid'
+import { Integer } from './Integer'
+import { Position } from './Position'
+import { AnyTile } from './ITile'
 
-export function rotate(grid: IGrid<any>, direction: Integer = 1): void {
+export function rotate (grid: IGrid<any>, direction: Integer = 1): void {
   grid.tiles.forEach((t) => {
-    let d = direction;
+    let d = direction
 
     while (d > 0) {
-      t.right();
-      d--;
+      t.right()
+      d--
     }
 
     while (d < 0) {
-      t.left();
-      d++;
+      t.left()
+      d++
     }
-  });
+  })
 }
 
-export function translate(grid: IGrid<any>, position: Position): void {
-  grid.tiles = grid.tiles.map((t) => grid.toTile ? grid.toTile(grid.toPoint(t).add(position)) : []);
+export function translate (grid: IGrid<any>, position: Position): void {
+  grid.tiles = grid.tiles.map((t): AnyTile => grid.toTile ? grid.toTile(grid.toPoint(t).add(position)) : [])
 }
 
-export function min(grid: IGrid<any>): Position {
-  const points = grid.tiles.map((t) => grid.toPoint(t));
+export function min (grid: IGrid<any>): Position {
+  const points = grid.tiles.map((t) => grid.toPoint(t))
 
-  return new Position(Math.min.apply(null, points.map((p) => p.x)), Math.min.apply(null, points.map((p) => p.y)));
+  return new Position(Math.min.apply(null, points.map((p) => p.x)), Math.min.apply(null, points.map((p) => p.y)))
 }
 
-export function normalize(grid: IGrid<any>): void {
-  const m = min(grid);
-  m.x = -m.x;
-  m.y = -m.y;
-  grid.tiles = grid.tiles.map((t) => grid.toTile ? grid.toTile(grid.toPoint(t).add(m)) : []);
+export function normalize (grid: IGrid<any>): void {
+  const m = min(grid)
+  m.x = -m.x
+  m.y = -m.y
+  grid.tiles = grid.tiles.map((t): AnyTile => grid.toTile ? grid.toTile(grid.toPoint(t).add(m)) : [])
 }

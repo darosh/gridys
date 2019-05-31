@@ -1,5 +1,5 @@
-import { Float } from './Float';
-import { Float2 } from './Float2';
+import { Float } from './Float'
+import { Float2 } from './Float2'
 
 export class Rectangle {
   public minX: Float = 0;
@@ -7,28 +7,28 @@ export class Rectangle {
   public minY: Float = 0;
   public maxY: Float = 0;
 
-  constructor(minX: Float = 0, maxX: Float = 0, minY: Float = 0, maxY: Float = 0) {
-    this.minX = minX;
-    this.maxX = maxX;
-    this.minY = minY;
-    this.maxY = maxY;
+  constructor (minX: Float = 0, maxX: Float = 0, minY: Float = 0, maxY: Float = 0) {
+    this.minX = minX
+    this.maxX = maxX
+    this.minY = minY
+    this.maxY = maxY
   }
 
-  public static ADD(a: Rectangle, b: Rectangle): Rectangle {
+  public static ADD (a: Rectangle, b: Rectangle): Rectangle {
     return new Rectangle(
       a.minX + b.minX,
       a.maxX + b.maxX,
       a.minY + b.minY,
       a.maxY + b.maxY
-    );
+    )
   }
 
-  public static POINTS(a: Rectangle): Float2[] {
+  public static POINTS (a: Rectangle): Float2[] {
     return [
       new Float2(a.minX, a.minY),
       new Float2(a.maxX, a.minY),
       new Float2(a.minX, a.maxY),
       new Float2(a.maxX, a.maxY)
-    ];
+    ]
   }
 }

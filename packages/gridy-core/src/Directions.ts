@@ -1,2 +1,2 @@
 export type Direction<T> = [number, T];
-export type Directions<T> = Direction<T>[];
+export type Directions<T> = Array<Direction<T>>;
