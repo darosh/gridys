@@ -11,17 +11,13 @@
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "d3": "5.9.2",
-    "del-cli": "^1.1.0",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "jest": "^24.8.0",
-    "jsdom": "15.1.0",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.4.5"
+    "jsdom": "15.1.0"
   },
   "jest": {
     "transform": {
@@ -41,13 +37,16 @@
   "module": "dist/gridy-core.es.js",
   "repository": ".",
   "scripts": {
-    "build": "tsc --module commonjs && node node_modules/@gridy/build/node_modules/rollup/bin/rollup -c node_modules/@gridy/build/rollup.config.js",
+    "build": "tsc --module commonjs && rollup -c node_modules/@gridy/build/rollup.config.js",
     "doc": "typedoc --out docs --target es6 --theme minimal --mode file src",
-    "generate:examples": "node examples/node.js",
+    "generate": "node examples/node.js",
     "lint": "eslint --fix src/**/*.ts",
-    "prebuild": "del-cli dist docs",
+    "prebuild": "del-cli dist",
+    "predoc": "del-cli docs",
     "prepublish": "npm run build",
-    "test": "jest --coverage"
+    "start": "rollup -c node_modules/@gridy/build/rollup.config.js -w",
+    "test": "jest --coverage",
+    "test:watch": "jest --coverage"
   },
   "types": "dist/types/index.d.ts",
   "typpings": "dist/types/index.d.ts"

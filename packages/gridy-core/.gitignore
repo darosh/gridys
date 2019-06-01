@@ -1,6 +1,34 @@
-node_modules
-package-lock.json
+# Project directories
+/docs/
+/dist/
+
+# Test files
+/coverage/
+/tests/e2e/videos/
+/tests/e2e/screenshots/
+
+# Local env files
+.env.local
+.env.*.local
+
+# Dependency directories
+/node_modules/
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Editor directories and files
 .idea
-coverage/
-docs/
-dist/
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
