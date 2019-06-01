@@ -1,5 +1,5 @@
 // based on https://medium.freecodecamp.org/simple-chess-ai-step-by-step-1d55a9266977
-import { IPLayer } from './IPlayer'
+import { IPLayer, MoveStat } from './IPlayer'
 import { IGame, Move } from '@gridy/games'
 
 export class MinimaxPlayer implements IPLayer {
@@ -10,11 +10,11 @@ export class MinimaxPlayer implements IPLayer {
     this.depth = depth
   }
 
-  public select (game: IGame): Move {
+  public select (game: IGame): MoveStat {
     return { move: this.move(game, this.depth), count: this.count }
   }
 
-  private move (game: IGame, depth: number, isMaximisingPlayer: boolean = true): Move {
+  private move (game: IGame, depth: number, isMaximisingPlayer: boolean = true): Move | undefined {
     this.count = 0
     const newGameMoves = game.possible()
     let bestMove = -Infinity

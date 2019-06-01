@@ -114,7 +114,13 @@ export class ReversiGameBase implements IGame {
       return
     }
 
-    this.score[m.data]--
+    const player: number = <number>m.data
+
+    if (!player) {
+      throw new Error('Cannot undo!')
+    }
+
+    this.score[player]--
     m.data = null
     this.empty.set(m.key, m)
     const h: IState = <IState> this.history.pop()

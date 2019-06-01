@@ -9,22 +9,22 @@ import { moveToString, stringToMove } from '../utils/serialization'
 import { undo } from '../utils/undo'
 
 export class ConnectGameBase implements IGame {
-  public static theme = Theme.Gomoku;
+  public static theme = Theme.Gomoku
 
-  public grid: IGrid<IGameTile>;
-  public min: number;
-  public moves: Move[] = [];
-  public player = 1;
-  public winner: number = 0;
+  public grid: IGrid<IGameTile>
+  public min: number
+  public moves: Move[] = []
+  public player = 1
+  public winner: number = 0
 
-  public tileMap: Map<string, AnyTile>;
-  public finished: boolean = false;
-  public playerTiles: { [i: number]: AnyTile[] } = {};
-  public freeTileMap: Map<string, AnyTile>;
+  public tileMap: Map<string, AnyTile>
+  public finished: boolean = false
+  public playerTiles: { [i: number]: AnyTile[] } = {}
+  public freeTileMap: Map<string, AnyTile>
 
-  public moveToString = moveToString.bind(<IGridMappedGame><unknown> this);
-  public stringToMove = stringToMove.bind(<IGridMappedGame><unknown> this);
-  public undo = undo.bind(<IGridMappedGame & IGame><unknown> this);
+  public moveToString = moveToString.bind(<IGridMappedGame><unknown> this)
+  public stringToMove = stringToMove.bind(<IGridMappedGame><unknown> this)
+  public undo = undo.bind(<IGridMappedGame & IGame><unknown> this)
 
   constructor (grid: IGrid<IGameTile>, min: number) {
     this.grid = grid
@@ -38,7 +38,13 @@ export class ConnectGameBase implements IGame {
     const moves = parseRecord(record)
 
     for (const move of moves) {
-      this.move(this.tileMap.get((<AnyTile> this.grid.tile(move[0], move[1])).key))
+      if (!move) {
+        throw new Error('Invalid position!')
+      }
+
+      const t = <AnyTile> this.grid.tile(move[0], move[1])
+      const to = <IGameTile> this.tileMap.get(t.key)
+      this.move(to)
     }
   }
 
@@ -97,6 +103,6 @@ export class ConnectGameBase implements IGame {
   public winning (): AnyTile[] | undefined {
     const m = this.moves[this.moves.length - 1]
 
-    return winning(m, m.data, this.min)
+    return winning(m, <number>m.data, this.min)
   }
 }

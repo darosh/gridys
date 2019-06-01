@@ -3,19 +3,19 @@ import { IPLayer } from './IPlayer'
 import { IGame, Move } from '@gridy/games'
 
 export class AlphaBetaPlayer implements IPLayer {
-  public count = 0;
-  public hit = 0;
-  public depth: number = 0;
+  public count = 0
+  public hit = 0
+  public depth: number = 0
 
   constructor (depth: number = 3) {
     this.depth = depth
   }
 
-  public select (game: IGame): Move {
+  public select (game: IGame): { move?: Move, [key: string]: any } {
     return { move: this.move(game, this.depth), count: this.count, hit: this.hit }
   }
 
-  private move (game: IGame, depth: number, isMaximisingPlayer: boolean = true): Move {
+  private move (game: IGame, depth: number, isMaximisingPlayer: boolean = true): Move | undefined {
     this.count = 0
     const newGameMoves = game.possible()
     let bestMove = -Infinity

@@ -4,6 +4,11 @@ import { other } from '../../../utils'
 
 export function undo (this: IGridMappedGame & IGame): void {
   const move = this.moves.pop()
+
+  if (move === undefined) {
+    return
+  }
+
   move.data = null
 
   this.freeTileMap.set(move.key, move)

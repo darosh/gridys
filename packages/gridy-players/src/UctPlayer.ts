@@ -1,5 +1,6 @@
 // Based on https://github.com/OMerkel/UCThello
-import { IGame, other } from '@gridy/games'
+import { IGame, Move, other } from '@gridy/games'
+import { MoveStat } from './IPlayer'
 
 export class UctNode {
   public action: any;
@@ -7,7 +8,7 @@ export class UctNode {
   public children: UctNode[];
   public wins: number;
   public visits: number;
-  public unexamined: UctNode[];
+  public unexamined: Move[];
   public activePlayer: number;
   public depth: number;
 
@@ -70,7 +71,7 @@ export class UctPlayer {
     this.maxIterations = maxIterations
   }
 
-  public select (game: IGame) {
+  public select (game: IGame): MoveStat {
     const root = new UctNode(game)
     const startTime = Date.now()
     const timeLimit = startTime + this.maxTime

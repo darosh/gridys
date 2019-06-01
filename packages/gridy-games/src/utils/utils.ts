@@ -1,5 +1,6 @@
 import { HexagonalGrid, Position, normalize, rotate } from '@gridy/core'
 import { IGame, Move } from '../index'
+import { MovePosition } from '../Move'
 
 export const PASS = 'pass'
 
@@ -20,8 +21,8 @@ export function isEmpty (a: any[]) {
   return !a || !a.length
 }
 
-export function parseRecord (record: string): Move[] {
-  const tokens: Move[] = []
+export function parseRecord (record: string): MovePosition[] {
+  const tokens: MovePosition[] = []
 
   const records = record.replace(/[^0-9a-z]+/, '').replace(/([0-9])([a-z])/g, '$1,$2').split(',')
 
@@ -32,7 +33,7 @@ export function parseRecord (record: string): Move[] {
   return tokens
 }
 
-export function parsePosition (r: string): [number, number] | null {
+export function parsePosition (r: string): MovePosition | null {
   if (r === PASS) {
     return null
   } else {
