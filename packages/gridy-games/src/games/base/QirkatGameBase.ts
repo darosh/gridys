@@ -199,7 +199,7 @@ export class QirkatGameBase extends QuirkatBoard {
         return r
       }
 
-      for (const [n, m] of t.links) {
+      for (const [, m] of t.links) {
         if (!(m).data) {
           r.push([t, m])
         }

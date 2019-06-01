@@ -1,4 +1,4 @@
-import { AnyTile, Directions, TileMap, toMap } from '@gridy/core'
+import { AnyTile } from '@gridy/core'
 
 export function evaluateLinked (tiles: AnyTile[], min: number, player: number): number {
   let c: number = 0

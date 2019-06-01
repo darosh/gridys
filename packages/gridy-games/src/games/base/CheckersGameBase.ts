@@ -24,7 +24,7 @@ export class CheckersGameBase implements IGame {
     // throw new Error("Method not implemented.");
     return []
   }
-  public move (m: any): void {
+  public move (m: any): void { // eslint-disable-line
     throw new Error('Method not implemented.')
   }
   public undo (): void {

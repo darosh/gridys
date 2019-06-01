@@ -24,7 +24,7 @@ export class HexGameBase implements IGame {
   private freeTileMap: Map<string, AnyTile>;
   private finished: boolean = false;
 
-  constructor (grid: IGrid<AnyTile>, lines: number = 3, skip: number = 2) {
+  constructor (grid: IGrid<AnyTile>, lines: number = 3, skip: number = 2) { // eslint-disable-line
     this.grid = grid
     this.tileMap = toMap(grid.tiles)
     this.freeTileMap = toMap(grid.tiles)

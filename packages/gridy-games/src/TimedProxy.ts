@@ -34,15 +34,15 @@ export class TimedProxy implements IGame, IGridGame {
     this.stop()
   }
 
-  get grid (): IGrid<IGameTile> {
+  public get grid (): IGrid<IGameTile> {
     return this.game.grid
   }
 
-  get scale () {
+  public get scale () {
     return this.game.scale
   }
 
-  get moves () {
+  public get moves () {
     return this.game.moves
   }
 

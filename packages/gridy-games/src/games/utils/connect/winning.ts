@@ -1,4 +1,4 @@
-import { AnyTile, Directions, TileMap, toMap } from '@gridy/core'
+import { AnyTile } from '@gridy/core'
 
 export function winning (move: any, player: number, min: number): AnyTile[] | undefined {
   const done: { [direction: number]: boolean } = {}

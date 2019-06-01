@@ -110,7 +110,7 @@ export class CatchTheHareGameBase extends QuirkatBoard implements IGame {
     return this.grid.tiles
       .filter((t: any) => t.data === value)
       .reduce((r: any[], t: any) => {
-        for (const [n, m] of t.links) {
+        for (const [, m] of t.links) {
           if (!m.data) {
             r.push([t, m])
           }

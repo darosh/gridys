@@ -35,7 +35,7 @@ export class MorrisGameBase implements IGame {
   constructor (squares: number = 3, center: boolean = false, diagonals: boolean = false, men: number = 9) {
     const base = squares * 2 + 1
     const mid = squares
-    const valid = [0, mid, base - 1]
+    // const valid = [0, mid, base - 1]
     this.grid = <any> new RectangularGrid(1, undefined, Shape.Even, base, base, diagonals
       ? Rectangular8Tile : RectangularTile)
 
@@ -97,7 +97,7 @@ export class MorrisGameBase implements IGame {
     return this.grid.tiles
       .filter((t: any) => t.data === this.player)
       .reduce((r: any[], t: any) => {
-        for (const [n, m] of t.links) {
+        for (const [, m] of t.links) {
           if (!m.data) {
             r.push([t, m])
           }

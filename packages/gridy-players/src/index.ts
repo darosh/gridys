@@ -1,6 +1,6 @@
-export { IPLayer } from './IPlayer';
-export { AlphaBetaPlayer } from './AlphaBetaPlayer';
-export { RandomPlayer } from './RandomPlayer';
-export { UctPlayer } from './UctPlayer';
-export { UctCachedPlayer } from './UctCachedPlayer';
-export { MinimaxPlayer } from './MinimaxPlayer';
+export { IPLayer } from './IPlayer'
+export { AlphaBetaPlayer } from './AlphaBetaPlayer'
+export { RandomPlayer } from './RandomPlayer'
+export { UctPlayer } from './UctPlayer'
+export { UctCachedPlayer } from './UctCachedPlayer'
+export { MinimaxPlayer } from './MinimaxPlayer'

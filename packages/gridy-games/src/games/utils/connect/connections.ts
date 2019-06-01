@@ -1,5 +1,3 @@
-import { AnyTile, Directions, TileMap, toMap } from '@gridy/core'
-
 export function connections (move: any, player: number, min: number) {
   const done: { [direction: number]: boolean } = {}
 
