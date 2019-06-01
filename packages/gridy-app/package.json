@@ -53,6 +53,7 @@
     "worker-loader": "^2.0.0"
   },
   "private": true,
+  "repository": "https://github.com/darosh/gridys/tree/master/packages/gridy-app",
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
@@ -61,5 +62,6 @@
     "test": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e"
   },
-  "storageVersion": "0.1.144"
+  "storageVersion": "0.1.144",
+  "license": "MIT"
 }

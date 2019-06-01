@@ -4,8 +4,10 @@
   "dependencies": {
     "cli-real-favicon": "^0.0.7"
   },
-  "license": "ISC",
+  "private": true,
+  "license": "MIT",
   "main": "index.js",
+  "repository": "https://github.com/darosh/gridys/tree/master/packages/gridy-app-icon",
   "scripts": {
     "generate": "real-favicon generate icon.config.json icon.data.json generated"
   }

@@ -3,7 +3,7 @@ import { Integer } from './Integer'
 
 export interface ITile<T> {
   key: string
-  value: any[],
+  value: any[]
   neighbors(): Directions<T>
   multiNeighbors?(): Directions<T>
   directions(): Directions<T>

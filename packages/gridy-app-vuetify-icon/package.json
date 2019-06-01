@@ -35,6 +35,7 @@
   "license": "MIT",
   "main": "dist/vuetify-icon.common.js",
   "module": "dist/vuetify-icon.esm.js",
+  "repository": "https://github.com/darosh/gridys/tree/master/packages/gridy-app-vuetify-icon",
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",

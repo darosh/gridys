@@ -1,5 +1,7 @@
 {
   "name": "root",
+  "description": "Mono-repo for gridy* projects",
+  "version": "1.0.0",
   "devDependencies": {
     "lerna": "^3.14.1",
     "shelljs": "^0.8.3"
@@ -7,6 +9,7 @@
   "private": true,
   "scripts": {
     "clean": "lerna run prebuild",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "migrate": "lerna exec node ../../utils/migrate"
   }
 }

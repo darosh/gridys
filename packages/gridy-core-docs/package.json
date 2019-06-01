@@ -13,6 +13,7 @@
   "license": "MIT",
   "main": "index.js",
   "private": true,
+  "repository": "https://github.com/darosh/gridys/tree/master/packages/gridy-core-docs",
   "scripts": {
     "docs:build": "vuepress build",
     "docs:dev": "vuepress dev",

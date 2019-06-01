@@ -9,7 +9,8 @@
   "license": "MIT",
   "main": "index.json",
   "private": true,
+  "repository": "https://github.com/darosh/gridys/tree/master/packages/gridy-app-heroes",
   "scripts": {
-    "build": "node generate/index.js > index.json"
+    "generate": "node generate/index.js > index.json"
   }
 }

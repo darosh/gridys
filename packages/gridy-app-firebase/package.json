@@ -10,7 +10,7 @@
   "license": "MIT",
   "main": "index.js",
   "private": true,
-  "repository": "https://github.com/darosh/gridy-firebase.git",
+  "repository": "https://github.com/darosh/gridys/tree/master/packages/gridy-app-firebase",
   "scripts": {
     "config:set": "node ./admin/config-set",
     "delete:users": "node ./admin/delete-users"
