@@ -1,6 +1,6 @@
 {
   "name": "gridy-app-icon",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "dependencies": {
     "cli-real-favicon": "^0.0.7"
   },

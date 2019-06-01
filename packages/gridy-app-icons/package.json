@@ -1,7 +1,7 @@
 {
   "name": "@gridy/app-icons",
   "description": "Icon bundle",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "author": "Jan Forst <ensonador@gmail.com>",
   "devDependencies": {
     "del-cli": "^2.0.0",

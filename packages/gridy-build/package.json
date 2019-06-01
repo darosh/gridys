@@ -1,7 +1,7 @@
 {
   "name": "@gridy/build",
   "description": "Build library",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Jan Forst <ensonador@gmail.com>",
   "bin": {
     "del-cli": "bin/del-cli",

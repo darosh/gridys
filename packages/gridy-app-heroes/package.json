@@ -1,7 +1,7 @@
 {
   "name": "@gridy/app-heroes",
   "description": "Heroes bundle",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "author": "Jan Forst <ensonador@gmail.com>",
   "devDependencies": {
     "superheroes": "^3.0.0"

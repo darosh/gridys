@@ -1,7 +1,7 @@
 {
   "name": "@gridy/eslint-config",
   "description": "ESLint config",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Jan Forst <ensonador@gmail.com>",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.9.0",

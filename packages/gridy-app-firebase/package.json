@@ -1,7 +1,7 @@
 {
   "name": "@gridy/firebase",
   "description": "Firebase backend for gridy-games",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "author": "Jan Forst <ensonador@gmail.com>",
   "dependencies": {
     "firebase-admin": "^8.0.0",

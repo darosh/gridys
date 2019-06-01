@@ -1,6 +1,6 @@
 {
   "name": "@gridy/app-vuetify-icon",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "Jan Forst <ensonador@gmai.com>",
   "dependencies": {
     "vuetify": "^1.5.5"
