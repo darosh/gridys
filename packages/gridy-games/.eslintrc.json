@@ -1,0 +1,6 @@
+{
+  "extends": "@gridy/eslint-config",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}
