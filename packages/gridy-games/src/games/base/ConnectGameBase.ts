@@ -1,12 +1,12 @@
-import { AnyTile, IGrid, link, toArray, toMap } from '@gridy/core';
-import { IGame } from '../../IGame';
+import { AnyTile, IGrid, link, toArray, toMap } from '@gridy/core'
+import { IGame } from '../../IGame'
 import { IGameTile, IGridMappedGame } from '../../IGridGame'
-import { Move } from '../../Move';
-import { Theme } from '../../Theme';
-import { other, parseRecord } from '../../utils';
-import { connections, evaluateLinked, winning } from '../utils/connect';
-import { moveToString, stringToMove } from '../utils/serialization';
-import { undo } from '../utils/undo';
+import { Move } from '../../Move'
+import { Theme } from '../../Theme'
+import { other, parseRecord } from '../../utils'
+import { connections, evaluateLinked, winning } from '../utils/connect'
+import { moveToString, stringToMove } from '../utils/serialization'
+import { undo } from '../utils/undo'
 
 export class ConnectGameBase implements IGame {
   public static theme = Theme.Gomoku;
@@ -22,29 +22,29 @@ export class ConnectGameBase implements IGame {
   public playerTiles: { [i: number]: AnyTile[] } = {};
   public freeTileMap: Map<string, AnyTile>;
 
-  public moveToString = moveToString.bind(<IGridMappedGame><unknown>this);
-  public stringToMove = stringToMove.bind(<IGridMappedGame><unknown>this);
-  public undo = undo.bind(<IGridMappedGame & IGame><unknown>this);
+  public moveToString = moveToString.bind(<IGridMappedGame><unknown> this);
+  public stringToMove = stringToMove.bind(<IGridMappedGame><unknown> this);
+  public undo = undo.bind(<IGridMappedGame & IGame><unknown> this);
 
-  constructor(grid: IGrid<IGameTile>, min: number) {
-    this.grid = grid;
-    this.min = min;
-    this.tileMap = toMap(this.grid.tiles);
-    this.freeTileMap = toMap(this.grid.tiles);
-    link(this.tileMap);
+  constructor (grid: IGrid<IGameTile>, min: number) {
+    this.grid = grid
+    this.min = min
+    this.tileMap = toMap(this.grid.tiles)
+    this.freeTileMap = toMap(this.grid.tiles)
+    link(this.tileMap)
   }
 
-  public init(record: string) {
-    const moves = parseRecord(record);
+  public init (record: string) {
+    const moves = parseRecord(record)
 
     for (const move of moves) {
-      this.move(this.tileMap.get((<AnyTile>this.grid.tile(move[0], move[1])).key));
+      this.move(this.tileMap.get((<AnyTile> this.grid.tile(move[0], move[1])).key))
     }
   }
 
-  public possible(): any[] {
+  public possible (): any[] {
     if (this.finished) {
-      return [];
+      return []
     }
 
     // const arr = toArray(this.freeTileMap) as any;
@@ -60,43 +60,43 @@ export class ConnectGameBase implements IGame {
 
     // return arr;
 
-    return toArray(this.freeTileMap);
+    return toArray(this.freeTileMap)
   }
 
-  public move(m: Move): void {
+  public move (m: Move): void {
     m.data = this.player;
-    (this.playerTiles[this.player] || (this.playerTiles[this.player] = [])).push(m);
-    this.player = other(this.player);
-    this.moves.push(m);
-    this.freeTileMap.delete(m.key);
+    (this.playerTiles[this.player] || (this.playerTiles[this.player] = [])).push(m)
+    this.player = other(this.player)
+    this.moves.push(m)
+    this.freeTileMap.delete(m.key)
 
-    this.winner = this.getWinner();
+    this.winner = this.getWinner()
 
     if ((this.moves.length === this.grid.tiles.length) || this.winner) {
-      this.finished = true;
+      this.finished = true
     }
   }
 
-  public evaluate(): number {
-    const a = evaluateLinked(this.playerTiles[this.player] || [], this.min, this.player);
-    const b = evaluateLinked(this.playerTiles[other(this.player)] || [], this.min, other(this.player));
+  public evaluate (): number {
+    const a = evaluateLinked(this.playerTiles[this.player] || [], this.min, this.player)
+    const b = evaluateLinked(this.playerTiles[other(this.player)] || [], this.min, other(this.player))
 
-    return a - b * this.min;
+    return a - b * this.min
   }
 
-  public getWinner(): number {
-    const w = connections(this.moves[this.moves.length - 1], other(this.player), this.min);
+  public getWinner (): number {
+    const w = connections(this.moves[this.moves.length - 1], other(this.player), this.min)
 
     if (w) {
-      return other(this.player);
+      return other(this.player)
     }
 
-    return this.moves.length === this.grid.tiles.length ? -1 : 0;
+    return this.moves.length === this.grid.tiles.length ? -1 : 0
   }
 
-  public winning(): AnyTile[] | undefined {
-    const m = this.moves[this.moves.length - 1];
+  public winning (): AnyTile[] | undefined {
+    const m = this.moves[this.moves.length - 1]
 
-    return winning(m, m.data, this.min);
+    return winning(m, m.data, this.min)
   }
 }

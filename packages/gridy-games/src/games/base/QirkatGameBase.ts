@@ -1,212 +1,211 @@
-import { AnyTile, IGrid } from '@gridy/core';
-import { other } from '../../utils';
-import { quirkatSetup } from '../utils/quirkat';
-import { jumpsToString, stringsToJump } from '../utils/serialization';
-import { QuirkatBoard } from './QuirkatBoard';
+import { AnyTile, IGrid } from '@gridy/core'
+import { other } from '../../utils'
+import { quirkatSetup } from '../utils/quirkat'
+import { jumpsToString, stringsToJump } from '../utils/serialization'
+import { QuirkatBoard } from './QuirkatBoard'
 import { IGridMappedGame } from '../../IGridGame'
 
-
 export class QirkatGameBase extends QuirkatBoard {
-  public moveToString = jumpsToString.bind(<IGridMappedGame><unknown>this);
-  public stringToMove = stringsToJump.bind(<IGridMappedGame><unknown>this);
+  public moveToString = jumpsToString.bind(<IGridMappedGame><unknown> this);
+  public stringToMove = stringsToJump.bind(<IGridMappedGame><unknown> this);
 
   public score: { [player: number]: number };
   public finished: boolean = false;
 
   private maxMoves: number;
 
-  constructor(grid: IGrid<AnyTile>, maxMoves: number) {
-    super(grid);
-    this.maxMoves = maxMoves;
+  constructor (grid: IGrid<AnyTile>, maxMoves: number) {
+    super(grid)
+    this.maxMoves = maxMoves
 
-    quirkatSetup(grid.tiles);
-    const stones = (grid.tiles.length - 1) / 2;
-    this.score = { 1: stones, 2: stones };
+    quirkatSetup(grid.tiles)
+    const stones = (grid.tiles.length - 1) / 2
+    this.score = { 1: stones, 2: stones }
   }
 
-  public move(m: any): void {
-    const first = m[0];
-    let last = m[m.length - 1];
-    last = Array.isArray(last) ? last[0] : last;
+  public move (m: any): void {
+    const first = m[0]
+    let last = m[m.length - 1]
+    last = Array.isArray(last) ? last[0] : last
 
     for (let i = 1; i < m.length; i++) {
       if (Array.isArray(m[i])) {
-        this.score[m[i][1].data]--;
-        m[i][1].data = null;
+        this.score[m[i][1].data]--
+        m[i][1].data = null
       }
     }
 
-    last.data = first.data;
+    last.data = first.data
 
     if (last !== first) {
-      first.data = null;
+      first.data = null
     }
 
-    this.player = other(this.player);
-    this.moves.push(m);
+    this.player = other(this.player)
+    this.moves.push(m)
 
-    this.winner = this.getWinner();
+    this.winner = this.getWinner()
 
     if (this.winner) {
-      this.finished = true;
+      this.finished = true
     }
   }
 
-  public undo(): void {
-    const m = this.moves.pop();
+  public undo (): void {
+    const m = this.moves.pop()
 
-    const first = m[0];
-    let last = m[m.length - 1];
-    last = Array.isArray(last) ? last[0] : last;
+    const first = m[0]
+    let last = m[m.length - 1]
+    last = Array.isArray(last) ? last[0] : last
 
-    const o = other(last.data);
+    const o = other(last.data)
 
     for (let i = m.length - 1; i > 0; i--) {
-      const n = m[i];
+      const n = m[i]
 
       if (Array.isArray(n)) {
-        this.score[o]++;
-        n[1].data = o;
+        this.score[o]++
+        n[1].data = o
       }
     }
 
-    first.data = last.data;
+    first.data = last.data
 
     if (last !== first) {
-      last.data = null;
+      last.data = null
     }
 
-    this.winner = 0;
-    this.finished = false;
-    this.player = other(this.player);
+    this.winner = 0
+    this.finished = false
+    this.player = other(this.player)
   }
 
-  public getWinner() {
+  public getWinner () {
     if (!this.score[1]) {
-      return 2;
+      return 2
     } else if (!this.score[2]) {
-      return 1;
+      return 1
     } else if (this.moves.length === this.maxMoves) {
-      return -1;
+      return -1
     } else {
-      return 0;
+      return 0
     }
   }
 
-  public possible(): any {
+  public possible (): any {
     if (this.finished) {
-      return [];
+      return []
     }
 
-    let result: any[] = this.jumpsPossible();
-    result = this.topJumps(result);
-    result = this.leavesToMoves(result);
+    let result: any[] = this.jumpsPossible()
+    result = this.topJumps(result)
+    result = this.leavesToMoves(result)
 
     if (!result.length) {
-      result = this.simplePossible();
+      result = this.simplePossible()
     }
 
-    return result;
+    return result
   }
 
-  private leavesToMoves(r: any[]) {
-    return r.map(this.leaveToMove);
+  private leavesToMoves (r: any[]) {
+    return r.map(this.leaveToMove)
   }
 
-  private leaveToMove(nodeInput: any) {
-    const result = [];
-    let node = nodeInput;
+  private leaveToMove (nodeInput: any) {
+    const result = []
+    let node = nodeInput
 
     while (node) {
       if (node.parent) {
-        result.unshift([node.tile, node.removed]);
+        result.unshift([node.tile, node.removed])
       } else {
-        result.unshift(node.tile);
+        result.unshift(node.tile)
       }
 
-      node = node.parent;
+      node = node.parent
     }
 
-    return result;
+    return result
   }
 
-  private topJumps(r: any[]) {
+  private topJumps (r: any[]) {
     if (!r.length) {
-      return r;
+      return r
     }
 
-    r.sort((a, b) => b.depth - a.depth);
-    const d = r[0].depth;
+    r.sort((a, b) => b.depth - a.depth)
+    const d = r[0].depth
 
-    return r.filter((t) => t.depth === d);
+    return r.filter((t) => t.depth === d)
   }
 
-  private jumpsPossible() {
-    const o = other(this.player);
+  private jumpsPossible () {
+    const o = other(this.player)
 
     return this.grid.tiles.reduce((r: any[], t: any) => {
       if ((t).data !== this.player) {
-        return r;
+        return r
       }
 
-      const leaves: any[] = this.multiJumps({ tile: t }, o);
+      const leaves: any[] = this.multiJumps({ tile: t }, o)
 
-      return r.concat(leaves);
-    }, []);
+      return r.concat(leaves)
+    }, [])
   }
 
-  private multiJumps(parent: any, o: number, leaves: any[] = [], depth: number = 0, removed: any[] = []): any[] {
-    const t = parent.tile;
-    parent.jumps = [];
+  private multiJumps (parent: any, o: number, leaves: any[] = [], depth: number = 0, removed: any[] = []): any[] {
+    const t = parent.tile
+    parent.jumps = []
 
     for (const [n, m] of t.links) {
       if (((m).data === o) && (removed.indexOf(m) === -1)) {
-        const d = (m).links.get(n);
+        const d = (m).links.get(n)
 
         if (d && !d.data) {
-          const r: any = { tile: d, removed: m, depth, parent };
-          parent.jumps.push(r);
-          this.multiJumps(r, o, leaves, depth + 1, removed.concat([m]));
+          const r: any = { tile: d, removed: m, depth, parent }
+          parent.jumps.push(r)
+          this.multiJumps(r, o, leaves, depth + 1, removed.concat([m]))
         }
       }
     }
 
     if (!parent.jumps.length && depth) {
-      leaves.push(parent);
+      leaves.push(parent)
     }
 
-    return leaves;
+    return leaves
   }
 
-  private jumpPossible(t: any, p: number, o: number) {
-    const result: any[] = [];
+  private jumpPossible (t: any, p: number, o: number) {
+    const result: any[] = []
 
     for (const [n, m] of t.links) {
       if ((m).data === o) {
-        const d = (m).links.get(n);
+        const d = (m).links.get(n)
 
         if (d && !d.data) {
-          result.push([t, [d, m]]);
+          result.push([t, [d, m]])
         }
       }
     }
 
-    return result;
+    return result
   }
 
-  private simplePossible(): any[] {
+  private simplePossible (): any[] {
     return this.grid.tiles.reduce((r: any[], t: any) => {
       if ((t).data !== this.player) {
-        return r;
+        return r
       }
 
       for (const [n, m] of t.links) {
         if (!(m).data) {
-          r.push([t, m]);
+          r.push([t, m])
         }
       }
 
-      return r;
-    }, []);
+      return r
+    }, [])
   }
 }

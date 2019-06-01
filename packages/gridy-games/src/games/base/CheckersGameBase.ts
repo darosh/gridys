@@ -1,6 +1,6 @@
-import { AnyTile, IGrid, toMap } from "@gridy/core";
-import { IGame } from "../../IGame";
-import { Theme } from "../../Theme";
+import { AnyTile, IGrid, toMap } from '@gridy/core'
+import { IGame } from '../../IGame'
+import { Theme } from '../../Theme'
 
 export class CheckersGameBase implements IGame {
   public static theme = Theme.Checkers;
@@ -8,37 +8,37 @@ export class CheckersGameBase implements IGame {
 
   public moves: any[] = [];
   public player: number = 1;
-  public score?: { [player: number]: number; };
+  public score?: { [player: number]: number };
   public winner: number = 0;
 
   public grid: IGrid<AnyTile>;
   private tileMap: Map<string, AnyTile>;
 
-  constructor(grid: IGrid<AnyTile>, lines: number = 3, skip: number = 2) {
-    this.grid = grid;
-    this.tileMap = toMap(grid.tiles);
-    this.init(lines, skip);
+  constructor (grid: IGrid<AnyTile>, lines: number = 3, skip: number = 2) {
+    this.grid = grid
+    this.tileMap = toMap(grid.tiles)
+    this.init(lines, skip)
   }
 
-  public possible(): any[] {
+  public possible (): any[] {
     // throw new Error("Method not implemented.");
-    return [];
+    return []
   }
-  public move(m: any): void {
-    throw new Error("Method not implemented.");
+  public move (m: any): void {
+    throw new Error('Method not implemented.')
   }
-  public undo(): void {
-    throw new Error("Method not implemented.");
+  public undo (): void {
+    throw new Error('Method not implemented.')
   }
-  public evaluate(): number {
-    throw new Error("Method not implemented.");
+  public evaluate (): number {
+    throw new Error('Method not implemented.')
   }
 
-  private init(lines: number, skip: number) {
-    for (const n of [[0, lines, "1"], [this.grid.y - lines, this.grid.y, "2"] as any]) {
+  private init (lines: number, skip: number) {
+    for (const n of [[0, lines, '1'], [this.grid.y - lines, this.grid.y, '2'] as any]) {
       for (let line: number = n[0]; line < n[1]; line++) {
         for (let x: number = skip === 1 ? 0 : line % 2; x < this.grid.x; x += skip) {
-          (this.tileMap.get((<any>this.grid).tile(x, line).key) as any).data = n[2];
+          (this.tileMap.get((<any> this.grid).tile(x, line).key) as any).data = n[2]
         }
       }
     }

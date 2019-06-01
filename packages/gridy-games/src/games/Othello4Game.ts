@@ -1,5 +1,5 @@
-import { Rectangular8Tile, RectangularGrid, Shape } from '@gridy/core';
-import { ReversiGameBase } from './base/ReversiGameBase';
+import { Rectangular8Tile, RectangularGrid, Shape } from '@gridy/core'
+import { ReversiGameBase } from './base/ReversiGameBase'
 
 export class Othello4Game extends ReversiGameBase {
   public static title = 'Othello 4x4';
@@ -7,7 +7,7 @@ export class Othello4Game extends ReversiGameBase {
   public static original = 'OthelloGame';
   public static sample = 'd2, d3, d4, b1, a4, b4, c4, d1, a3, pass, a2';
 
-  constructor() {
-    super(<any>new RectangularGrid(1, undefined, Shape.Even, 4, 4, Rectangular8Tile), true);
+  constructor () {
+    super(<any> new RectangularGrid(1, undefined, Shape.Even, 4, 4, Rectangular8Tile), true)
   }
 }

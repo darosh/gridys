@@ -27,11 +27,11 @@ export const ThemeStones = {
   [Theme.Qirkat]: Stones.BlackWhite,
   [Theme.Reversi]: Stones.BlackWhite,
   [Theme.TacTickle]: Stones.OrangeBlue
-};
+}
 
 // tslint:disable-next-line:variable-name
 export const StoneNames = {
   [Stones.BlackWhite]: ['Black', 'White'],
   [Stones.OrangeBlue]: ['Orange', 'Blue'],
   [Stones.RedYellow]: ['Red', 'Yellow']
-};
+}

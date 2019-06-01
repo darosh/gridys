@@ -1,4 +1,4 @@
-import { MorrisGameBase } from './base/MorrisGameBase';
+import { MorrisGameBase } from './base/MorrisGameBase'
 
 export class MensMorris9Game extends MorrisGameBase {
   public static title = 'Nine Men\'s Morris';
@@ -8,7 +8,7 @@ export class MensMorris9Game extends MorrisGameBase {
   public static aliases = ['Mills', 'Merels'];
   public static wiki = 'https://en.wikipedia.org/wiki/Nine_Men%27s_Morris';
 
-  constructor() {
-    super(3);
+  constructor () {
+    super(3)
   }
 }

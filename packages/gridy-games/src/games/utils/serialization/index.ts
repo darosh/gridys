@@ -1,90 +1,90 @@
-import {IGameTile, IGridMappedGame, Move} from '../../../IGridGame';
-import {parsePosition, parsePositions, stringifyPosition, stringifyPositions} from '../../../utils/index';
+import { IGameTile, IGridMappedGame, Move } from '../../../IGridGame'
+import { parsePosition, parsePositions, stringifyPosition, stringifyPositions } from '../../../utils/index'
 
-export function moveToString(this: IGridMappedGame, move: Move): string {
+export function moveToString (this: IGridMappedGame, move: Move): string {
   if (!move) {
-    return 'pass';
+    return 'pass'
   }
 
-  const p = this.grid.toPoint(<IGameTile>move);
+  const p = this.grid.toPoint(<IGameTile>move)
 
-  return stringifyPosition(p);
+  return stringifyPosition(p)
 }
 
-export function stringToMove(this: IGridMappedGame, move: string): Move | null {
-  const p = parsePosition(move);
+export function stringToMove (this: IGridMappedGame, move: string): Move | null {
+  const p = parsePosition(move)
 
   if (!p) {
-    return p;
+    return p
   }
 
-  const t = this.grid.tile.apply(this.grid, p);
+  const t = this.grid.tile.apply(this.grid, p)
 
-  return <Move>this.tileMap.get(t!.key);
+  return <Move> this.tileMap.get(t!.key)
 }
 
-export function movesToString(this: IGridMappedGame, move: Move[]): string {
+export function movesToString (this: IGridMappedGame, move: Move[]): string {
   if (!move) {
-    return 'pass';
+    return 'pass'
   }
 
-  const p = (Array.isArray(move) ? move : [move]).map(<any>this.grid.toPoint);
+  const p = (Array.isArray(move) ? move : [move]).map(<any> this.grid.toPoint)
 
-  return stringifyPositions(<any>p);
+  return stringifyPositions(<any>p)
 }
 
-export function jumpsToString(this: IGridMappedGame, move: Move[]): string {
+export function jumpsToString (this: IGridMappedGame, move: Move[]): string {
   if (!move) {
-    return 'pass';
+    return 'pass'
   }
 
   const p = (Array.isArray(move) ? move : [move]).reduce((r: any[], t) => {
-    const a = <any[]>(Array.isArray(t) ? t.slice() : [t]);
-    a.reverse();
-    a.forEach((d) => r.push(d));
+    const a = <any[]>(Array.isArray(t) ? t.slice() : [t])
+    a.reverse()
+    a.forEach((d) => r.push(d))
 
-    return r;
-  },                                                     []).map(<any>this.grid.toPoint);
+    return r
+  }, []).map(<any> this.grid.toPoint)
 
-  return stringifyPositions(<any>p);
+  return stringifyPositions(<any>p)
 }
 
-export function stringsToJump(this: IGridMappedGame, move: string): Move | null {
-  const p = parsePositions(move);
+export function stringsToJump (this: IGridMappedGame, move: string): Move | null {
+  const p = parsePositions(move)
 
   if (!p) {
-    return p;
+    return p
   }
 
-  const m = <any>[getTile.call(this, p.shift())];
+  const m = <any>[getTile.call(this, p.shift())]
 
   if (p.length === 1) {
-    m.push(getTile.call(this, p.shift()));
+    m.push(getTile.call(this, p.shift()))
   } else {
     while (p.length) {
-      const b = getTile.call(this, p.shift());
-      const a = getTile.call(this, p.shift());
-      m.push([a, b]);
+      const b = getTile.call(this, p.shift())
+      const a = getTile.call(this, p.shift())
+      m.push([a, b])
     }
   }
 
-  return m;
+  return m
 }
 
-function getTile(this: IGridMappedGame, t: any): any {
-  return this.tileMap.get(this.grid.tile.apply(this.grid, t)!.key);
+function getTile (this: IGridMappedGame, t: any): any {
+  return this.tileMap.get(this.grid.tile.apply(this.grid, t)!.key)
 }
 
-export function stringsToMove(this: IGridMappedGame, move: string): Move | null {
-  const p = parsePositions(move);
+export function stringsToMove (this: IGridMappedGame, move: string): Move | null {
+  const p = parsePositions(move)
 
   if (!p) {
-    return p;
+    return p
   }
 
   return (<any>p).map((pp: any) => {
-    const t = this.grid.tile.apply(this.grid, pp);
+    const t = this.grid.tile.apply(this.grid, pp)
 
-    return this.tileMap.get(t!.key);
-  });
+    return this.tileMap.get(t!.key)
+  })
 }

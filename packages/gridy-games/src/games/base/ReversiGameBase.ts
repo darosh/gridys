@@ -1,13 +1,13 @@
-import { AnyTile, IGrid, link, toMap } from '@gridy/core';
-import { IGame } from '../../IGame';
-import { Move } from '../../Move';
-import { Theme } from '../../Theme';
-import { other } from '../../utils';
-import { moveToString, stringToMove } from '../utils/serialization';
+import { AnyTile, IGrid, link, toMap } from '@gridy/core'
+import { IGame } from '../../IGame'
+import { Move } from '../../Move'
+import { Theme } from '../../Theme'
+import { other } from '../../utils'
+import { moveToString, stringToMove } from '../utils/serialization'
 import { IGridMappedGame } from '../../IGridGame'
 
 export interface IState {
-  [index: string]: number;
+  [index: string]: number
 }
 
 export class ReversiGameBase implements IGame {
@@ -19,8 +19,8 @@ export class ReversiGameBase implements IGame {
   public score: { [index: number]: number } = { 1: 0, 2: 0 };
   public winner: number = 0;
 
-  public moveToString = moveToString.bind(<IGridMappedGame><unknown>this);
-  public stringToMove = stringToMove.bind(<IGridMappedGame><unknown>this);
+  public moveToString = moveToString.bind(<IGridMappedGame><unknown> this);
+  public stringToMove = stringToMove.bind(<IGridMappedGame><unknown> this);
 
   protected finished: boolean = false;
   protected tileMap: Map<string, AnyTile>;
@@ -30,177 +30,177 @@ export class ReversiGameBase implements IGame {
   protected knownPossible?: any[];
   protected anti: boolean;
 
-  constructor(grid: IGrid<AnyTile>, center: boolean = false, anti: boolean = false) {
-    this.anti = anti;
-    this.grid = grid;
-    this.tileMap = toMap(grid.tiles);
-    const x1 = Math.floor(grid.x / 2 - 0.5);
-    const x2 = Math.ceil(grid.x / 2 - 0.5);
-    const y1 = Math.floor(grid.y / 2 - 0.5);
-    const y2 = Math.ceil(grid.y / 2 - 0.5);
+  constructor (grid: IGrid<AnyTile>, center: boolean = false, anti: boolean = false) {
+    this.anti = anti
+    this.grid = grid
+    this.tileMap = toMap(grid.tiles)
+    const x1 = Math.floor(grid.x / 2 - 0.5)
+    const x2 = Math.ceil(grid.x / 2 - 0.5)
+    const y1 = Math.floor(grid.y / 2 - 0.5)
+    const y2 = Math.ceil(grid.y / 2 - 0.5)
 
     this.center = [
       this.tileMap.get((<any>grid).tile(x1, y1).key),
       this.tileMap.get((<any>grid).tile(x1, y2).key),
       this.tileMap.get((<any>grid).tile(x2, y2).key),
       this.tileMap.get((<any>grid).tile(x2, y1).key)
-    ];
+    ]
 
-    this.empty = toMap(this.grid.tiles);
-    link(this.tileMap);
+    this.empty = toMap(this.grid.tiles)
+    link(this.tileMap)
 
     if (center) {
       this.center.forEach((t) => {
-        this.move(t, true);
-      });
+        this.move(t, true)
+      })
     }
 
-    this.updatePossible();
+    this.updatePossible()
   }
 
-  public possible(): any[] {
-    return <any>this.knownPossible;
+  public possible (): any[] {
+    return <any> this.knownPossible
   }
 
-  public updatePossible() {
-    this.knownPossible = this.possibleFor(this.player);
+  public updatePossible () {
+    this.knownPossible = this.possibleFor(this.player)
 
     if (!this.knownPossible.length) {
       if (this.possibleFor(other(this.player)).length) {
-        this.move(null);
+        this.move(null)
       } else {
-        this.finished = true;
+        this.finished = true
       }
     }
   }
 
-  public possibleFor(pl: number): any[] {
-    const r = [];
+  public possibleFor (pl: number): any[] {
+    const r = []
 
     if ((this.grid.tiles.length - this.empty.size) < 4) {
-      return this.center.filter((t) => !t.data);
+      return this.center.filter((t) => !t.data)
     }
 
-    for (const m of <any>this.empty.values()) {
+    for (const m of <any> this.empty.values()) {
       for (const d of (m).links.keys()) {
-        let node = (m).links.get(d);
-        let nodes = 0;
+        let node = (m).links.get(d)
+        let nodes = 0
 
         while (node && node.data && (node.data !== pl)) {
-          nodes++;
-          node = node.links.get(d);
+          nodes++
+          node = node.links.get(d)
         }
 
         if (nodes && node && (node.data === pl)) {
-          r.push(m);
-          break;
+          r.push(m)
+          break
         }
       }
     }
 
-    return r;
+    return r
   }
 
-  public undo(): void {
-    const m = this.moves.pop();
-    this.finished = false;
-    this.winner = 0;
+  public undo (): void {
+    const m = this.moves.pop()
+    this.finished = false
+    this.winner = 0
 
     if (!m) {
-      this.player = other(this.player);
-      this.history.pop();
-      this.undo();
+      this.player = other(this.player)
+      this.history.pop()
+      this.undo()
 
-      return;
+      return
     }
 
-    this.score[m.data]--;
-    m.data = null;
-    this.empty.set(m.key, m);
-    const h: IState = <IState>this.history.pop();
-    this.player = other(this.player);
+    this.score[m.data]--
+    m.data = null
+    this.empty.set(m.key, m)
+    const h: IState = <IState> this.history.pop()
+    this.player = other(this.player)
 
     for (const k of Object.keys(h)) {
-      const d = <any>(this.tileMap.get(k));
-      this.score[d.data]--;
-      d.data = h[k];
-      this.score[d.data]++;
-  }
-
-    this.updatePossible();
-  }
-
-  public move(m: any, fake = false): void {
-    if (!m) {
-      this.movePass(m);
-
-      return;
+      const d = <any>(this.tileMap.get(k))
+      this.score[d.data]--
+      d.data = h[k]
+      this.score[d.data]++
     }
 
-    m.data = this.player;
+    this.updatePossible()
+  }
 
-    this.score[this.player] = this.score[this.player] || 0;
-    this.score[this.player]++;
-    this.player = other(this.player);
-    this.empty.delete(m.key);
+  public move (m: any, fake = false): void {
+    if (!m) {
+      this.movePass(m)
+
+      return
+    }
+
+    m.data = this.player
+
+    this.score[this.player] = this.score[this.player] || 0
+    this.score[this.player]++
+    this.player = other(this.player)
+    this.empty.delete(m.key)
 
     if (fake) {
-      return;
+      return
     }
 
-    this.moves.push(m);
+    this.moves.push(m)
 
-    const state: IState = this.getState(m);
+    const state: IState = this.getState(m)
 
-    this.history.push(state);
-    this.updatePossible();
-    this.winner = this.getWinner();
+    this.history.push(state)
+    this.updatePossible()
+    this.winner = this.getWinner()
   }
 
-  public evaluate(): number {
-    return - this.score[this.player] + this.score[other(this.player)];
+  public evaluate (): number {
+    return -this.score[this.player] + this.score[other(this.player)]
   }
 
-  public getWinner(): number {
+  public getWinner (): number {
     return !this.finished
       ? 0
       : this.score[1] === this.score[2]
         ? -1
         : this.score[1] > this.score[2]
           ? this.anti ? 2 : 1
-          : this.anti ? 1 : 2;
+          : this.anti ? 1 : 2
   }
 
-  private movePass(m: any) {
-    this.player = other(this.player);
-    this.moves.push(m);
-    this.history.push({});
-    this.updatePossible();
-    this.winner = this.getWinner();
+  private movePass (m: any) {
+    this.player = other(this.player)
+    this.moves.push(m)
+    this.history.push({})
+    this.updatePossible()
+    this.winner = this.getWinner()
   }
 
-  private getState(m: any) {
-    const state: IState = {};
+  private getState (m: any) {
+    const state: IState = {}
 
     for (const d of m.links.keys()) {
-      let node = m.links.get(d);
-      const nodes = [];
+      let node = m.links.get(d)
+      const nodes = []
 
       while (node && node.data && node.data !== m.data) {
-        nodes.push(node);
-        node = node.links.get(d);
+        nodes.push(node)
+        node = node.links.get(d)
       }
 
       if (node && (node.data === m.data)) {
         for (const n of nodes) {
-          state[n.key] = <number>n.data;
-          this.score[n.data]--;
-          this.score[m.data]++;
-          n.data = m.data;
+          state[n.key] = <number>n.data
+          this.score[n.data]--
+          this.score[m.data]++
+          n.data = m.data
         }
       }
     }
 
-    return state;
+    return state
   }
 }

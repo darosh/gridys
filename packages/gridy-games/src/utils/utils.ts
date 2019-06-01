@@ -1,113 +1,113 @@
-import { HexagonalGrid, Position, normalize, rotate } from '@gridy/core';
-import { IGame, Move } from '../index';
+import { HexagonalGrid, Position, normalize, rotate } from '@gridy/core'
+import { IGame, Move } from '../index'
 
-export const PASS = 'pass';
+export const PASS = 'pass'
 
-export function shuffle(a: any[]) {
+export function shuffle (a: any[]) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+    [a[i], a[j]] = [a[j], a[i]]
   }
 
-  return a;
+  return a
 }
 
-export function last(a: any[]) {
-  return a[a.length - 1];
+export function last (a: any[]) {
+  return a[a.length - 1]
 }
 
-export function isEmpty(a: any[]) {
-  return !a || !a.length;
+export function isEmpty (a: any[]) {
+  return !a || !a.length
 }
 
-export function parseRecord(record: string): Move[] {
-  const tokens: Move[] = [];
+export function parseRecord (record: string): Move[] {
+  const tokens: Move[] = []
 
-  const records = record.replace(/[^0-9a-z]+/, '').replace(/([0-9])([a-z])/g, '$1,$2').split(',');
+  const records = record.replace(/[^0-9a-z]+/, '').replace(/([0-9])([a-z])/g, '$1,$2').split(',')
 
   for (const r of records) {
-    tokens.push(parsePosition(r));
+    tokens.push(parsePosition(r))
   }
 
-  return tokens;
+  return tokens
 }
 
-export function parsePosition(r: string): [number, number] | null {
+export function parsePosition (r: string): [number, number] | null {
   if (r === PASS) {
-    return null;
+    return null
   } else {
-    const t: any[] = r.replace(/([a-z])([0-9])/g, '$1,$2').split(',');
-    t[0] = parseInt(t[0], 36) - 10;
-    t[1] = parseInt(t[1], 10) - 1;
+    const t: any[] = r.replace(/([a-z])([0-9])/g, '$1,$2').split(',')
+    t[0] = parseInt(t[0], 36) - 10
+    t[1] = parseInt(t[1], 10) - 1
 
-    return <[number, number]>t;
+    return <[number, number]>t
   }
 }
 
-export function parsePositions(r: string) {
+export function parsePositions (r: string) {
   if (r === PASS) {
-    return null;
+    return null
   } else {
-    const t: any[] = r.split('-');
+    const t: any[] = r.split('-')
 
-    return t.map(parsePosition);
+    return t.map(parsePosition)
   }
 }
 
-export function stringifyPosition(position: Position) {
-  return `${String.fromCharCode(position.x + 97)}${(position.y + 1)}`;
+export function stringifyPosition (position: Position) {
+  return `${String.fromCharCode(position.x + 97)}${(position.y + 1)}`
 }
 
-export function stringifyPositions(positions: Position[]) {
-  return positions.map(stringifyPosition).join('-');
+export function stringifyPositions (positions: Position[]) {
+  return positions.map(stringifyPosition).join('-')
 }
 
-export function stringify(game?: IGame) {
-  return !game ? [] : game.moves.map((m) => (<any>game).moveToString(m));
+export function stringify (game?: IGame) {
+  return !game ? [] : game.moves.map((m) => (<any>game).moveToString(m))
 }
 
-export function other(player: number) {
+export function other (player: number) {
   // if (!player) {
   //   throw new Error('Undefined player!');
   // }
 
-  return 3 - player;
+  return 3 - player
 }
 
-export function landscapeHex(grid: HexagonalGrid) {
-  rotate(grid, -1);
-  grid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_YZ;
-  grid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_YZ;
-  normalize(grid);
+export function landscapeHex (grid: HexagonalGrid) {
+  rotate(grid, -1)
+  grid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_YZ
+  grid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_YZ
+  normalize(grid)
 
-  return grid;
+  return grid
 }
 
-export function reset(game: IGame) {
+export function reset (game: IGame) {
   while (game.moves.length) {
-    game.undo();
+    game.undo()
   }
 }
 
-export function update(game: IGame, record: string) {
+export function update (game: IGame, record: string) {
   if (!record) {
-    return;
+    return
   }
 
   // .replace(/([0-9])([a-z])/g, "$1,$2")
-  const records = record.replace(/[^0-9a-z-,]+/g, '').split(',');
+  const records = record.replace(/[^0-9a-z-,]+/g, '').split(',')
 
   while (records.length > game.moves.length) {
-    game.move((<any>game).stringToMove(records[game.moves.length]));
+    game.move((<any>game).stringToMove(records[game.moves.length]))
   }
 }
 
-export function undoFor(game: IGame, player: number) {
+export function undoFor (game: IGame, player: number) {
   if ((game.player === player) && game.moves.length) {
-    game.undo();
+    game.undo()
   }
 
   while ((game.player !== player) && game.moves.length) {
-    game.undo();
+    game.undo()
   }
 }

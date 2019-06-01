@@ -1,7 +1,7 @@
-import { HexagonalGrid, RadialGrid, RectangularGrid, TriangularGrid } from '@gridy/core';
-import { IGame } from '../IGame';
-import { IGridGame, IGridGameConstructor } from '../IGridGame';
-import { initActions } from './actions';
+import { HexagonalGrid, RadialGrid, RectangularGrid, TriangularGrid } from '@gridy/core'
+import { IGame } from '../IGame'
+import { IGridGame, IGridGameConstructor } from '../IGridGame'
+import { initActions } from './actions'
 
 export const FIELDS = [
   'title',
@@ -16,132 +16,132 @@ export const FIELDS = [
   'tiles',
   'original',
   'grid'
-];
+]
 
 const GRIDS = new Map<any, string>([
   [RectangularGrid, 'Rectangular'],
   [HexagonalGrid, 'Hexagonal'],
   [RadialGrid, 'Radial'],
   [TriangularGrid, 'Triangular']
-]);
+])
 
-function copy(name: {}): {} {
-  return {...name};
+function copy (name: {}): {} {
+  return { ...name }
 }
 
-function domain(link: string) {
-  return (<any>(/[^.]*\.[^.]{2,3}(?:\.[^.]{2,3})?$/.exec((new URL(link)).hostname)))[0];
+function domain (link: string) {
+  return (<any>(/[^.]*\.[^.]{2,3}(?:\.[^.]{2,3})?$/.exec((new URL(link)).hostname)))[0]
 }
 
-function id(key: string) {
-  return key.replace('Game', '');
+function id (key: string) {
+  return key.replace('Game', '')
 }
 
 export interface IDictionary {
-  [k: string]: any;
+  [k: string]: any
 }
 
-const links = ['wiki', 'source'];
+const links = ['wiki', 'source']
 
-function merge(a: IDictionary, b: IDictionary): IDictionary {
+function merge (a: IDictionary, b: IDictionary): IDictionary {
   for (const k of Object.keys(a)) {
     if (Array.isArray(a[k])) {
-      a[`${k}Array`] = a[k];
-      a[k] = a[k].join(', ');
+      a[`${k}Array`] = a[k]
+      a[k] = a[k].join(', ')
     }
   }
 
-  a.originals = getOriginals(a, b);
+  a.originals = getOriginals(a, b)
 
   links.forEach((l) => {
     if (a[l]) {
-      a[`${l}Text`] = domain(a[l]);
+      a[`${l}Text`] = domain(a[l])
     }
-  });
+  })
 
-  return a;
+  return a
 }
 
-function getOriginals(a: any, b: any) {
-  const originals: IDictionary = {};
+function getOriginals (a: any, b: any) {
+  const originals: IDictionary = {}
 
   for (const k of Object.keys(b)) {
     if (a[k]) {
-      continue;
+      continue
     }
 
     if (Array.isArray(b[k])) {
-      const n = `${k}Array`;
-      b[n] = b[k];
-      b[k] = b[k].join(', ');
-      a[n] = b[n];
+      const n = `${k}Array`
+      b[n] = b[k]
+      b[k] = b[k].join(', ')
+      a[n] = b[n]
     }
 
-    a[k] = b[k];
-    originals[k] = true;
+    a[k] = b[k]
+    originals[k] = true
   }
 
-  return originals;
+  return originals
 }
 
-export function table(games: { [name: string]: IGridGameConstructor }, wip = false): IDictionary[] {
-  const result: IDictionary[] = [];
+export function table (games: { [name: string]: IGridGameConstructor }, wip = false): IDictionary[] {
+  const result: IDictionary[] = []
 
   for (const key of Object.keys(games)) {
-    const a = games[key];
+    const a = games[key]
 
     if (!wip && a.wip) {
-      continue;
+      continue
     }
 
-    const m = row(a, games, key);
+    const m = row(a, games, key)
 
-    Object.freeze(m);
-    result.push(m);
+    Object.freeze(m)
+    result.push(m)
   }
 
-  return result;
+  return result
 }
 
-function row(a: IGridGameConstructor, games: { [name: string]: IGridGameConstructor }, key: string) {
-  const originalId = a.original;
-  const b = <IGridGameConstructor>(a.original ? games[a.original] : {});
-  const m = merge(copy(a), copy(b));
-  m.id = id(key);
-  m.originalId = originalId ? id(originalId) : undefined;
+function row (a: IGridGameConstructor, games: { [name: string]: IGridGameConstructor }, key: string) {
+  const originalId = a.original
+  const b = <IGridGameConstructor>(a.original ? games[a.original] : {})
+  const m = merge(copy(a), copy(b))
+  m.id = id(key)
+  m.originalId = originalId ? id(originalId) : undefined
 
-  let instance: IGridGame;
+  let instance: IGridGame
 
   Object.defineProperty(m, 'instance', {
     // tslint:disable-next-line:no-reserved-keywords
-    get() {
+    get () {
       if (instance) {
-        return instance;
+        return instance
       }
-      instance = new games[key]();
-      initActions(instance, (<IGame><any>instance).possible());
+      instance = new games[key]()
+      initActions(instance, (<IGame><any>instance).possible())
 
-      return Object.freeze(instance);
+      return Object.freeze(instance)
     }
-  });
+  })
   Object.defineProperty(m, 'tiles', {
     // tslint:disable-next-line:no-reserved-keywords
-    get() {
-      return m.instance.grid.tiles.length;
+    get () {
+      return m.instance.grid.tiles.length
     }
-  });
+  })
   Object.defineProperty(m, 'grid', {
     // tslint:disable-next-line:no-reserved-keywords
-    get() {
-      return GRIDS.get(m.instance.grid.constructor);
+    get () {
+      return GRIDS.get(m.instance.grid.constructor)
     }
-  });
+  })
 
-  m.original = b.title || a.title;
-  m.originals.original = !b.title;
-  m.link = m.wiki || m.source;
-  m.linkText = m.wikiText || m.sourceText;
-  m.wip = a.wip;
+  m.original = b.title || a.title
+  m.originals.original = !b.title
+  m.link = m.wiki || m.source
+  m.linkText = m.wikiText || m.sourceText
+  m.wip = a.wip
 
-  return m;
+  return m
 }

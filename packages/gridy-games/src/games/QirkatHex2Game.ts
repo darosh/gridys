@@ -1,7 +1,7 @@
-import { HexagonalGrid, Shape, normalize } from '@gridy/core';
-import { QirkatGameBase } from './base/QirkatGameBase';
+import { HexagonalGrid, Shape, normalize } from '@gridy/core'
+import { QirkatGameBase } from './base/QirkatGameBase'
 
-const SIZE = 5;
+const SIZE = 5
 
 export class QirkatHex2Game extends QirkatGameBase {
   public static title = 'Qirkat Hex2';
@@ -12,10 +12,10 @@ export class QirkatHex2Game extends QirkatGameBase {
 
   public hull: boolean;
 
-  constructor() {
-    const grid = new HexagonalGrid(1, true, Shape.Hexagonal, SIZE, SIZE);
-    normalize(grid);
-    super(<any>grid, SIZE * SIZE * SIZE * 3);
-    this.hull = true;
+  constructor () {
+    const grid = new HexagonalGrid(1, true, Shape.Hexagonal, SIZE, SIZE)
+    normalize(grid)
+    super(<any>grid, SIZE * SIZE * SIZE * 3)
+    this.hull = true
   }
 }

@@ -1,6 +1,6 @@
-import { Rectangular8Tile, RectangularGrid, Shape } from '@gridy/core';
-import { Theme } from '../Theme';
-import { ConnectGameBase } from './base/ConnectGameBase';
+import { Rectangular8Tile, RectangularGrid, Shape } from '@gridy/core'
+import { Theme } from '../Theme'
+import { ConnectGameBase } from './base/ConnectGameBase'
 
 export class TicTacToeGame extends ConnectGameBase {
   public static title = 'Tic Tac Toe';
@@ -13,7 +13,7 @@ export class TicTacToeGame extends ConnectGameBase {
   public static rules: string[] = ['Connect three pieces'];
   public static sample: string = 'b2, b3, a3, c1, c3, a2, a1';
 
-  constructor() {
-    super(<any>new RectangularGrid(1, false, Shape.Even, 3, 3, Rectangular8Tile), 3);
+  constructor () {
+    super(<any> new RectangularGrid(1, false, Shape.Even, 3, 3, Rectangular8Tile), 3)
   }
 }

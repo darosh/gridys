@@ -1,5 +1,5 @@
-import { Rectangular8Tile, RectangularGrid, RectangularTile, Shape } from '@gridy/core';
-import { TacTickleGameBase } from './base/TacTickleGameBase';
+import { Rectangular8Tile, RectangularGrid, RectangularTile, Shape } from '@gridy/core'
+import { TacTickleGameBase } from './base/TacTickleGameBase'
 
 export class TacTickleGame extends TacTickleGameBase {
   public static title = 'Tac-tickle';
@@ -10,7 +10,7 @@ export class TacTickleGame extends TacTickleGameBase {
   public static rules: string[] = ['Move to connect three pieces'];
   public static sample = 'c5-c4, b5-b4, d1-d2, a1-a2, a5-b5, b4-a4, d2-d3';
 
-  constructor() {
-    super(<any>new RectangularGrid(1, undefined, Shape.Even, 4, 5, Rectangular8Tile), 3, RectangularTile.directions);
+  constructor () {
+    super(<any> new RectangularGrid(1, undefined, Shape.Even, 4, 5, Rectangular8Tile), 3, RectangularTile.directions)
   }
 }
