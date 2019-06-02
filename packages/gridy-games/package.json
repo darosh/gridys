@@ -1,6 +1,6 @@
 {
   "name": "@gridy/games",
-	"description": "Board games logic based on @gridy/core",
+  "description": "Board games logic based on @gridy/core",
   "version": "0.2.0",
   "author": "Jan Forst <ensonador@gmail.com>",
   "dependencies": {

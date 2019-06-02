@@ -15,8 +15,8 @@
   "repository": "https://github.com/darosh/gridys/tree/master/packages/gridy-app-icons",
   "scripts": {
     "build": "rollup -c rollup.config.js -f cjs -o dist/index.cjs.js src/index.js",
-    "start": "rollup -c rollup.config.js -f cjs -o dist/index.cjs.js src/index.js -w",
     "prebuild": "del-cli dist",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "start": "rollup -c rollup.config.js -f cjs -o dist/index.cjs.js src/index.js -w"
   }
 }
