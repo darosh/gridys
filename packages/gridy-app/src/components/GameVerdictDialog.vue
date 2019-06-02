@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style scoped>
-.icon-large > svg,
+svg.icon-large,
 .divider-large {
   width: 96px;
   height: 96px;
