@@ -1,7 +1,7 @@
 import { log } from './log'
 import { messages, states, state } from './states'
 
-import { random as randomAvatar } from '@gridy/avatars'
+import { random as randomAvatar } from '@gridy/app-avatars'
 import { randomName } from './name'
 
 // import Idle from 'idle-js'

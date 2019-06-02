@@ -6,8 +6,8 @@
   "devDependencies": {
     "del-cli": "^2.0.0",
     "material-icons-bundle": "github:darosh/material-icons-bundle",
-    "rollup": "^1.12.4",
-    "rollup-plugin-node-resolve": "^5.0.0"
+    "rollup": "^1.13.1",
+    "rollup-plugin-node-resolve": "^5.0.1"
   },
   "license": "MIT",
   "main": "dist/index.cjs.js",

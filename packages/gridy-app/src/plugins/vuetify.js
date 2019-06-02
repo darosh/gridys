@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import VuetifyIcon from '@gridy/vuetify-icon'
-import * as icons from '@gridy/games-icons'
+import VuetifyIcon from '@gridy/app-vuetify-icon'
+import * as icons from '@gridy/app-icons'
 
 // console.log(icon)
 

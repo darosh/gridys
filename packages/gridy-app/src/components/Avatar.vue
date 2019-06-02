@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { inner } from '@gridy/avatars'
+import { inner } from '@gridy/app-avatars'
 
 export default {
   props: {

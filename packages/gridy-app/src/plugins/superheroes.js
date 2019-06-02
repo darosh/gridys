@@ -1,5 +1,5 @@
-var uniqueRandomArray = require('unique-random-array')
-var superheroes = require('@gridy/games-heroes')
+const uniqueRandomArray = require('unique-random-array')
+const superheroes = require('@gridy/app-heroes')
 
 exports.all = superheroes
 exports.random = uniqueRandomArray(superheroes)
