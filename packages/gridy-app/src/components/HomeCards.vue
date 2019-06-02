@@ -5,9 +5,11 @@
       class="app-grid-1"
       color="transparent"
       flat>
-      <v-icon
+      <div
         style="position: absolute;"
-        class="bg-icon">$vuetify.icons.gridy</v-icon>
+        class="bg-icon">
+        <v-icon>$vuetify.icons.gridy</v-icon>
+      </div>
       <div class="pa-5 pa-3-sm">
         <div class="display-1 text-xs-left mb-4">Offline games</div>
         <ul
@@ -31,9 +33,9 @@
       <div class="mx-0">
         <v-divider style="position: relative; margin-top: -4px; margin-bottom: 3px;"/>
       </div>
-      <v-icon
+      <div
         style="position: absolute;"
-        class="bg-icon">$vuetify.icons.earth</v-icon>
+        class="bg-icon"><v-icon>$vuetify.icons.earth</v-icon></div>
       <div class="pa-5  pa-3-sm">
         <div class="display-1 text-xs-left mb-3">Online
           <small style="opacity: 0.5">coming soon</small>
@@ -251,7 +253,7 @@ li {
   text-align: right;
   display: block;
 }
-.bg-icon svg {
+.bg-icon >>> .v-icon {
   display: inline-block;
   height: 100%;
   width: auto;
