@@ -1,0 +1,19 @@
+{
+  "name": "@gridy/players-assembly",
+  "description": "Assembly script player engines for @gridy/games",
+  "version": "1.0.0",
+  "author": "Jan Forst <ensonador@gmail.com>",
+  "devDependencies": {
+    "@gridy/build": "^1.1.0",
+    "assemblyscript": "AssemblyScript/assemblyscript"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "https://github.com/darosh/gridys/tree/master/packages/gridy-players-assembly",
+  "scripts": {
+    "asbuild:optimized": "asc assembly/index.ts -b dist/optimized.wasm -t dist/optimized.wat --sourceMap --validate --optimize",
+    "asbuild:untouched": "asc assembly/index.ts -b dist/untouched.wasm -t dist/untouched.wat --sourceMap --validate --debug",
+    "build": "npm run asbuild:untouched && npm run asbuild:optimized",
+    "prebuild": "del-cli dist"
+  }
+}
